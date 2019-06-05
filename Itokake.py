@@ -3,17 +3,18 @@ from PIL import Image,ImageDraw,ImageTk
 from tkinter import Tk,ttk,PhotoImage,colorchooser
 import tkinter as tk
 import math
-
-colornum=[(255,255,255),(255,255,255),(255,255,255),(255,255,255),(255,255,255),(255,255,255)]
-pin=[48,64,77,88,108]
-primary=[[23,19,17,13,11,7],[31,29,23,19,17,13],[37,31,29,23,19,17],[43,41,37,31,29,23],[53,47,43,41,37,31],[31,29,23,19,17,13],[37,31,29,23,19,17],[31,29,23,19,17,13]]
-img=None
+import time
+colornum = [(255,255,255),(255,255,255),(255,255,255),(255,255,255),(255,255,255),(255,255,255)]
+pin = [48,64,77,88,108]
+primary = [[23,19,17,13,11,7],[31,29,23,19,17,13],[37,31,29,23,19,17],[43,41,37,31,29,23],[53,47,43,41,37,31],[31,29,23,19,17,13],[37,31,29,23,19,17],[31,29,23,19,17,13]]
+img = None
 im = Image.new('RGB', (500, 500), (0, 0, 0))
 draw = ImageDraw.Draw(im)
 square = []
 pentagon = [(0,0)]*80
 hexagon = [(0,0)]*72
 circle = [[],[],[],[],[]]
+savenum=0
 for y in range(16):
     square.append((10+30*y,10))
 for y in range(16):
@@ -70,16 +71,25 @@ def enterb1():
     draw = ImageDraw.Draw(im)
     for i in range(6):
         writeline(primary[var.get()][i],colornum[i],var.get())
-    im = im.resize((600, 600), Image.LANCZOS)
+    im = im.resize((550, 550), Image.LANCZOS)
     img = ImageTk.PhotoImage(im)
-    canvas = tk.Canvas(root,bg="black",width=600, height=600)
-    canvas.place(x=60, y=115)
+    canvas = tk.Canvas(root,bg="black",width=550, height=550)
+    canvas.place(x=85, y=135)
     canvas.create_image(0, 0, image=img, anchor=tk.NW)
 
 def colorpick(i):
     def x():
         colornum[i]=hex_to_rgb(colorchooser.askcolor(title="select color")[1])
     return x
+
+def bsave():
+    global im
+    global savenum
+    savenum+=1
+    nowtime = time.strftime("%Y%m%d%H%M", time.strptime(time.ctime()))
+    savetxt=nowtime+str(savenum)+".png"
+    im.save(savetxt)
+    vartxt.set(savetxt+"に保存しました")
 
 button=[]
 root = Tk()
@@ -115,5 +125,11 @@ radio6.place(x=100,y=10)
 radio7.place(x=100,y=30)
 radio8.place(x=100,y=50)
 benter = tk.Button(root,text='実行',command=enterb1)
-benter.place(x=360,y=53,anchor='n',height=60,width=120)
+bsave = tk.Button(root,text='保存',command=bsave)
+vartxt = tk.StringVar()
+savetxt = tk.Label(root,textvariable=vartxt,text=u'test')
+
+bsave.place(x=425,y=53,anchor='n',height=60,width=120)
+benter.place(x=305,y=53,anchor='n',height=60,width=120)
+savetxt.place(x=365,y=115,anchor='n')
 root.mainloop()
