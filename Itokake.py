@@ -14,7 +14,24 @@ square = []
 pentagon = [(0,0)]*80
 hexagon = [(0,0)]*72
 circle = [[],[],[],[],[]]
+tri=[[(0,0) for i in range(84)]for i in range(6)]
 savenum=0
+
+for x in range(6):
+    tri[x][0] = (250+250*np.cos(np.deg2rad(60*x)),250+250*np.sin(np.deg2rad(60*x)))
+    tri[x][28] = (250+250*np.cos(np.deg2rad(60*x+60)),250+250*np.sin(np.deg2rad(60*x+60)))
+    tri[x][56] = (250,250)
+    tri[x][83] = (250+250*np.cos(np.deg2rad(60*x)),250+250*np.sin(np.deg2rad(60*x)))
+for x in range(6):
+    for y in range(28):
+        if tri[x][y] == (0,0):
+            tri[x][y]=(((28-y)*tri[x][0][0]+y*tri[x][28][0])/28,((28-y)*tri[x][0][1]+y*tri[x][28][1])/28)
+    for y in range(28,56):
+       if tri[x][y] == (0,0):
+            tri[x][y]=(((28-y)%28*tri[x][28][0]+y%28*tri[x][56][0])/28,((28-y)%28*tri[x][28][1]+y%28*tri[x][56][1])/28)
+    for y in range(56,84):
+        if tri[x][y] == (0, 0):
+            tri[x][y]=(((28-y)%28*tri[x][56][0]+y%28*tri[(x)][0][0])/28,((28-y)%28*tri[x][56][1]+y%28*tri[(x)][0][1])/28)
 for y in range(16):
     square.append((10+30*y,10))
 for y in range(16):
@@ -43,12 +60,13 @@ for x in range(80):
             pentagon[x]=(((16-x%16)*pentagon[x//16*16][0]+x%16*pentagon[(x//16+1)*16][0])/16,((16-x%16)*pentagon[x//16*16][1]+x%16*pentagon[(x//16+1)*16][1])/16)
         else:
             pentagon[x]=(((16-x%16)*pentagon[x//16*16][0]+x%16*pentagon[0][0])/16,((16-x%16)*pentagon[x//16*16][1]+x%16*pentagon[0][1])/16)
+               
 def hex_to_rgb(hextmp):
     if hextmp is not None:
         hextmp=hextmp.replace("#","")
         return (int(hextmp[:2],16),int(hextmp[2:4],16),int(hextmp[4:],16))
 
-def writeline(num,color,shape):
+def writeline(num,color,shape,x):
     global draw
     if shape < 5:
         for x in range(pin[shape]):
@@ -62,7 +80,14 @@ def writeline(num,color,shape):
     elif shape is 7:
         for x in range(72):
             draw.line((hexagon[x],hexagon[int((x+num)%72)]),fill=color, width=1)
-
+    elif shape is 8:
+        for y in range(84):
+            if y < 28:
+                draw.line((tri[x][y],tri[x][y+28]),fill=colornum[0])
+            elif y < 56 and 28 < y:
+                draw.line((tri[x][y],tri[x][y+28]),fill=colornum[1])
+            if y < 84 and 56 < y:
+                draw.line((tri[x][y],tri[x][(y+28)%84]),fill=colornum[2])
 def enterb1():
     global img
     global im
@@ -70,7 +95,11 @@ def enterb1():
     im = Image.new('RGB', (500, 500), (0, 0, 0))
     draw = ImageDraw.Draw(im)
     for i in range(6):
-        writeline(primary[var.get()][i],colornum[i],var.get())
+        if var.get() < 8:
+            x = var.get()
+        else:
+            x = 0
+        writeline(primary[x][i],colornum[i],var.get(),i)
     im = im.resize((550, 550), Image.LANCZOS)
     img = ImageTk.PhotoImage(im)
     canvas = tk.Canvas(root,bg="black",width=550, height=550)
@@ -115,7 +144,8 @@ radio4=tk.Radiobutton(frame1,value=3,variable=var,text="円(88pin)")
 radio5=tk.Radiobutton(frame1,value=4,variable=var,text="円(108pin)")
 radio6=tk.Radiobutton(frame1,value=5,variable=var,text="正方形(64pin)")
 radio7=tk.Radiobutton(frame1,value=6,variable=var,text="五角形(80pin)")
-radio8=tk.Radiobutton(frame1,value=7,variable=var,text="六角形(72pin)")    
+radio8=tk.Radiobutton(frame1,value=7,variable=var,text="六角形(72pin)")
+radio9=tk.Radiobutton(frame1,value=8,variable=var,text="蕾")    
 radio1.place(x=10,y=10)
 radio2.place(x=10,y=30)
 radio3.place(x=10,y=50)
@@ -124,6 +154,7 @@ radio5.place(x=10,y=90)
 radio6.place(x=100,y=10)
 radio7.place(x=100,y=30)
 radio8.place(x=100,y=50)
+radio9.place(x=100,y=70)
 benter = tk.Button(root,text='実行',command=enterb1)
 bsave = tk.Button(root,text='保存',command=bsave)
 vartxt = tk.StringVar()
