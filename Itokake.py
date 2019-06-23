@@ -1,166 +1,311 @@
-import numpy as np
-from PIL import Image,ImageDraw,ImageTk
-from tkinter import Tk,ttk,PhotoImage,colorchooser
+from math import sin, cos
+from PIL import Image, ImageDraw, ImageTk
 import tkinter as tk
-import math
+from tkinter import colorchooser
 import time
-colornum = [(255,255,255),(255,255,255),(255,255,255),(255,255,255),(255,255,255),(255,255,255)]
-pin = [48,64,77,88,108]
-primary = [[23,19,17,13,11,7],[31,29,23,19,17,13],[37,31,29,23,19,17],[43,41,37,31,29,23],[53,47,43,41,37,31],[31,29,23,19,17,13],[37,31,29,23,19,17],[31,29,23,19,17,13]]
+
+sixtri = [
+    [(250, 0), (180, 125), (320, 125)],
+    [(40, 125), (180, 125), (110, 250)],
+    [(180, 125), (250, 250), (110, 250)],
+    [(320, 125), (250, 250), (180, 125)],
+    [(320, 125), (250, 250), (390, 250)],
+    [(460, 125), (320, 125), (390, 250)],
+    [(40, 375), (110, 250), (180, 375)],
+    [(110, 250), (250, 250), (180, 375)],
+    [(180, 375), (250, 250), (320, 375)],
+    [(390, 250), (250, 250), (320, 375)],
+    [(460, 375), (390, 250), (320, 375)],
+    [(250, 500), (320, 375), (180, 375)]]
+colornum = [(255, 255, 255), (255, 255, 255), (255, 255, 255),
+            (255, 255, 255), (255, 255, 255), (255, 255, 255)]
+pin = [48, 64, 77, 88, 108]
+primary = [[23, 19, 17, 13, 11, 7], [31, 29, 23, 19, 17, 13], [37, 31, 29, 23, 19, 17], [43, 41, 37, 31, 29, 23],
+           [53, 47, 43, 41, 37, 31], [31, 29, 23, 19, 17, 13], [37, 31, 29, 23, 19, 17], [31, 29, 23, 19, 17, 13]]
 img = None
 im = Image.new('RGB', (500, 500), (0, 0, 0))
 draw = ImageDraw.Draw(im)
 square = []
-pentagon = [(0,0)]*80
-hexagon = [(0,0)]*72
-circle = [[],[],[],[],[]]
-tri=[[(0,0) for i in range(84)]for i in range(6)]
-savenum=0
+pentagon = [(0, 0)] * 80
+hexagon = [(0, 0)] * 72
+circle = [[], [], [], [], []]
+tri = [[(0, 0) for i in range(84)]for i in range(6)]
+savenum = 0
+radio = [None, None, None, None, None, None, None, None, None, None, None]
+hempin = [(0, 0) for i in range(6)]
+hempout = [(0, 0) for i in range(6)]
+hemp = [[(0, 0) for i in range(16)]for i in range(18)]
+sixstar = [[[(0, 0) for i in range(16)]for i in range(3)]for i in range(12)]
 
-for x in range(6):
-    tri[x][0] = (250+250*np.cos(np.deg2rad(60*x)),250+250*np.sin(np.deg2rad(60*x)))
-    tri[x][28] = (250+250*np.cos(np.deg2rad(60*x+60)),250+250*np.sin(np.deg2rad(60*x+60)))
-    tri[x][56] = (250,250)
-    tri[x][83] = (250+250*np.cos(np.deg2rad(60*x)),250+250*np.sin(np.deg2rad(60*x)))
-for x in range(6):
-    for y in range(28):
-        if tri[x][y] == (0,0):
-            tri[x][y]=(((28-y)*tri[x][0][0]+y*tri[x][28][0])/28,((28-y)*tri[x][0][1]+y*tri[x][28][1])/28)
-    for y in range(28,56):
-       if tri[x][y] == (0,0):
-            tri[x][y]=(((28-y)%28*tri[x][28][0]+y%28*tri[x][56][0])/28,((28-y)%28*tri[x][28][1]+y%28*tri[x][56][1])/28)
-    for y in range(56,84):
-        if tri[x][y] == (0, 0):
-            tri[x][y]=(((28-y)%28*tri[x][56][0]+y%28*tri[(x)][0][0])/28,((28-y)%28*tri[x][56][1]+y%28*tri[(x)][0][1])/28)
-for y in range(16):
-    square.append((10+30*y,10))
-for y in range(16):
-    square.append((490,10+30*y))
-for y in range(16):
-    square.append((490-30*y,490))
-for y in range(16):
-    square.append((10,490-30*y))
-for y in range(5):
-    for x in range(pin[y]):
-        rad = np.deg2rad(360/pin[y])
-        circle[y].append((250+250*np.cos(rad*x),250+250*np.sin(rad*x)))
-for x in range(6):
-    hexagon[x*12]=(250+250*np.cos(np.deg2rad(60*x)),250+250*np.sin(np.deg2rad(60*x)))
-for x in range(72):
-    if hexagon[x][0]  is 0 and hexagon[x][1]  is 0:
-        if x < 60:
-            hexagon[x]=(((12-x%12)*hexagon[x//12*12][0]+x%12*hexagon[(x//12+1)*12][0])/12,((12-x%12)*hexagon[x//12*12][1]+x%12*hexagon[(x//12+1)*12][1])/12)
-        else:
-            hexagon[x]=(((12-x%12)*hexagon[x//12*12][0]+x%12*hexagon[0][0])/12,((12-x%12)*hexagon[x//12*12][1]+x%12*hexagon[0][1])/12)
-for x in range(5):
-    pentagon[x*16]=(250+250*np.cos(np.deg2rad(72*x-18)),270+250*np.sin(np.deg2rad(72*x-18)))
-for x in range(80):
-    if pentagon[x][0]  is 0 and pentagon[x][1]  is 0:
-        if x < 64:
-            pentagon[x]=(((16-x%16)*pentagon[x//16*16][0]+x%16*pentagon[(x//16+1)*16][0])/16,((16-x%16)*pentagon[x//16*16][1]+x%16*pentagon[(x//16+1)*16][1])/16)
-        else:
-            pentagon[x]=(((16-x%16)*pentagon[x//16*16][0]+x%16*pentagon[0][0])/16,((16-x%16)*pentagon[x//16*16][1]+x%16*pentagon[0][1])/16)
-               
+
+# 16進数からRGB変換
 def hex_to_rgb(hextmp):
     if hextmp is not None:
-        hextmp=hextmp.replace("#","")
-        return (int(hextmp[:2],16),int(hextmp[2:4],16),int(hextmp[4:],16))
+        hextmp = hextmp.replace("#", "")
+        return (int(hextmp[:2], 16), int(hextmp[2:4], 16), int(hextmp[4:], 16))
 
-def writeline(num,color,shape,x):
+
+# 度数法toラジアン
+def deg_to_rad(degree):
+    rad = degree * (3.14159265 / 180)
+    return rad
+
+
+# 点初期化
+# 蕾
+for x in range(6):
+    tri[x][0] = (250 + 250 * cos(deg_to_rad(60 * x)),
+                 250 + 250 * sin(deg_to_rad(60 * x)))
+    tri[x][28] = (250 + 250 * cos(deg_to_rad(60 * x + 60)),
+                  250 + 250 * sin(deg_to_rad(60 * x + 60)))
+    tri[x][56] = (250, 250)
+    tri[x][83] = (250 + 250 * cos(deg_to_rad(60 * x)),
+                  250 + 250 * sin(deg_to_rad(60 * x)))
+for x in range(6):
+    for y in range(28):
+        if tri[x][y] == (0, 0):
+            xp = ((28 - y) * tri[x][0][0] + y * tri[x][28][0]) / 28
+            yp = ((28 - y) * tri[x][0][1] + y * tri[x][28][1]) / 28
+            tri[x][y] = (xp, yp)
+    for y in range(28, 56):
+        if tri[x][y] == (0, 0):
+            xp = ((28 - y) % 28 * tri[x][28][0] + y % 28 * tri[x][56][0]) / 28
+            yp = ((28 - y) % 28 * tri[x][28][1] + y % 28 * tri[x][56][1]) / 28
+            tri[x][y] = (xp, yp)
+    for y in range(56, 84):
+        if tri[x][y] == (0, 0):
+            xp = ((28 - y) % 28 * tri[x][56][0] + y % 28 * tri[(x)][0][0]) / 28
+            yp = ((28 - y) % 28 * tri[x][56][1] + y % 28 * tri[(x)][0][1]) / 28
+            tri[x][y] = (xp, yp)
+# 四角形
+for y in range(16):
+    square.append((10 + 30 * y, 10))
+for y in range(16):
+    square.append((490, 10 + 30 * y))
+for y in range(16):
+    square.append((490 - 30 * y, 490))
+for y in range(16):
+    square.append((10, 490 - 30 * y))
+# 円
+for y in range(5):
+    for x in range(pin[y]):
+        circle[y].append((250 + 250 * cos(deg_to_rad(360 / pin[y]) * x),
+                          250 + 250 * sin(deg_to_rad(360 / pin[y]) * x)))
+# 六角形
+for x in range(6):
+    hexagon[x * 12] = (250 + 250 * cos(deg_to_rad(60 * x)),
+                       250 + 250 * sin(deg_to_rad(60 * x)))
+for x in range(72):
+    if hexagon[x][0] == 0 and hexagon[x][1] == 0:
+        if x < 60:
+            xp = ((12 - x % 12) * hexagon[x // 12 * 12][0] + x %
+                  12 * hexagon[(x // 12 + 1) * 12][0]) / 12
+            yp = ((12 - x % 12) * hexagon[x // 12 * 12][1] + x %
+                  12 * hexagon[(x // 12 + 1) * 12][1]) / 12
+            hexagon[x] = (xp, yp)
+        else:
+            xp = ((12 - x % 12) * hexagon[x // 12 * 12]
+                  [0] + x % 12 * hexagon[0][0]) / 12
+            yp = ((12 - x % 12) * hexagon[x // 12 * 12]
+                  [1] + x % 12 * hexagon[0][1]) / 12
+            hexagon[x] = (xp, yp)
+# 五角形
+for x in range(5):
+    pentagon[x * 16] = (250 + 250 * cos(deg_to_rad(72 * x - 18)),
+                        270 + 250 * sin(deg_to_rad(72 * x - 18)))
+for x in range(80):
+    if pentagon[x][0] == 0 and pentagon[x][1] == 0:
+        if x < 64:
+            xp = ((16 - x % 16) * pentagon[x // 16 * 16][0] + x %
+                  16 * pentagon[(x // 16 + 1) * 16][0]) / 16
+            yp = ((16 - x % 16) * pentagon[x // 16 * 16][1] + x %
+                  16 * pentagon[(x // 16 + 1) * 16][1]) / 16
+            pentagon[x] = (xp, yp)
+        else:
+            xp = ((16 - x % 16) * pentagon[x // 16 * 16]
+                  [0] + x % 16 * pentagon[0][0]) / 16
+            yp = ((16 - x % 16) * pentagon[x // 16 * 16]
+                  [1] + x % 16 * pentagon[0][1]) / 16
+            pentagon[x] = (xp, yp)
+# 麻の葉
+for x in range(6):
+    hempout[x] = (250 + 250 * cos(deg_to_rad(60 * x + 30)),
+                  250 + 250 * sin(deg_to_rad(60 * x + 30)))
+for x in range(6):
+    hempin[x] = ((hempout[x][0] + hempout[(x + 1) % 6][0] + 250) / 3,
+                 (hempout[x][1] + hempout[(x + 1) % 6][1] + 250) / 3)
+for x in range(18):
+    for y in range(16):
+        if x % 3 == 0:
+            xp = ((16 - y) * hempin[x // 3][0] + y * hempout[x // 3][0]) / 16
+            yp = ((16 - y) * hempin[x // 3][1] + y * hempout[x // 3][1]) / 16
+            hemp[x][y] = (xp, yp)
+            xp = (y * hempin[x // 3][0] + (16 - y) * hempout[x // 3][0]) / 16
+            yp = (y * hempin[x // 3][1] + (16 - y) * hempout[x // 3][1]) / 16
+            hemp[x][y] = (xp, yp)
+        elif x % 3 == 1:
+            xp = ((16 - y) * hempin[x // 3][0] + y * 255) / 16
+            yp = ((16 - y) * hempin[x // 3][1] + y * 255) / 16
+            hemp[x][y] = (xp, yp)
+        elif x % 3 == 2:
+            xp = ((16 - y) * hempin[x // 3][0] + y *
+                  hempout[(x // 3 + 1) % 6][0]) / 16
+            yp = ((16 - y) * hempin[x // 3][1] + y *
+                  hempout[(x // 3 + 1) % 6][1]) / 16
+            hemp[x][y] = (xp, yp)
+# 六芒星
+for x in range(12):
+    for y in range(3):
+        for z in range(16):
+            xp = ((16 - z) * sixtri[x][y][0] + z *
+                  sixtri[x][(y + 1) % 3][0]) / 16
+            yp = ((16 - z) * sixtri[x][y][1] + z *
+                  sixtri[x][(y + 1) % 3][1]) / 16
+            sixstar[x][y][z] = (xp, yp)
+
+
+# 点初期化ここまで
+
+
+# 線
+def writeline(num, color, shape, x):
     global draw
+    # 円
     if shape < 5:
         for x in range(pin[shape]):
-            draw.line((circle[shape][x],circle[shape][int((x+num)%pin[shape])]),fill=color, width=1)
-    elif shape is 5:
+            draw.line((circle[shape][x], circle[shape][int(
+                (x + num) % pin[shape])]), fill=color, width=1)
+    # 正方形
+    elif shape == 5:
         for x in range(64):
-            draw.line((square[x],square[int((x+num)%64)]),fill=color, width=1)
-    elif shape is 6:
+            draw.line((square[x], square[int((x + num) % 64)]),
+                      fill=color, width=1)
+    # 五角形
+    elif shape == 6:
         for x in range(80):
-            draw.line((pentagon[x],pentagon[int((x+num)%80)]),fill=color, width=1)
-    elif shape is 7:
+            draw.line(
+                (pentagon[x], pentagon[int((x + num) % 80)]), fill=color, width=1)
+    # 六角形
+    elif shape == 7:
         for x in range(72):
-            draw.line((hexagon[x],hexagon[int((x+num)%72)]),fill=color, width=1)
-    elif shape is 8:
+            draw.line(
+                (hexagon[x], hexagon[int((x + num) % 72)]), fill=color, width=1)
+    # つぼみ
+    elif shape == 8:
         for y in range(84):
             if y < 28:
-                draw.line((tri[x][y],tri[x][y+28]),fill=colornum[0])
+                draw.line((tri[x][y], tri[x][y + 28]), fill=colornum[0])
             elif y < 56 and 28 < y:
-                draw.line((tri[x][y],tri[x][y+28]),fill=colornum[1])
+                draw.line((tri[x][y], tri[x][y + 28]), fill=colornum[1])
             if y < 84 and 56 < y:
-                draw.line((tri[x][y],tri[x][(y+28)%84]),fill=colornum[2])
+                draw.line((tri[x][y], tri[x][(y + 28) % 84]), fill=colornum[2])
+    # 麻の葉
+    elif shape == 9:
+        num = 18
+        for x in range(18):
+            for y in range(16):
+                if x % 3 == 0:
+                    if y + 12 > 16:
+                        draw.line((hemp[x][y], hemp[(x + 1) %
+                                                    18][y - 4]), fill=colornum[1])
+                    elif y + 12 < 16:
+                        draw.line((hemp[x][y], hemp[x][y + 12]),
+                                  fill=colornum[1])
+                elif x % 3 == 2:
+                    if y + 12 > 16:
+                        draw.line((hemp[x][y], hemp[(x + 1) %
+                                                    18][y - 4]), fill=colornum[0])
+                    elif y + 12 < 16:
+                        draw.line((hemp[x][y], hemp[x][y + 12]),
+                                  fill=colornum[0])
+                elif x % 3 == 1:
+                    if y + 12 > 16:
+                        draw.line((hemp[x][y], hemp[(x + 1) %
+                                                    18][16 - y]), fill=colornum[1])
+                        draw.line((hemp[x][y], hemp[(x + 3) %
+                                                    18][16 - y]), fill=colornum[0])
+                    elif y + 12 < 16:
+                        draw.line((hemp[x][y], hemp[x][y + 12]),
+                                  fill=colornum[1])
+                        draw.line((hemp[x][y], hemp[(x + 3) %
+                                                    18][y + 12]), fill=colornum[0])
+    # 六芒星
+    elif shape == 10:
+        for x in range(12):
+            for y in range(3):
+                for z in range(16):
+                    draw.line((sixstar[x][y][z], sixstar[x][(
+                        y + 1) % 3][(z + 16) % 16]), fill=colornum[y])
+
+
 def enterb1():
     global img
     global im
     global draw
-    im = Image.new('RGB', (500, 500), (0, 0, 0))
+    im = Image.new('RGBA', (500, 500), (0, 0, 0))
     draw = ImageDraw.Draw(im)
     for i in range(6):
         if var.get() < 8:
             x = var.get()
         else:
             x = 0
-        writeline(primary[x][i],colornum[i],var.get(),i)
+        writeline(primary[x][i], colornum[i], var.get(), i)
     im = im.resize((550, 550), Image.LANCZOS)
     img = ImageTk.PhotoImage(im)
-    canvas = tk.Canvas(root,bg="black",width=550, height=550)
+    canvas = tk.Canvas(root, bg="black", width=550, height=550)
     canvas.place(x=85, y=135)
     canvas.create_image(0, 0, image=img, anchor=tk.NW)
 
+
 def colorpick(i):
     def x():
-        colornum[i]=hex_to_rgb(colorchooser.askcolor(title="select color")[1])
+        colornum[i] = hex_to_rgb(
+            colorchooser.askcolor(title="select color")[1])
     return x
+
 
 def bsave():
     global im
     global savenum
-    savenum+=1
+    savenum += 1
     nowtime = time.strftime("%Y%m%d%H%M", time.strptime(time.ctime()))
-    savetxt=nowtime+str(savenum)+".png"
+    savetxt = nowtime + str(savenum) + ".png"
     im.save(savetxt)
-    vartxt.set(savetxt+"に保存しました")
+    vartxt.set(savetxt + "に保存しました")
 
-button=[]
-root = Tk()
+
+button = []
+root = tk.Tk()
 root.geometry("720x720+230+0")
 root.configure(bg='black')
 root.grid()
-root.resizable(0,0)
-
+root.resizable(0, 0)
 frame1 = tk.Toplevel()
 frame1.title("形状選択ウィンドウ")
-frame1.geometry("230x120+0+0")
+frame1.geometry("230x150+0+0")
 frame1.grid()
 
-for i in range(6):
-    button.append(tk.Button(root,height=3,width=13,text=str(i+1)+'番の色を選択',command=colorpick(i)))
-    button[i].pack(side='left',anchor='n')
-var=tk.IntVar()
-var.set(0)
-radio1=tk.Radiobutton(frame1,value=0,variable=var,text="円(48pin)")
-radio2=tk.Radiobutton(frame1,value=1,variable=var,text="円(64pin)")
-radio3=tk.Radiobutton(frame1,value=2,variable=var,text="円(77pin)")
-radio4=tk.Radiobutton(frame1,value=3,variable=var,text="円(88pin)")
-radio5=tk.Radiobutton(frame1,value=4,variable=var,text="円(108pin)")
-radio6=tk.Radiobutton(frame1,value=5,variable=var,text="正方形(64pin)")
-radio7=tk.Radiobutton(frame1,value=6,variable=var,text="五角形(80pin)")
-radio8=tk.Radiobutton(frame1,value=7,variable=var,text="六角形(72pin)")
-radio9=tk.Radiobutton(frame1,value=8,variable=var,text="蕾")    
-radio1.place(x=10,y=10)
-radio2.place(x=10,y=30)
-radio3.place(x=10,y=50)
-radio4.place(x=10,y=70)
-radio5.place(x=10,y=90)
-radio6.place(x=100,y=10)
-radio7.place(x=100,y=30)
-radio8.place(x=100,y=50)
-radio9.place(x=100,y=70)
-benter = tk.Button(root,text='実行',command=enterb1)
-bsave = tk.Button(root,text='保存',command=bsave)
-vartxt = tk.StringVar()
-savetxt = tk.Label(root,textvariable=vartxt,text=u'test')
 
-bsave.place(x=425,y=53,anchor='n',height=60,width=120)
-benter.place(x=305,y=53,anchor='n',height=60,width=120)
-savetxt.place(x=365,y=115,anchor='n')
+for i in range(6):
+    button.append(tk.Button(root, height=3, width=13, text=str(
+        i + 1) + '番の色を選択', command=colorpick(i)))
+    button[i].pack(side='left', anchor='n')
+var = tk.IntVar()
+var.set(0)
+shape = ["円(48pin)", "円(64pin)", "円(77pin)", "円(88pin)", "円(108pin)",
+         "正方形(64pin)", "五角形(80pin)", "六角形(72pin)", "蕾", "麻の葉", "六芒星"]
+for i in range(11):
+    radio[i] = tk.Radiobutton(frame1, value=i, variable=var, text=shape[i])
+    if 5 > i:
+        radio[i].place(x=10, y=10 + i * 20)
+    else:
+        radio[i].place(x=100, y=10 + (i - 5) * 20)
+benter = tk.Button(root, text='実行', command=enterb1)
+bsave = tk.Button(root, text='保存', command=bsave)
+vartxt = tk.StringVar()
+savetxt = tk.Label(root, textvariable=vartxt, text=u'test')
+
+bsave.place(x=425, y=53, anchor='n', height=60, width=120)
+benter.place(x=305, y=53, anchor='n', height=60, width=120)
+savetxt.place(x=365, y=115, anchor='n')
 root.mainloop()
