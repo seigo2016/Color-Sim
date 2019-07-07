@@ -12,39 +12,47 @@ input[type="radio"]:checked + label {
     border-radius: 5px;
     float: none;
 }
+.img{
+    text-align:center;
+    width: 100%;
+}
 div { 
     text-align : center;
     margin-right: auto;
     margin-left : auto;
 }
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 768px) {
     body{ 
         background-color:#dddddd;
         color : #000000;
         margin-right: auto;
         margin-left : auto;
         width:100%;
-        font-size:100%;
+        font-size:50%;
         text-align:center;
     }
     input[type=radio] {
         display: none;
-        width : 14%;
+        width : 20%;
+        height: 30%;
         margin: 0;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        border-radius: 0;
     }
     .label {
         margin: 5px;
-        width: 14%;
+        width: 20%;
+        height: 30%;
         padding-left: 5px;
         padding-right: 5px;
         border: 1px solid #006DD9;
         display: block;
         border-radius: 5px;
         float: left;
-    
+        border-radius: 0;
     }
     .btn-area .btn{
         width: 90px;
@@ -69,7 +77,8 @@ div {
         margin: 0;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-appearance: none;
     }
     .label {
         margin: 5px;
@@ -100,15 +109,15 @@ div {
     }
     input[type=radio] {
         display: none;
-        width : 150px;
+        width : 15%;
         margin: 0;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
-                box-sizing: border-box;
+        box-sizing: border-box;
     }
     .label {
         margin: 5px;
-        width: 90px;
+        width: 15%;
         padding-left: 5px;
         padding-right: 5px;
         border: 1px solid #006DD9;
