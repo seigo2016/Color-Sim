@@ -26,30 +26,32 @@
     <!--<img src="/static/images/{{imgfile}}.png" alt="pic01">-->
     <img class="img" src="data:image/png;base64,{{imgbin}}" alt="pic01">
     <form action="/Enter" method="post">
-        <p>
-            <input type="radio" name="shape" id="shape1" value="0" checked>
-            <label class="label" for="shape1">円(48P)</label>
-            <input type="radio" name="shape" id="shape2" value="1">
-            <label class="label" for="shape2">円(64P)</label>
-            <input type="radio" name="shape" id="shape3" value="2">
-            <label class="label" for="shape3">円(77P)</label>
-            <input type="radio" name="shape" id="shape4" value="3">
-            <label class="label" for="shape4">円(88P)</label>
-            <input type="radio" name="shape" id="shape5" value="4">
-            <label class="label" for="shape5">円(108P)</label>
-            <input type="radio" name="shape" id="shape6" value="5"><br></p>
-        <p>
-            <label class="label" for="shape6">正方形</label>
-            <input type="radio" name="shape" id="shape7" value="6">
-            <label class="label" for="shape7">五角形</label>
-            <input type="radio" name="shape" id="shape8" value="7">
-            <label class="label" for="shape8">六角形</label>
-            <input type="radio" name="shape" id="shape9" value="8">
-            <label class="label" for="shape9">つぼみ</label>
-            <input type="radio" name="shape" id="shape10" value="9">
-            <label class="label" for="shape10">麻の葉</label>
-            <input type="radio" name="shape" id="shape11" value="10">
-            <label class="label" for="shape11">六芒星</label><br></p>
+        <div class="Shape">
+            <p>
+                <input type="radio" name="shape" id="shape1" value="0" checked>
+                <label class="label" for="shape1">円(48P)</label>
+                <input type="radio" name="shape" id="shape2" value="1">
+                <label class="label" for="shape2">円(64P)</label>
+                <input type="radio" name="shape" id="shape3" value="2">
+                <label class="label" for="shape3">円(77P)</label>
+                <input type="radio" name="shape" id="shape4" value="3">
+                <label class="label" for="shape4">円(88P)</label>
+                <input type="radio" name="shape" id="shape5" value="4">
+                <label class="label" for="shape5">円(108P)</label>
+                <input type="radio" name="shape" id="shape6" value="5"><br></p>
+            <p>
+                <label class="label" for="shape6">正方形</label>
+                <input type="radio" name="shape" id="shape7" value="6">
+                <label class="label" for="shape7">五角形</label>
+                <input type="radio" name="shape" id="shape8" value="7">
+                <label class="label" for="shape8">六角形</label>
+                <input type="radio" name="shape" id="shape9" value="8">
+                <label class="label" for="shape9">つぼみ</label>
+                <input type="radio" name="shape" id="shape10" value="9">
+                <label class="label" for="shape10">麻の葉</label>
+                <input type="radio" name="shape" id="shape11" value="10">
+                <label class="label" for="shape11">六芒星</label><br></p>
+        </div>
         <p>
             <div class="color">
                 <input type="color" value="#ffffff" name="color1">
