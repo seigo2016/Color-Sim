@@ -69,9 +69,8 @@ def rgb_to_hex(rgbtmp):
     if rgbtmp is not None:
         return r"#%02X%02X%02X" % (rgbtmp[0], rgbtmp[1], rgbtmp[2])
 
+
 # 度数法toラジアン
-
-
 def deg_to_rad(degree):
     rad = degree * (3.14159265 / 180)
     return rad
@@ -188,8 +187,6 @@ for x in range(12):
             yp = ((16 - z) * sixtri[x][y][1] + z *
                   sixtri[x][(y + 1) % 3][1]) / 16
             sixstar[x][y][z] = (xp, yp)
-
-
 # 点初期化ここまで
 
 
@@ -197,7 +194,7 @@ for x in range(12):
 def writeline(num, color, shape, x):
     global draw
     # 円
-    if shape < 5:
+    if 0 <= shape and shape < 5:
         for x in range(pin[shape]):
             draw.line((circle[shape][x], circle[shape][int(
                 (x + num) % pin[shape])]), fill=color, width=1)
@@ -312,22 +309,10 @@ def enterb1():
         colornum6=colornumhex[5],
         imgbin=imgbin,
         title="実行結果")
-    # img = ImageTk.PhotoImage(im)
-
-
-def buttonsave():
-    global im
-    global savenum
-    savenum += 1
-    nowtime = time.strftime("%Y%m%d%H%M", time.strptime(time.ctime()))
-    savetxt = nowtime + str(savenum) + ".png"
-    im.save(savetxt)
 
 
 @app.route('/')
 def index():
-    # shape = ["円(48pin)", "円(64pin)", "円(77pin)", "円(88pin)", "円(108pin)",
-    #         "正方形(64pin)", "五角形(80pin)", "六角形(72pin)", "蕾", "麻の葉", "六芒星"]
     title = "ようこそ"
     return render_template('index.html',
                            colorlist=colornum, title=title)
