@@ -276,7 +276,8 @@ def enterb1():
             colornum[i] = (255, 255, 255)
         else:
             colornum[i] = hex_to_rgb(request.form["color" + str(i + 1)])
-    im = Image.new("RGBA", (500, 500), (0, 0, 0))
+    backcolor = hex_to_rgb(request.form["bgcolor"])
+    im = Image.new("RGBA", (500, 500), backcolor)
     draw = ImageDraw.Draw(im)
     var = int(request.form["shape"])
     for i in range(6):
@@ -305,6 +306,7 @@ def enterb1():
         colornum4=colornumhex[3],
         colornum5=colornumhex[4],
         colornum6=colornumhex[5],
+        bgcolor=backcolor,
         imgbin=imgbin,
         title="Result | 糸かけ曼荼羅色シミュレーターf")
 
