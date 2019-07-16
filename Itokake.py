@@ -306,12 +306,12 @@ def enterb1():
         colornum5=colornumhex[4],
         colornum6=colornumhex[5],
         imgbin=imgbin,
-        title="糸かけ曼荼羅色シミュレーター | Result")
+        title="Result | 糸かけ曼荼羅色シミュレーター")
 
 
 @app.route('/')
 def index():
-    title = "糸かけ曼荼羅色シミュレーター | Top"
+    title = "Top | 糸かけ曼荼羅色シミュレーター"
     return render_template('index.html',
                            colorlist=colornum, title=title)
 
