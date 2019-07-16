@@ -48,13 +48,11 @@ pentagon = [(0, 0)] * 80
 hexagon = [(0, 0)] * 72
 circle = [[], [], [], [], []]
 tri = [[(0, 0) for i in range(84)]for i in range(6)]
-savenum = 0
 radio = [None, None, None, None, None, None, None, None, None, None, None]
 hempin = [(0, 0) for i in range(6)]
 hempout = [(0, 0) for i in range(6)]
 hemp = [[(0, 0) for i in range(16)]for i in range(18)]
 sixstar = [[[(0, 0) for i in range(16)]for i in range(3)]for i in range(12)]
-vartxt = ""
 var = None
 
 
