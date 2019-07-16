@@ -2,10 +2,11 @@
 from math import sin, cos
 from PIL import Image, ImageDraw
 import time
-from flask import Flask, render_template, request  # , request, redirect, url_for
+# , request, redirect, url_for
+from flask import Flask, render_template, request, send_from_directory
 import io
 import base64
-
+import os
 app = Flask(__name__)
 sixtri = [
     [(250, 0), (180, 125), (320, 125)],
@@ -230,7 +231,7 @@ def writeline(num, color, shape, x):
                 if x % 3 == 0:
                     if y + 12 > 16:
                         draw.line((hemp[x][y], hemp[(x + 1) %
-                                                    18][y - 4]), fill=colornum[1])
+                                                    18][y - 2]), fill=colornum[1])
                     elif y + 12 < 16:
                         draw.line((hemp[x][y], hemp[x][y + 12]),
                                   fill=colornum[1])
@@ -248,11 +249,11 @@ def writeline(num, color, shape, x):
                         draw.line((hemp[x][y], hemp[(x + 3) %
                                                     18][16 - y]), fill=colornum[0])
                     elif y + 12 < 16:
-                        draw.line((hemp[x][y], hemp[x][y + 12]),
+                        draw.line((hemp[x][y], hemp[x][(y + 12) % 16]),
                                   fill=colornum[1])
                         draw.line((hemp[x][y], hemp[(x + 3) %
-                                                    18][y + 12]), fill=colornum[0])
-    # 六芒星
+                                                    18][(y + 12) % 16]), fill=colornum[0])
+                # 六芒星
     elif shape == 10:
         for x in range(12):
             for y in range(3):
@@ -316,6 +317,11 @@ def index():
     title = "ようこそ"
     return render_template('index.html',
                            colorlist=colornum, title=title)
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'web.ico', mimetype='image/vnd.microsoft.icon')
 
 
 if __name__ == '__main__':
