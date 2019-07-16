@@ -259,7 +259,7 @@ def writeline(num, color, shape, x):
                         y + 1) % 3][(z + 16) % 16]), fill=colornum[y])
 
 
-@app.route('/Enter', methods=['POST'])
+@app.route('/Result', methods=['POST'])
 def enterb1():
     global img
     global im
@@ -306,7 +306,7 @@ def enterb1():
         colornum5=colornumhex[4],
         colornum6=colornumhex[5],
         imgbin=imgbin,
-        title="Result | 糸かけ曼荼羅色シミュレーター")
+        title="Result | 糸かけ曼荼羅色シミュレーターf")
 
 
 @app.route('/')
