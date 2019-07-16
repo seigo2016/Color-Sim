@@ -306,7 +306,7 @@ def enterb1():
         colornum4=colornumhex[3],
         colornum5=colornumhex[4],
         colornum6=colornumhex[5],
-        bgcolor=backcolor,
+        bgcolor1=backcolor,
         imgbin=imgbin,
         title="Result | 糸かけ曼荼羅色シミュレーターf")
 
