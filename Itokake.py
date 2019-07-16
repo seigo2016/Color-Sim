@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 from math import sin, cos
 from PIL import Image, ImageDraw
@@ -8,6 +9,14 @@ import io
 import base64
 import os
 app = Flask(__name__)
+=======
+from math import sin, cos
+from PIL import Image, ImageDraw, ImageTk
+import tkinter as tk
+from tkinter import colorchooser
+import time
+
+>>>>>>> origin/master
 sixtri = [
     [(250, 0), (180, 125), (320, 125)],
     [(40, 125), (180, 125), (110, 250)],
@@ -24,6 +33,7 @@ sixtri = [
 colornum = [(255, 255, 255), (255, 255, 255), (255, 255, 255),
             (255, 255, 255), (255, 255, 255), (255, 255, 255)]
 pin = [48, 64, 77, 88, 108]
+<<<<<<< HEAD
 primary = [
     [
         23, 19, 17, 13, 11, 7], [
@@ -41,6 +51,10 @@ colornumhex = [
     "#ffffff",
     "#ffffff",
     "#ffffff"]
+=======
+primary = [[23, 19, 17, 13, 11, 7], [31, 29, 23, 19, 17, 13], [37, 31, 29, 23, 19, 17], [43, 41, 37, 31, 29, 23],
+           [53, 47, 43, 41, 37, 31], [31, 29, 23, 19, 17, 13], [37, 31, 29, 23, 19, 17], [31, 29, 23, 19, 17, 13]]
+>>>>>>> origin/master
 img = None
 im = Image.new('RGB', (500, 500), (0, 0, 0))
 draw = ImageDraw.Draw(im)
@@ -55,8 +69,11 @@ hempin = [(0, 0) for i in range(6)]
 hempout = [(0, 0) for i in range(6)]
 hemp = [[(0, 0) for i in range(16)]for i in range(18)]
 sixstar = [[[(0, 0) for i in range(16)]for i in range(3)]for i in range(12)]
+<<<<<<< HEAD
 vartxt = ""
 var = None
+=======
+>>>>>>> origin/master
 
 
 # 16進数からRGB変換
@@ -66,11 +83,14 @@ def hex_to_rgb(hextmp):
         return (int(hextmp[:2], 16), int(hextmp[2:4], 16), int(hextmp[4:], 16))
 
 
+<<<<<<< HEAD
 def rgb_to_hex(rgbtmp):
     if rgbtmp is not None:
         return r"#%02X%02X%02X" % (rgbtmp[0], rgbtmp[1], rgbtmp[2])
 
 
+=======
+>>>>>>> origin/master
 # 度数法toラジアン
 def deg_to_rad(degree):
     rad = degree * (3.14159265 / 180)
@@ -188,6 +208,11 @@ for x in range(12):
             yp = ((16 - z) * sixtri[x][y][1] + z *
                   sixtri[x][(y + 1) % 3][1]) / 16
             sixstar[x][y][z] = (xp, yp)
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master
 # 点初期化ここまで
 
 
@@ -195,7 +220,11 @@ for x in range(12):
 def writeline(num, color, shape, x):
     global draw
     # 円
+<<<<<<< HEAD
     if 0 <= shape and shape < 5:
+=======
+    if shape < 5:
+>>>>>>> origin/master
         for x in range(pin[shape]):
             draw.line((circle[shape][x], circle[shape][int(
                 (x + num) % pin[shape])]), fill=color, width=1)
@@ -231,7 +260,11 @@ def writeline(num, color, shape, x):
                 if x % 3 == 0:
                     if y + 12 > 16:
                         draw.line((hemp[x][y], hemp[(x + 1) %
+<<<<<<< HEAD
                                                     18][y - 2]), fill=colornum[1])
+=======
+                                                    18][y - 4]), fill=colornum[1])
+>>>>>>> origin/master
                     elif y + 12 < 16:
                         draw.line((hemp[x][y], hemp[x][y + 12]),
                                   fill=colornum[1])
@@ -249,11 +282,19 @@ def writeline(num, color, shape, x):
                         draw.line((hemp[x][y], hemp[(x + 3) %
                                                     18][16 - y]), fill=colornum[0])
                     elif y + 12 < 16:
+<<<<<<< HEAD
                         draw.line((hemp[x][y], hemp[x][(y + 12) % 16]),
                                   fill=colornum[1])
                         draw.line((hemp[x][y], hemp[(x + 3) %
                                                     18][(y + 12) % 16]), fill=colornum[0])
                 # 六芒星
+=======
+                        draw.line((hemp[x][y], hemp[x][y + 12]),
+                                  fill=colornum[1])
+                        draw.line((hemp[x][y], hemp[(x + 3) %
+                                                    18][y + 12]), fill=colornum[0])
+    # 六芒星
+>>>>>>> origin/master
     elif shape == 10:
         for x in range(12):
             for y in range(3):
@@ -262,6 +303,7 @@ def writeline(num, color, shape, x):
                         y + 1) % 3][(z + 16) % 16]), fill=colornum[y])
 
 
+<<<<<<< HEAD
 @app.route('/Enter', methods=['POST'])
 def enterb1():
     global img
@@ -327,3 +369,76 @@ def favicon():
 if __name__ == '__main__':
     app.debug = True
     app.run(port=5000, host='0.0.0.0')
+=======
+def enterb1():
+    global img
+    global im
+    global draw
+    im = Image.new('RGBA', (500, 500), (0, 0, 0))
+    draw = ImageDraw.Draw(im)
+    for i in range(6):
+        if var.get() < 8:
+            x = var.get()
+        else:
+            x = 0
+        writeline(primary[x][i], colornum[i], var.get(), i)
+    im = im.resize((550, 550), Image.LANCZOS)
+    img = ImageTk.PhotoImage(im)
+    canvas = tk.Canvas(root, bg="black", width=550, height=550)
+    canvas.place(x=85, y=135)
+    canvas.create_image(0, 0, image=img, anchor=tk.NW)
+
+
+def colorpick(i):
+    def x():
+        colornum[i] = hex_to_rgb(
+            colorchooser.askcolor(title="select color")[1])
+    return x
+
+
+def bsave():
+    global im
+    global savenum
+    savenum += 1
+    nowtime = time.strftime("%Y%m%d%H%M", time.strptime(time.ctime()))
+    savetxt = nowtime + str(savenum) + ".png"
+    im.save(savetxt)
+    vartxt.set(savetxt + "に保存しました")
+
+
+button = []
+root = tk.Tk()
+root.geometry("720x720+230+0")
+root.configure(bg='black')
+root.grid()
+root.resizable(0, 0)
+frame1 = tk.Toplevel()
+frame1.title("形状選択ウィンドウ")
+frame1.geometry("230x150+0+0")
+frame1.grid()
+
+
+for i in range(6):
+    button.append(tk.Button(root, height=3, width=13, text=str(
+        i + 1) + '番の色を選択', command=colorpick(i)))
+    button[i].pack(side='left', anchor='n')
+var = tk.IntVar()
+var.set(0)
+shape = ["円(48pin)", "円(64pin)", "円(77pin)", "円(88pin)", "円(108pin)",
+         "正方形(64pin)", "五角形(80pin)", "六角形(72pin)", "蕾", "麻の葉", "六芒星"]
+for i in range(11):
+    radio[i] = tk.Radiobutton(frame1, value=i, variable=var, text=shape[i])
+    if 5 > i:
+        radio[i].place(x=10, y=10 + i * 20)
+    else:
+        radio[i].place(x=100, y=10 + (i - 5) * 20)
+benter = tk.Button(root, text='実行', command=enterb1)
+bsave = tk.Button(root, text='保存', command=bsave)
+vartxt = tk.StringVar()
+savetxt = tk.Label(root, textvariable=vartxt, text=u'test')
+
+bsave.place(x=425, y=53, anchor='n', height=60, width=120)
+benter.place(x=305, y=53, anchor='n', height=60, width=120)
+savetxt.place(x=365, y=115, anchor='n')
+root.mainloop()
+>>>>>>> origin/master
