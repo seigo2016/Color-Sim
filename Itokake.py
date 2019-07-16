@@ -2,7 +2,6 @@
 from math import sin, cos
 from PIL import Image, ImageDraw
 import time
-# , request, redirect, url_for
 from flask import Flask, render_template, request, send_from_directory
 import io
 import base64
@@ -229,21 +228,14 @@ def writeline(num, color, shape, x):
         for x in range(18):
             for y in range(16):
                 if x % 3 == 0:
-                    if y + 12 > 16:
+                    if y + 12 >= 16:
                         draw.line((hemp[x][y], hemp[(x + 1) %
-                                                    18][y - 2]), fill=colornum[1])
+                                                    18][y - 1]), fill=colornum[1])
                     elif y + 12 < 16:
                         draw.line((hemp[x][y], hemp[x][y + 12]),
                                   fill=colornum[1])
-                elif x % 3 == 2:
-                    if y + 12 > 16:
-                        draw.line((hemp[x][y], hemp[(x + 1) %
-                                                    18][y - 4]), fill=colornum[0])
-                    elif y + 12 < 16:
-                        draw.line((hemp[x][y], hemp[x][y + 12]),
-                                  fill=colornum[0])
                 elif x % 3 == 1:
-                    if y + 12 > 16:
+                    if y + 12 >= 16:
                         draw.line((hemp[x][y], hemp[(x + 1) %
                                                     18][16 - y]), fill=colornum[1])
                         draw.line((hemp[x][y], hemp[(x + 3) %
@@ -253,6 +245,13 @@ def writeline(num, color, shape, x):
                                   fill=colornum[1])
                         draw.line((hemp[x][y], hemp[(x + 3) %
                                                     18][(y + 12) % 16]), fill=colornum[0])
+                elif x % 3 == 2:
+                    if y + 12 >= 16:
+                        draw.line((hemp[x][y], hemp[(x + 1) %
+                                                    18][y - 4]), fill=colornum[0])
+                    elif y + 12 < 16:
+                        draw.line((hemp[x][y], hemp[x][y + 12]),
+                                  fill=colornum[0])
                 # 六芒星
     elif shape == 10:
         for x in range(12):
