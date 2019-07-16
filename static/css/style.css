@@ -3,7 +3,7 @@ input[type="radio"]:checked + label {
     color: #ffffff;
 }
 .label:hover {
-    background-color: #E2EDF9; 
+    background-color: #cccccc; 
 }
 .color{
     padding-left: 5px;
@@ -24,7 +24,7 @@ div {
     margin-left : auto;
 }
 body{
-    background-color:#ffeeeeee;
+    background-color:#cccccc;
 }
 @media screen and (max-width: 768px) {
     .Shape{
