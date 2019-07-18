@@ -12,7 +12,6 @@
 
 <body>
     {% block content %}
-    <!--<img src="/static/images/{{imgfile}}.png" alt="pic01">-->
     <img class="img" src="data:image/png;base64,{{imgbin}}" alt="pic01">
     <form action="/Result" method="post">
         <div class="Shape">
@@ -41,28 +40,34 @@
                 <input type="radio" name="shape" id="shape11" value="10">
                 <label class="label" for="shape11">六芒星</label><br></p>
         </div>
-        <p>
-            <div class="color">
-                <input type="color" value={{colornum1}} name="color1">
-                <input type="color" value={{colornum2}} name="color2">
-                <input type="color" value={{colornum3}} name="color3">
-                <input type="color" value={{colornum4}} name="color4">
-                <input type="color" value={{colornum5}} name="color5">
-                <input type="color" value={{colornum6}} name="color6">
-            </div>
-        </p>
-        <div class="bgcolor">
-            <p>
-                <input type="color" value={{bgcolor}} name="bgcolor">
-            </p>
+        <div class="btn-area">
+            <input type="color" value={{colornum1}} name="color1" id="color1" class="color">
+            <input type="color" value={{colornum2}} name="color2" id="color2" class="color">
+            <input type="color" value={{colornum3}} name="color3" id="color3" class="color">
+            <input type="color" value={{colornum4}} name="color4" id="color4" class="color">
+            <input type="color" value={{colornum5}} name="color5" id="color5" class="color">
+            <input type="color" value={{colornum6}} name="color6" id="color6" class="color">
+            <label style="width: 5%;"></label>
+            <input type="color" value={{bgcolor}} name="bgcolor" id="bgcolor" class="bgcolor">
         </div>
         <div class="btn-area">
-            <button type="submit" class="btn">実行</button>
+            <button type="submit" class="btn" onclick="remember()">実行</button>
         </div>
     </form>
+    <div class="btn-area">
+        <label>過去の配色を復元</label><br>
+        <button type="submit" class="btn" onclick="change(1)">1st</button>
+        <button type="submit" class="btn" onclick="change(2)">2nd</button>
+        <button type="submit" class="btn" onclick="change(3)">3rd</button>
+        <button type="submit" class="btn" onclick="change(4)">4th</button>
+        <button type="submit" class="btn" onclick="change(5)">5th</button>
+        <button type="submit" class="btn" onclick="remove()">履歴消去</button>
+        </p>
+    </div>
     {% endblock %}
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/main.js"></script>
 </body>
 
 </html>

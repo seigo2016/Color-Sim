@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from math import sin, cos
 from PIL import Image, ImageDraw
