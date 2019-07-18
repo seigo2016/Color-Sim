@@ -8,10 +8,10 @@
     <title>{{ title }}</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/style.css" rel="stylesheet">
+    <script src="/static/js/main.js"></script>
 </head>
 
 <body>
-    <script src="/static/js/main.js"></script>
     {% block content %}
     <img class="img" src="data:image/png;base64,{{imgbin}}" alt="pic01">
     <form action="/Result" method="post">
