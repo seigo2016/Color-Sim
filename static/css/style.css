@@ -6,10 +6,10 @@ input[type="radio"]:checked + label {
     background-color: #cccccc;
 }
 .color{
-    background-color: rgb(163, 212, 240);
+    background-color: #a3d4f0;
 }
 .bgcolor{
-    background-color: rgb(219, 183, 152);
+    background-color: #dbb798;
 }
 .img{
     text-align:center;
