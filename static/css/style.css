@@ -18,6 +18,7 @@ body{
 }
 .btn-area{
     width: auto;
+    margin: 10px;
 }
 .btn-area .btn{
     width: 90px;
@@ -25,7 +26,7 @@ body{
     border-radius: 3px;
 }
 .btn-area-2{
-    margin: 3%;
+    margin: 1%;
     width: auto;
 }
 .btn-area-2 .btn{
@@ -47,10 +48,10 @@ input[type=radio] {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-input[type='radio'], label {
-    margin: 5px;
+.label {
+    margin: 6px;
     width: 22%;
-    height: 65px;
+    height: 25%;
     padding-left: 5px;
     padding-right: 5px;
     border: 2px solid #006DD9;
@@ -61,8 +62,8 @@ input[type="radio"]:checked + label {
     background: #31A9EE;
     color: #ffffff;
 }
-.label:hover {
-    background-color: #cccccc;
+label:hover {
+    background-color: #9bc4ebe0;
 }
 .Shape{
     width: 100%;
