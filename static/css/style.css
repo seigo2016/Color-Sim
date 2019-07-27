@@ -1,88 +1,33 @@
 body{
-    background-color:#eeeeee;
     color : #000000;
     margin-right: auto;
     margin-left : auto;
-    text-align:center;
+    text-align: center;
 }
-.color{
-    background-color: #a3d4f0;
-}
-.bgcolor{
-    background-color: #dbb798;
-}
-.img{
-    text-align:center;
-    width: 80%;
-    height: 80%
-}
-
-.Txt{
-    font-size: 20px;
-    text-align: left;
-    vertical-align: top;
+.main{
+    margin-right: auto;
+    margin-left : auto;
+    text-align: center;
 }
 input[type=radio] {
     display: none;
-    width : 15%;
-    margin: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.label {
-    margin: 6px;
-    width: 22%;
-    height: 25%;
-    padding-left: 5px;
-    padding-right: 5px;
-    border: 2px solid #006DD9;
-    border-radius: 5px;
-    float: left;
-}
-input[type="radio"]:checked + label {
-    background: #31A9EE;
-    color: #ffffff;
-}
-label:hover {
-    background-color: #9bc4ebe0;
-}
-.Shape{
-    width: 100%;
-    height: 50%;
 }
 @media screen and (max-width: 768px) {
-    body{
-        width:85%;
+    .main{
+        widows: 90%;
         font-size:50%;
-    }
-    input[type=radio] {
-        width : 20%;
-        height: 50px;
-        -webkit-appearance: none;
-        border-radius: 0;
-    }
-
-    input[type='radio'], label {
-        font-size: 250%;
     }
 }
 
 @media screen and (min-width:768px) and (max-width:1024px)  {
-    body{
-        width:80%;
+    .main{
+        widows: 90%;
         font-size:100%;
-    }
-    input[type='radio'], label {
-        font-size: 150%;
     }
 }
 @media screen and (min-width: 1024px) {
-    body{
-        width:600px;
+    .main{
+        width:80%;
         font-size:100%;
-    }
-    input[type='radio'], label {
-        font-size: 150%;
     }
 }

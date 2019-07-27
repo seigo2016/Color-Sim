@@ -2,74 +2,111 @@
 <html lang="ja">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="糸かけ曼荼羅,糸曼荼羅,色,シミュレーター,シミュレーション">
-    <meta name="description" content="糸かけ曼荼羅の色をシミュレーションするソフト。形状11種類・最大6色対応">
-    <title>{{ title }}</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/style.css" rel="stylesheet">
-    <script src="/static/js/main.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="google-site-verification" content="Ee6NL88pPxk1uWuAVExa_w_O0jLGiahJtoQlA8tTQf4" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="糸かけ曼荼羅,糸曼荼羅,色,シミュレーター,シミュレーション">
+        <meta name="description" content="糸かけ曼荼羅の色をシミュレーションするソフト。形状11種類・最大6色対応">
+        <title>{{ title }}</title>
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/style.css" rel="stylesheet">
+        <script src="/static/js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="google-site-verification" content="Ee6NL88pPxk1uWuAVExa_w_O0jLGiahJtoQlA8tTQf4" />
 </head>
 
-<body>
-    {% block content %}
-    <img class="img" src="data:image/png;base64,{{imgbin}}" alt="pic01">
-    <form action="/Result" method="post">
-        <!-- <div class="Shape"> -->
-        <div data-toggle="buttons" class="row">
-            <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white" for="shape1"><input type="radio"
-                    name="shape" id="shape1" value="0" checked>円(48P)</label>
-            <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white" for="shape2"> <input
-                    type="radio" name="shape" id="shape2" value="1">円(64P)</label>
-            <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white" for="shape3">円(77P) <input
-                    type="radio" name="shape" id="shape3" value="2"></label>
-            <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white" for="shape4">円(88P) <input
-                    type="radio" name="shape" id="shape4" value="3"></label>
-            <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white" for="shape5">円(108P) <input
-                    type="radio" name="shape" id="shape5" value="4"></label>
-            <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white" for="shape6">正方形 <input
-                    type="radio" name="shape" id="shape6" value="5"></label><br>
-            <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white" for="shape7">五角形 <input
-                    type="radio" name="shape" id="shape7" value="6"></label>
-            <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white" for="shape8">六角形 <input
-                    type="radio" name="shape" id="shape8" value="7"></label>
-            <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white" for="shape9">つぼみ <input
-                    type="radio" name="shape" id="shape9" value="8"></label>
-            <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white" for="shape10">麻の葉 <input
-                    type="radio" name="shape" id="shape10" value="9"></label>
-            <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white" for="shape11">六芒星 <input
-                    type="radio" name="shape" id="shape11" value="10"></label>
+<body class="bg-light">
+        {% block content %}
+        <div class="container m-0 col-12 p-0">
+                <nav class="navbar navbar-dark navbar-expand-sm bg-dark m-0">
+                        <a href="/" class="navbar-brand mr-5 ml-2 h1">Top</a>
+                        <a href="/Help" class="navbar-brand h1">Help</a>
+                </nav>
+                <div class="main">
+                        <div class="container">
+                                <img class="img col-12 mb-1" src="data:image/png;base64,{{imgbin}}" alt="pic01">
+                                <form action="/Result" method="post">
+                                        <!-- <div class="Shape"> -->
+                                        <div data-toggle="buttons" class="row">
+                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                        for="shape1"><input type="radio" name="shape" id="shape1"
+                                                                value="0" checked>円(48P)</label>
+                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                        for="shape2"> <input type="radio" name="shape" id="shape2"
+                                                                value="1">円(64P)</label>
+                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                        for="shape3">円(77P)
+                                                        <input type="radio" name="shape" id="shape3" value="2"></label>
+                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                        for="shape4">円(88P)
+                                                        <input type="radio" name="shape" id="shape4" value="3"></label>
+                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                        for="shape5">円(108P)
+                                                        <input type="radio" name="shape" id="shape5" value="4"></label>
+                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                        for="shape6">正方形
+                                                        <input type="radio" name="shape" id="shape6"
+                                                                value="5"></label><br>
+                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                        for="shape7">五角形
+                                                        <input type="radio" name="shape" id="shape7" value="6"></label>
+                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                        for="shape8">六角形
+                                                        <input type="radio" name="shape" id="shape8" value="7"></label>
+                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                        for="shape9">つぼみ
+                                                        <input type="radio" name="shape" id="shape9" value="8"></label>
+                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                        for="shape10">麻の葉
+                                                        <input type="radio" name="shape" id="shape10" value="9"></label>
+                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                        for="shape11">六芒星
+                                                        <input type="radio" name="shape" id="shape11"
+                                                                value="10"></label>
+                                        </div>
+                                        <!-- </div> -->
+                                        <div class="btn-area mt-2">
+                                                <input type="color" value={{colornum1}} name="color1" id="color1"
+                                                        class="color">
+                                                <input type="color" value={{colornum2}} name="color2" id="color2"
+                                                        class="color">
+                                                <input type="color" value={{colornum3}} name="color3" id="color3"
+                                                        class="color">
+                                                <input type="color" value={{colornum4}} name="color4" id="color4"
+                                                        class="color">
+                                                <input type="color" value={{colornum5}} name="color5" id="color5"
+                                                        class="color">
+                                                <input type="color" value={{colornum6}} name="color6" id="color6"
+                                                        class="color">
+                                                <input type="color" value={{bgcolor}} name="bgcolor" id="bgcolor"
+                                                        class="bgcolor ml-5 mr-5">
+                                        </div>
+                                        <div class="btn-area">
+                                                <button type="submit" class="btn btn-info mt-3"
+                                                        onclick="remember()">実行</button>
+                                        </div>
+                                </form>
+                                <p class="text-left h4 mt-1 mb-1">配色履歴</p>
+                                <div class="btn-area">
+                                        <button type="submit" class="btn btn-secondary mt-2"
+                                                onclick="change(1)">1st</button>
+                                        <button type="submit" class="btn btn-secondary mt-2"
+                                                onclick="change(2)">2nd</button>
+                                        <button type="submit" class="btn btn-secondary mt-2"
+                                                onclick="change(3)">3rd</button>
+                                        <button type="submit" class="btn btn-secondary mt-2"
+                                                onclick="change(4)">4th</button>
+                                        <button type="submit" class="btn btn-secondary mt-2"
+                                                onclick="change(5)">5th</button>
+                                        <button type="submit" class="btn btn-secondary mt-2 ml-5 mr-5"
+                                                onclick="remove()">履歴消去</button>
+                                </div>
+                        </div>
+                </div>
         </div>
-        <!-- </div> -->
-        <div class="btn-area mt-2">
-            <input type="color" value={{colornum1}} name="color1" id="color1" class="color">
-            <input type="color" value={{colornum2}} name="color2" id="color2" class="color">
-            <input type="color" value={{colornum3}} name="color3" id="color3" class="color">
-            <input type="color" value={{colornum4}} name="color4" id="color4" class="color">
-            <input type="color" value={{colornum5}} name="color5" id="color5" class="color">
-            <input type="color" value={{colornum6}} name="color6" id="color6" class="color">
-            <input type="color" value={{bgcolor}} name="bgcolor" id="bgcolor" class="bgcolor ml-5">
-        </div>
-        <div class="btn-area">
-            <button type="submit" class="btn btn-info mt-3" onclick="remember()">実行</button>
-        </div>
-    </form>
-    <div class="btn-area">
-        <div class="Txt">過去の配色</div>
-        <button type="submit" class="btn btn-secondary mt-2" onclick="change(1)">1st</button>
-        <button type="submit" class="btn btn-secondary mt-2" onclick="change(2)">2nd</button>
-        <button type="submit" class="btn btn-secondary mt-2" onclick="change(3)">3rd</button>
-        <button type="submit" class="btn btn-secondary mt-2" onclick="change(4)">4th</button>
-        <button type="submit" class="btn btn-secondary mt-2" onclick="change(5)">5th</button>
-        <button type="submit" class="btn btn-secondary mt-2 ml-5" onclick="remove()">履歴消去</button>
-    </div>
-    {% endblock %}
-    <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
+        {% endblock %}
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
 </body>
 
 </html>

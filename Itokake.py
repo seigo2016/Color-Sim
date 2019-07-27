@@ -312,6 +312,12 @@ def enterb1():
         title="Result | 糸かけ曼荼羅 色シミュレーター")
 
 
+@app.route('/Help')
+def help():
+    title = "Help | 糸かけ曼荼羅 色シミュレーター"
+    return render_template('help.html', title=title)
+
+
 @app.route('/')
 def index():
     title = "Top | 糸かけ曼荼羅 色シミュレーター"
