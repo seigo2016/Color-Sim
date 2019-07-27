@@ -12,6 +12,9 @@ body{
 input[type=radio] {
     display: none;
 }
+.navbar-header {
+    float: none;
+}
 @media screen and (max-width: 768px) {
     .main{
         widows: 90%;

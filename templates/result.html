@@ -18,16 +18,18 @@
 <body class="bg-light">
         {% block content %}
         <div class="container m-0 col-12 p-0">
-                <nav class="navbar navbar-dark navbar-expand-sm bg-dark justify-content-start m-0">
-                        <a href="/" class="navbar-brand mr-5 ml-2 h1">Top</a>
-                        <a href="/Help" class="navbar-brand h1">Help</a>
+                <nav class="navbar navbar-dark navbar-expand-sm bg-dark justify-content-left m-0 pb-0 pt-3">
+                        <div class="navbar-brand display-1 font-weight-bold">糸かけ曼荼羅色シミュレーター </div>
+                </nav>
+                <nav class="navbar navbar-dark navbar-expand-sm bg-dark justify-content-left m-0">
+                        <a href="/" class="navbar-brand mr-5 ml-2">Top</a>
+                        <a href="/Help" class="navbar-brand">Help</a>
                 </nav>
                 <div class="main">
                         <div class="container">
                                 <img class="img col-xs-12 col-sm-5 mb-1" src="data:image/png;base64,{{imgbin}}"
                                         alt="pic01">
                                 <form action="/Result" method="post">
-                                        <!-- <div class="Shape"> -->
                                         <div data-toggle="buttons" class="row">
                                                 <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
                                                         for="shape1"><input type="radio" name="shape" id="shape1"
@@ -65,7 +67,6 @@
                                                         <input type="radio" name="shape" id="shape11"
                                                                 value="10"></label>
                                         </div>
-                                        <!-- </div> -->
                                         <div class="btn-area mt-2">
                                                 <input type="color" value={{colornum1}} name="color1" id="color1"
                                                         class="color">
