@@ -45,3 +45,6 @@ function getStorage() {
     var getjson = localStorage.getItem('ColorSet' + String(len + 1))
     var getValue = JSON.parse(getjson)
 }
+window.onload = function () {
+    $('.arrow, [class^=arrow-]').bootstrapArrows();
+}
