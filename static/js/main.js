@@ -5,7 +5,6 @@ function change(i) {
             document.getElementById('color' + String(i + 1)).value = getValue[i]
         }
     }
-    console.log(getValue)
 }
 
 function remove() {

@@ -224,34 +224,38 @@ def writeline(num, color, shape, x):
     # 麻の葉
     elif shape == 9:
         num = 18
-        for x in range(18):
+        for x in range(2, 18, 3):
             for y in range(16):
-                if x % 3 == 0:
-                    if y + 12 >= 16:
-                        draw.line((hemp[x][y], hemp[(x + 1) %
-                                                    18][y - 1]), fill=colornum[1])
-                    elif y + 12 < 16:
-                        draw.line((hemp[x][y], hemp[x][y + 12]),
-                                  fill=colornum[1])
-                elif x % 3 == 1:
-                    if y + 12 >= 16:
-                        draw.line((hemp[x][y], hemp[(x + 1) %
-                                                    18][16 - y]), fill=colornum[1])
-                        draw.line((hemp[x][y], hemp[(x + 3) %
-                                                    18][16 - y]), fill=colornum[0])
-                    elif y + 12 < 16:
-                        draw.line((hemp[x][y], hemp[x][(y + 12) % 16]),
-                                  fill=colornum[1])
-                        draw.line((hemp[x][y], hemp[(x + 3) %
-                                                    18][(y + 12) % 16]), fill=colornum[0])
-                elif x % 3 == 2:
+                if x % 3 == 2:
                     if y + 12 >= 16:
                         draw.line((hemp[x][y], hemp[(x + 1) %
                                                     18][y - 4]), fill=colornum[0])
                     elif y + 12 < 16:
                         draw.line((hemp[x][y], hemp[x][y + 12]),
                                   fill=colornum[0])
-                # 六芒星
+        for x in range(1, 18, 3):
+            for y in range(16):
+                if x % 3 == 1:
+                    if y + 12 >= 16:
+                        draw.line((hemp[x][y], hemp[(x + 1) %
+                                                    18][16 - y]), fill=colornum[1])
+                        draw.line((hemp[x][y], hemp[(x + 3) %
+                                                    18][16 - y]), fill=colornum[0])
+                    elif y + 12 < 16:
+                        draw.line((hemp[x][y], hemp[x + 1][(y + 12) % 16]),
+                                  fill=colornum[1])
+                        draw.line((hemp[x][y], hemp[(x + 3) %
+                                                    18][(y + 12) % 16]), fill=colornum[0])
+        for x in range(0, 18, 3):
+            for y in range(16):
+                if x % 3 == 0:
+                    if y + 12 >= 16:
+                        draw.line((hemp[x][y], hemp[(x + 1) %
+                                                    18][y - 2]), fill=colornum[1])
+                    elif y + 12 < 16:
+                        draw.line((hemp[x][y], hemp[x][y + 12]),
+                                  fill=colornum[1])
+    # 六芒星
     elif shape == 10:
         for x in range(12):
             for y in range(3):

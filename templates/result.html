@@ -28,85 +28,112 @@
                 </nav>
                 <div class="main">
                         <div class="container">
-                                <img class="img col-xs-12 col-sm-5 mb-1" src="data:image/png;base64,{{imgbin}}"
-                                        alt="pic01">
-                                <form action="/Result" method="post">
-                                        <div data-toggle="buttons" class="row">
-                                                <p class="text-left h5 ml-3 mt-1 mb-1 col-md-12">①形状の選択</p>
-                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                        for="shape1"><input type="radio" name="shape" id="shape1"
-                                                                value="0" checked>円(48P)</label>
-                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                        for="shape2"> <input type="radio" name="shape" id="shape2"
-                                                                value="1">円(64P)</label>
-                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                        for="shape3">円(77P)
-                                                        <input type="radio" name="shape" id="shape3" value="2"></label>
-                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                        for="shape4">円(88P)
-                                                        <input type="radio" name="shape" id="shape4" value="3"></label>
-                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                        for="shape5">円(108P)
-                                                        <input type="radio" name="shape" id="shape5" value="4"></label>
-                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                        for="shape6">正方形
-                                                        <input type="radio" name="shape" id="shape6"
-                                                                value="5"></label><br>
-                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                        for="shape7">五角形
-                                                        <input type="radio" name="shape" id="shape7" value="6"></label>
-                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                        for="shape8">六角形
-                                                        <input type="radio" name="shape" id="shape8" value="7"></label>
-                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                        for="shape9">つぼみ
-                                                        <input type="radio" name="shape" id="shape9" value="8"></label>
-                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                        for="shape10">麻の葉
-                                                        <input type="radio" name="shape" id="shape10" value="9"></label>
-                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                        for="shape11">六芒星
-                                                        <input type="radio" name="shape" id="shape11"
-                                                                value="10"></label>
+                                <div class="row">
+                                        <img class="img col-6 col-sm-12 mb-1 mt-2"
+                                                src="data:image/png;base64,{{imgbin}}" alt="pic01">
+                                        <div class="col-6 col-sm-12 mt-1">
+                                                <form action="/Result" method="post">
+                                                        <div data-toggle="buttons" class="row">
+                                                                <p class="text-left h5 ml-3 mt-1 mb-1 col-md-12 pl-0">
+                                                                        ①形状の選択
+                                                                </p>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                                        for="shape1"><input type="radio" name="shape"
+                                                                                id="shape1" value="0"
+                                                                                checked>円(48P)</label>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                                        for="shape2"> <input type="radio" name="shape"
+                                                                                id="shape2" value="1">円(64P)</label>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                                        for="shape3">円(77P)
+                                                                        <input type="radio" name="shape" id="shape3"
+                                                                                value="2"></label>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                                        for="shape4">円(88P)
+                                                                        <input type="radio" name="shape" id="shape4"
+                                                                                value="3"></label>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                                        for="shape5">円(108P)
+                                                                        <input type="radio" name="shape" id="shape5"
+                                                                                value="4"></label>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                                        for="shape6">正方形
+                                                                        <input type="radio" name="shape" id="shape6"
+                                                                                value="5"></label><br>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                                        for="shape7">五角形
+                                                                        <input type="radio" name="shape" id="shape7"
+                                                                                value="6"></label>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                                        for="shape8">六角形
+                                                                        <input type="radio" name="shape" id="shape8"
+                                                                                value="7"></label>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                                        for="shape9">つぼみ
+                                                                        <input type="radio" name="shape" id="shape9"
+                                                                                value="8"></label>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                                        for="shape10">麻の葉
+                                                                        <input type="radio" name="shape" id="shape10"
+                                                                                value="9"></label>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                                        for="shape11">六芒星
+                                                                        <input type="radio" name="shape" id="shape11"
+                                                                                value="10"></label>
+                                                        </div>
+                                                        <div class='arrow-inverse' style="transform: rotate(180deg);">
+                                                        </div>
+                                                        <div class="btn-area mt-2 row">
+                                                                <p class="text-left h5 ml-0 mt-1 mb-1 col-7">②-① 糸の色
+                                                                </p>
+                                                                <p class="text-left h5 ml-0 mt-1 mb-1  pl-5 col-5">②-②
+                                                                        背景色
+                                                                </p>
+                                                                <div class="col-7">
+                                                                        <input type="color" value={{colornum1}}
+                                                                                name="color1" id="color1" class="color">
+                                                                        <input type="color" value={{colornum2}}
+                                                                                name="color2" id="color2" class="color">
+                                                                        <input type="color" value={{colornum3}}
+                                                                                name="color3" id="color3" class="color">
+                                                                        <input type="color" value={{colornum4}}
+                                                                                name="color4" id="color4" class="color">
+                                                                        <input type="color" value={{colornum5}}
+                                                                                name="color5" id="color5" class="color">
+                                                                        <input type="color" value={{colornum6}}
+                                                                                name="color6" id="color6" class="color">
+                                                                </div>
+                                                                <div class="col-5">
+                                                                        <input type="color" value={{bgcolor}}
+                                                                                name="bgcolor" id="bgcolor"
+                                                                                class="bgcolor ml-5 mr-5 float-left">
+                                                                </div>
+                                                        </div>
+                                                        <div class='arrow-inverse' style="transform: rotate(180deg);">
+                                                        </div>
+                                                        <p class="text-left h5 ml-0 mt-1 pl-0 mb-1 col-12">③　実行
+                                                        </p>
+                                                        <div class="btn-area">
+                                                                <button type="submit" class="btn btn-info mt-3"
+                                                                        onclick="remember()">実行</button>
+                                                        </div>
+                                                </form>
+                                                <p class="text-left h5 ml-3 mt-3 mb-2">配色履歴</p>
+                                                <div class="btn-area">
+                                                        <button type="submit" class="btn btn-secondary mt-2"
+                                                                onclick="change(1)">1st</button>
+                                                        <button type="submit" class="btn btn-secondary mt-2"
+                                                                onclick="change(2)">2nd</button>
+                                                        <button type="submit" class="btn btn-secondary mt-2"
+                                                                onclick="change(3)">3rd</button>
+                                                        <button type="submit" class="btn btn-secondary mt-2"
+                                                                onclick="change(4)">4th</button>
+                                                        <button type="submit" class="btn btn-secondary mt-2"
+                                                                onclick="change(5)">5th</button>
+                                                        <button type="submit" class="btn btn-secondary mt-2 ml-5 mr-5"
+                                                                onclick="remove()">履歴消去</button>
+                                                </div>
                                         </div>
-                                        <div class='arrow-inverse' style="transform: rotate(180deg);"></div>
-                                        <div class="btn-area mt-2">
-                                                <p class="text-left h5 ml-0 mt-1 mb-1 col-12">②色の選択</p>
-                                                <input type="color" value={{colornum1}} name="color1" id="color1"
-                                                        class="color">
-                                                <input type="color" value={{colornum2}} name="color2" id="color2"
-                                                        class="color">
-                                                <input type="color" value={{colornum3}} name="color3" id="color3"
-                                                        class="color">
-                                                <input type="color" value={{colornum4}} name="color4" id="color4"
-                                                        class="color">
-                                                <input type="color" value={{colornum5}} name="color5" id="color5"
-                                                        class="color">
-                                                <input type="color" value={{colornum6}} name="color6" id="color6"
-                                                        class="color">
-                                                <input type="color" value={{bgcolor}} name="bgcolor" id="bgcolor"
-                                                        class="bgcolor ml-5 mr-5">
-                                        </div>
-                                        <div class='arrow-inverse' style="transform: rotate(180deg);"></div>
-                                        <div class="btn-area">
-                                                <button type="submit" class="btn btn-info mt-3"
-                                                        onclick="remember()">実行</button>
-                                        </div>
-                                </form>
-                                <p class="text-left h5 ml-3 mt-3 mb-2">配色履歴</p>
-                                <div class="btn-area">
-                                        <button type="submit" class="btn btn-secondary mt-2"
-                                                onclick="change(1)">1st</button>
-                                        <button type="submit" class="btn btn-secondary mt-2"
-                                                onclick="change(2)">2nd</button>
-                                        <button type="submit" class="btn btn-secondary mt-2"
-                                                onclick="change(3)">3rd</button>
-                                        <button type="submit" class="btn btn-secondary mt-2"
-                                                onclick="change(4)">4th</button>
-                                        <button type="submit" class="btn btn-secondary mt-2"
-                                                onclick="change(5)">5th</button>
-                                        <button type="submit" class="btn btn-secondary mt-2 ml-5 mr-5"
-                                                onclick="remove()">履歴消去</button>
                                 </div>
                         </div>
                 </div>
