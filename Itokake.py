@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from math import sin, cos
+from math import sin, cos, radians
 from PIL import Image, ImageDraw
 import time
 from flask import Flask, render_template, request, send_from_directory
@@ -57,7 +57,6 @@ sixstar = [[[(0, 0) for i in range(16)]for i in range(3)]for i in range(12)]
 var = None
 
 
-# 16進数からRGB変換
 def hex_to_rgb(hextmp):
     if hextmp is not None:
         hextmp = hextmp.replace("#", "")
@@ -69,22 +68,16 @@ def rgb_to_hex(rgbtmp):
         return r"#%02X%02X%02X" % (rgbtmp[0], rgbtmp[1], rgbtmp[2])
 
 
-# 度数法toラジアン
-def deg_to_rad(degree):
-    rad = degree * (3.14159265 / 180)
-    return rad
-
-
 # 点初期化
 # 蕾
 for x in range(6):
-    tri[x][0] = (250 + 250 * cos(deg_to_rad(60 * x)),
-                 250 + 250 * sin(deg_to_rad(60 * x)))
-    tri[x][28] = (250 + 250 * cos(deg_to_rad(60 * x + 60)),
-                  250 + 250 * sin(deg_to_rad(60 * x + 60)))
+    tri[x][0] = (250 + 250 * cos(radians(60 * x)),
+                 250 + 250 * sin(radians(60 * x)))
+    tri[x][28] = (250 + 250 * cos(radians(60 * x + 60)),
+                  250 + 250 * sin(radians(60 * x + 60)))
     tri[x][56] = (250, 250)
-    tri[x][83] = (250 + 250 * cos(deg_to_rad(60 * x)),
-                  250 + 250 * sin(deg_to_rad(60 * x)))
+    tri[x][83] = (250 + 250 * cos(radians(60 * x)),
+                  250 + 250 * sin(radians(60 * x)))
 for x in range(6):
     for y in range(28):
         if tri[x][y] == (0, 0):
@@ -113,12 +106,12 @@ for y in range(16):
 # 円
 for y in range(5):
     for x in range(pin[y]):
-        circle[y].append((250 + 250 * cos(deg_to_rad(360 / pin[y]) * x),
-                          250 + 250 * sin(deg_to_rad(360 / pin[y]) * x)))
+        circle[y].append((250 + 250 * cos(radians(360 / pin[y]) * x),
+                          250 + 250 * sin(radians(360 / pin[y]) * x)))
 # 六角形
 for x in range(6):
-    hexagon[x * 12] = (250 + 250 * cos(deg_to_rad(60 * x)),
-                       250 + 250 * sin(deg_to_rad(60 * x)))
+    hexagon[x * 12] = (250 + 250 * cos(radians(60 * x)),
+                       250 + 250 * sin(radians(60 * x)))
 for x in range(72):
     if hexagon[x][0] == 0 and hexagon[x][1] == 0:
         if x < 60:
@@ -135,8 +128,8 @@ for x in range(72):
             hexagon[x] = (xp, yp)
 # 五角形
 for x in range(5):
-    pentagon[x * 16] = (250 + 250 * cos(deg_to_rad(72 * x - 18)),
-                        270 + 250 * sin(deg_to_rad(72 * x - 18)))
+    pentagon[x * 16] = (250 + 250 * cos(radians(72 * x - 18)),
+                        270 + 250 * sin(radians(72 * x - 18)))
 for x in range(80):
     if pentagon[x][0] == 0 and pentagon[x][1] == 0:
         if x < 64:
@@ -153,8 +146,8 @@ for x in range(80):
             pentagon[x] = (xp, yp)
 # 麻の葉
 for x in range(6):
-    hempout[x] = (250 + 250 * cos(deg_to_rad(60 * x + 30)),
-                  250 + 250 * sin(deg_to_rad(60 * x + 30)))
+    hempout[x] = (250 + 250 * cos(radians(60 * x + 30)),
+                  250 + 250 * sin(radians(60 * x + 30)))
 for x in range(6):
     hempin[x] = ((hempout[x][0] + hempout[(x + 1) % 6][0] + 250) / 3,
                  (hempout[x][1] + hempout[(x + 1) % 6][1] + 250) / 3)
