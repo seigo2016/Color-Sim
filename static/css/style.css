@@ -14,7 +14,9 @@ input[type=radio] {
 }
 .navbar-header {
     float: none;
-}
+}img {
+    object-fit: contain;
+  }
 @media screen and (max-width: 768px) {
     .main{
         widows: 90%;
