@@ -37,8 +37,8 @@
                                 <div data-toggle="buttons" class="row mt-2">
                                         <p class="text-left h5 mt-1 mb-1 col-md-12">①形状の選択</p>
                                         <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                for="shape1"><input type="radio" name="shape" id="shape1" value="0"
-                                                        checked>円(48P)</label>
+                                                for="shape1"><input type="radio" name="shape" id="shape1"
+                                                        value="0">円(48P)</label>
                                         <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
                                                 for="shape2"> <input type="radio" name="shape" id="shape2"
                                                         value="1">円(64P)</label>
@@ -69,8 +69,33 @@
                                         <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
                                                 for="shape11"> <input type="radio" name="shape" id="shape11"
                                                         value="10">六芒星</label>
+                                        <label class="btn btn-secondary col-sm-12 col-6 rounded-0 p-1 mb-0 border-white"
+                                                for="shape12">円(カスタム)
+                                                <input type="radio" name="shape" id="shape12" value="11" checked>
+                                                <label class="btn　col-sm-12 col-12 rounded-0 m-0 p-0 border-white text-left"
+                                                        for="shape12">
+                                                        <p class="m-0">ピン数</p>
+                                                        <input type="text" name="prime7" id="prime7" class="col-3"
+                                                                value="48">
+                                                </label>
+                                                <label
+                                                        class="btn　col-sm-12 col-12 rounded-0 m-0 p-0 border-white text-left">
+                                                        <p class="m-0 mt-1">糸の間隔</p>
+                                                        <input type="text" name="prime1" id="prime1" class="col-3"
+                                                                value="31">
+                                                        <input type="text" name="prime2" id="prime2" class="col-3"
+                                                                value="29">
+                                                        <input type="text" name="prime3" id="prime3" class="col-3"
+                                                                value="23">
+                                                        <input type="text" name="prime4" id="prime4" class="col-3"
+                                                                value="19">
+                                                        <input type="text" name="prime5" id="prime5" class="col-3"
+                                                                value="17">
+                                                        <input type="text" name="prime6" id="prime6" class="col-3"
+                                                                value="13">
+                                                </label>
+                                        </label>
                                 </div>
-
                                 <div class='arrow-inverse' style="transform: rotate(180deg);"></div>
                                 <div class="btn-area mt-2 row">
                                         <p class="text-left h5 mt-1 mb-1 col-7">②-① 糸の色
@@ -98,8 +123,8 @@
                                         </div>
                                 </div>
                                 <div class='arrow-inverse' style="transform: rotate(180deg);"></div>
-                                <div class="btn-area">
-                                        <button type="submit" class="btn btn-info mt-3 col-3"
+                                <div class="btn-area m-0">
+                                        <button type="submit" class="btn btn-info col-3 m-0"
                                                 onclick="remember()">実行</button>
                                 </div>
                         </form>

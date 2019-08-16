@@ -25,15 +25,15 @@ colornum = [(255, 255, 255), (255, 255, 255), (255, 255, 255),
             (255, 255, 255), (255, 255, 255), (255, 255, 255)]
 pin = [48, 64, 77, 88, 108]
 primary = [
-    [
-        23, 19, 17, 13, 11, 7], [
-            31, 29, 23, 19, 17, 13], [
-                37, 31, 29, 23, 19, 17], [
-                    43, 41, 37, 31, 29, 23], [
-                        53, 47, 43, 41, 37, 31], [
-                            31, 29, 23, 19, 17, 13], [
-                                37, 31, 29, 23, 19, 17], [
-                                    31, 29, 23, 19, 17, 13]]
+    [23, 19, 17, 13, 11, 7],
+    [31, 29, 23, 19, 17, 13],
+    [37, 31, 29, 23, 19, 17],
+    [43, 41, 37, 31, 29, 23],
+    [53, 47, 43, 41, 37, 31],
+    [31, 29, 23, 19, 17, 13],
+    [37, 31, 29, 23, 19, 17],
+    [31, 29, 23, 19, 17, 13],
+    [31, 29, 23, 19, 17, 13]]
 colornumhex = [
     "#ffffff",
     "#ffffff",
@@ -47,7 +47,7 @@ draw = ImageDraw.Draw(im)
 square = []
 pentagon = [(0, 0)] * 80
 hexagon = [(0, 0)] * 72
-circle = [[], [], [], [], []]
+circle = [[], [], [], [], [], [(0, 0)] * 1000]
 tri = [[(0, 0) for i in range(84)]for i in range(6)]
 radio = [None, None, None, None, None, None, None, None, None, None, None]
 hempin = [(0, 0) for i in range(6)]
@@ -278,12 +278,22 @@ def enterb1():
     im = Image.new("RGBA", (500, 500), backcolor)
     draw = ImageDraw.Draw(im)
     var = int(request.form["shape"])
+    primary[8] = [int(request.form["prime1"]), int(request.form["prime2"]), int(request.form["prime3"]), int(
+        request.form["prime4"]), int(request.form["prime5"]), int(request.form["prime6"]), int(request.form["prime7"])]
     for i in range(6):
         if var < 8:
             x = var
+            writeline(primary[x][i], colornum[i], var, i)
+        elif var == 11:
+            for x in range(primary[8][6]):
+                circle[5][x] = ((250 + 250 * cos(radians(360 / primary[8][6]) * x),
+                                 250 + 250 * sin(radians(360 / primary[8][6]) * x)))
+            for y in range(6):
+                for x in range(primary[8][6]):
+                    draw.line((circle[5][x], circle[5][int(
+                        (x + primary[8][y]) % primary[8][6])]), fill=colornum[i], width=1)
         else:
-            x = 0
-        writeline(primary[x][i], colornum[i], var, i)
+            writeline(primary[0][i], colornum[i], var, i)
     im = im.resize((550, 550), Image.LANCZOS)
     nowtime = time.strftime("%Y%m%d%H%M%S", time.strptime(time.ctime()))
     in_mem_file = io.BytesIO()
@@ -304,6 +314,13 @@ def enterb1():
         colornum4=colornumhex[3],
         colornum5=colornumhex[4],
         colornum6=colornumhex[5],
+        custompin1=primary[8][0],
+        custompin2=primary[8][1],
+        custompin3=primary[8][2],
+        custompin4=primary[8][3],
+        custompin5=primary[8][4],
+        custompin6=primary[8][5],
+        custompin7=primary[8][6],
         bgcolor=rgb_to_hex(backcolor),
         imgbin=imgbin,
         title="Result | 糸かけ曼荼羅 色シミュレーター")
