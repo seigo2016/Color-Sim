@@ -37,50 +37,52 @@
                                                                 <p class="text-left h5 ml-3 mt-1 mb-1 col-md-12 pl-0">
                                                                         ① 形状の選択
                                                                 </p>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                                        for="shape1"><input type="radio" name="shape"
-                                                                                id="shape1" value="0">円(48P)</label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                                        for="shape2"> <input type="radio" name="shape"
-                                                                                id="shape2" value="1">円(64P)</label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                                        for="shape3">円(77P)
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[0]}}"
+                                                                        for="shape1" onclick="setcolsize(6)"><input
+                                                                                type="radio" name="shape" id="shape1"
+                                                                                value="0">円(48P)</label>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[1]}}"
+                                                                        for="shape2" onclick="setcolsize(6)"> <input
+                                                                                type="radio" name="shape" id="shape2"
+                                                                                value="1">円(64P)</label>
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[2]}}"
+                                                                        for="shape3" onclick="setcolsize(6)">円(77P)
                                                                         <input type="radio" name="shape" id="shape3"
                                                                                 value="2"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                                        for="shape4">円(88P)
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[3]}}"
+                                                                        for="shape4" onclick="setcolsize(6)">円(88P)
                                                                         <input type="radio" name="shape" id="shape4"
                                                                                 value="3"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                                        for="shape5">円(108P)
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[4]}}"
+                                                                        for="shape5" onclick="setcolsize(6)">円(108P)
                                                                         <input type="radio" name="shape" id="shape5"
                                                                                 value="4"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                                        for="shape6">正方形
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[5]}}"
+                                                                        for="shape6" onclick="setcolsize(6)">正方形
                                                                         <input type="radio" name="shape" id="shape6"
                                                                                 value="5"></label><br>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                                        for="shape7">五角形
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[6]}}"
+                                                                        for="shape7" onclick="setcolsize(6)">五角形
                                                                         <input type="radio" name="shape" id="shape7"
                                                                                 value="6"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                                        for="shape8">六角形
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[7]}}"
+                                                                        for="shape8" onclick="setcolsize(6)">六角形
                                                                         <input type="radio" name="shape" id="shape8"
                                                                                 value="7"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                                        for="shape9">つぼみ
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[8]}}"
+                                                                        for="shape9" onclick="setcolsize(3)">つぼみ
                                                                         <input type="radio" name="shape" id="shape9"
                                                                                 value="8"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                                        for="shape10">麻の葉
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[9]}}"
+                                                                        for="shape10" onclick="setcolsize(2)">麻の葉
                                                                         <input type="radio" name="shape" id="shape10"
                                                                                 value="9"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
-                                                                        for="shape11">六芒星
+                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[10]}}"
+                                                                        for="shape11" onclick="setcolsize(3)">六芒星
                                                                         <input type="radio" name="shape" id="shape11"
                                                                                 value="10"></label>
-                                                                <label class="btn btn-secondary col-sm-12 col-12 rounded-0 ml-0 mb-0 border-white row"
-                                                                        for="shape12">円(カスタム)
+                                                                <label class="btn btn-secondary col-sm-12 col-12 rounded-0 ml-0 mb-0 border-white row {{ac[11]}}"
+                                                                        for="shape12" onclick="setcolsize(6)">円(カスタム)
                                                                         <input type="radio" name="shape" id="shape12"
                                                                                 value="11" checked>
                                                                         <label class="btn　col-sm-12 col-12 rounded-0 m-0 p-0 border-white text-left"

@@ -44,6 +44,23 @@ function getStorage() {
     var getjson = localStorage.getItem('ColorSet' + String(len + 1))
     var getValue = JSON.parse(getjson)
 }
+function getElementByXpath(path) {
+    return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+}
 window.onload = function () {
-    $('.arrow, [class^=arrow-]').bootstrapArrows();
+    var collist = [0, 6, 6, 6, 6, 6, 6, 6, 6, 3, 2, 3]
+    $('.arrow, [class^=arrow-]').bootstrapArrows()
+    for (let i = 1; i <= 12; i++) {
+        if (getElementByXpath("/html/body/div/div/div/div/div/form/div[1]/label[" + String(i) + "]").classList.contains("active")) {
+            setcolsize(collist[i])
+        }
+    }
+}
+function setcolsize(x) {
+    for (let i = 1; i <= 6; i++) {
+        if (i > x)
+            document.getElementById("color" + String(i)).classList.add("d-none")
+        else
+            document.getElementById("color" + String(i)).classList.remove("d-none")
+    }
 }

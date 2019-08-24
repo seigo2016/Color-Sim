@@ -54,7 +54,7 @@ hempin = [(0, 0) for i in range(6)]
 hempout = [(0, 0) for i in range(6)]
 hemp = [[(0, 0) for i in range(16)]for i in range(18)]
 sixstar = [[[(0, 0) for i in range(16)]for i in range(3)]for i in range(12)]
-var = None
+var = 0
 
 
 def hex_to_rgb(hextmp):
@@ -265,6 +265,7 @@ def enterb1():
     global draw
     global colornum
     tmpflg = 0
+    ac = [""] * 12
     for i in range(6):
         tmp = hex_to_rgb(request.form["color" + str(i + 1)])
         if tmp == (0, 0, 0):
@@ -280,6 +281,7 @@ def enterb1():
     var = int(request.form["shape"])
     primary[8] = [int(request.form["prime1"]), int(request.form["prime2"]), int(request.form["prime3"]), int(
         request.form["prime4"]), int(request.form["prime5"]), int(request.form["prime6"]), int(request.form["prime7"])]
+    ac[var] = "active"
     for i in range(6):
         if var < 8:
             x = var
@@ -288,10 +290,9 @@ def enterb1():
             for x in range(primary[8][6]):
                 circle[5][x] = ((250 + 250 * cos(radians(360 / primary[8][6]) * x),
                                  250 + 250 * sin(radians(360 / primary[8][6]) * x)))
-            for y in range(6):
-                for x in range(primary[8][6]):
-                    draw.line((circle[5][x], circle[5][int(
-                        (x + primary[8][y]) % primary[8][6])]), fill=colornum[i], width=1)
+            for x in range(primary[8][6]):
+                draw.line((circle[5][x], circle[5][int(
+                    (x + primary[8][i]) % primary[8][6])]), fill=colornum[i])
         else:
             writeline(primary[0][i], colornum[i], var, i)
     im = im.resize((550, 550), Image.LANCZOS)
@@ -321,6 +322,7 @@ def enterb1():
         custompin5=primary[8][4],
         custompin6=primary[8][5],
         custompin7=primary[8][6],
+        ac=ac,
         bgcolor=rgb_to_hex(backcolor),
         imgbin=imgbin,
         title="Result | 糸かけ曼荼羅 色シミュレーター")
@@ -345,5 +347,5 @@ def favicon():
 
 
 if __name__ == '__main__':
-    app.debug = True
+    app.debug = False
     app.run(port=5000, host='0.0.0.0')
