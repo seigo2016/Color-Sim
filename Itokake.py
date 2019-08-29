@@ -21,8 +21,7 @@ sixtri = [
     [(390, 250), (250, 250), (320, 375)],
     [(460, 375), (390, 250), (320, 375)],
     [(250, 500), (320, 375), (180, 375)]]
-colornum = [(255, 255, 255), (255, 255, 255), (255, 255, 255),
-            (255, 255, 255), (255, 255, 255), (255, 255, 255)]
+colornum = [(255, 255, 255)] * 6
 pin = [48, 64, 77, 88, 108]
 primary = [
     [23, 19, 17, 13, 11, 7],
@@ -34,13 +33,7 @@ primary = [
     [37, 31, 29, 23, 19, 17],
     [31, 29, 23, 19, 17, 13],
     [31, 29, 23, 19, 17, 13]]
-colornumhex = [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"]
+colornumhex = ["#ffffff"] * 6
 img = None
 im = Image.new('RGB', (500, 500), (0, 0, 0))
 draw = ImageDraw.Draw(im)
@@ -49,7 +42,7 @@ pentagon = [(0, 0)] * 80
 hexagon = [(0, 0)] * 72
 circle = [[], [], [], [], [], [(0, 0)] * 1000]
 tri = [[(0, 0) for i in range(84)]for i in range(6)]
-radio = [None, None, None, None, None, None, None, None, None, None, None]
+radio = [None] * 6
 hempin = [(0, 0) for i in range(6)]
 hempout = [(0, 0) for i in range(6)]
 hemp = [[(0, 0) for i in range(16)]for i in range(18)]
@@ -259,6 +252,7 @@ def writeline(num, color, shape, x):
 
 @app.route('/Result', methods=['POST'])
 def enterb1():
+    print("TEst")
     global img
     global im
     global colornumhex
@@ -309,19 +303,8 @@ def enterb1():
         'result.html',
         imgfile=nowtime,
         var=var,
-        colornum1=colornumhex[0],
-        colornum2=colornumhex[1],
-        colornum3=colornumhex[2],
-        colornum4=colornumhex[3],
-        colornum5=colornumhex[4],
-        colornum6=colornumhex[5],
-        custompin1=primary[8][0],
-        custompin2=primary[8][1],
-        custompin3=primary[8][2],
-        custompin4=primary[8][3],
-        custompin5=primary[8][4],
-        custompin6=primary[8][5],
-        custompin7=primary[8][6],
+        colornum=colornumhex,
+        custompin=primary[8],
         ac=ac,
         bgcolor=rgb_to_hex(backcolor),
         imgbin=imgbin,
