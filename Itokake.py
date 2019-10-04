@@ -42,7 +42,6 @@ pentagon = [(0, 0)] * 80
 hexagon = [(0, 0)] * 72
 circle = [[], [], [], [], [], [(0, 0)] * 1000]
 tri = [[(0, 0) for i in range(84)]for i in range(6)]
-radio = [None] * 6
 hempin = [(0, 0) for i in range(6)]
 hempout = [(0, 0) for i in range(6)]
 hemp = [[(0, 0) for i in range(16)]for i in range(18)]
@@ -62,31 +61,11 @@ def rgb_to_hex(rgbtmp):
 
 
 # 点初期化
-# 蕾
-for x in range(6):
-    tri[x][0] = (250 + 250 * cos(radians(60 * x)),
-                 250 + 250 * sin(radians(60 * x)))
-    tri[x][28] = (250 + 250 * cos(radians(60 * x + 60)),
-                  250 + 250 * sin(radians(60 * x + 60)))
-    tri[x][56] = (250, 250)
-    tri[x][83] = (250 + 250 * cos(radians(60 * x)),
-                  250 + 250 * sin(radians(60 * x)))
-for x in range(6):
-    for y in range(28):
-        if tri[x][y] == (0, 0):
-            xp = ((28 - y) * tri[x][0][0] + y * tri[x][28][0]) / 28
-            yp = ((28 - y) * tri[x][0][1] + y * tri[x][28][1]) / 28
-            tri[x][y] = (xp, yp)
-    for y in range(28, 56):
-        if tri[x][y] == (0, 0):
-            xp = ((28 - y) % 28 * tri[x][28][0] + y % 28 * tri[x][56][0]) / 28
-            yp = ((28 - y) % 28 * tri[x][28][1] + y % 28 * tri[x][56][1]) / 28
-            tri[x][y] = (xp, yp)
-    for y in range(56, 84):
-        if tri[x][y] == (0, 0):
-            xp = ((28 - y) % 28 * tri[x][56][0] + y % 28 * tri[(x)][0][0]) / 28
-            yp = ((28 - y) % 28 * tri[x][56][1] + y % 28 * tri[(x)][0][1]) / 28
-            tri[x][y] = (xp, yp)
+# 円
+for y in range(5):
+    for x in range(pin[y]):
+        circle[y].append((250 + 250 * cos(radians(360 / pin[y]) * x),
+                          250 + 250 * sin(radians(360 / pin[y]) * x)))
 # 四角形
 for y in range(16):
     square.append((10 + 30 * y, 10))
@@ -96,29 +75,6 @@ for y in range(16):
     square.append((490 - 30 * y, 490))
 for y in range(16):
     square.append((10, 490 - 30 * y))
-# 円
-for y in range(5):
-    for x in range(pin[y]):
-        circle[y].append((250 + 250 * cos(radians(360 / pin[y]) * x),
-                          250 + 250 * sin(radians(360 / pin[y]) * x)))
-# 六角形
-for x in range(6):
-    hexagon[x * 12] = (250 + 250 * cos(radians(60 * x)),
-                       250 + 250 * sin(radians(60 * x)))
-for x in range(72):
-    if hexagon[x][0] == 0 and hexagon[x][1] == 0:
-        if x < 60:
-            xp = ((12 - x % 12) * hexagon[x // 12 * 12][0] + x %
-                  12 * hexagon[(x // 12 + 1) * 12][0]) / 12
-            yp = ((12 - x % 12) * hexagon[x // 12 * 12][1] + x %
-                  12 * hexagon[(x // 12 + 1) * 12][1]) / 12
-            hexagon[x] = (xp, yp)
-        else:
-            xp = ((12 - x % 12) * hexagon[x // 12 * 12]
-                  [0] + x % 12 * hexagon[0][0]) / 12
-            yp = ((12 - x % 12) * hexagon[x // 12 * 12]
-                  [1] + x % 12 * hexagon[0][1]) / 12
-            hexagon[x] = (xp, yp)
 # 五角形
 for x in range(5):
     pentagon[x * 16] = (250 + 250 * cos(radians(72 * x - 18)),
@@ -137,6 +93,24 @@ for x in range(80):
             yp = ((16 - x % 16) * pentagon[x // 16 * 16]
                   [1] + x % 16 * pentagon[0][1]) / 16
             pentagon[x] = (xp, yp)
+# 六角形
+for x in range(6):
+    hexagon[x * 12] = (250 + 250 * cos(radians(60 * x)),
+                       250 + 250 * sin(radians(60 * x)))
+for x in range(72):
+    if hexagon[x][0] == 0 and hexagon[x][1] == 0:
+        if x < 60:
+            xp = ((12 - x % 12) * hexagon[x // 12 * 12][0] + x %
+                  12 * hexagon[(x // 12 + 1) * 12][0]) / 12
+            yp = ((12 - x % 12) * hexagon[x // 12 * 12][1] + x %
+                  12 * hexagon[(x // 12 + 1) * 12][1]) / 12
+            hexagon[x] = (xp, yp)
+        else:
+            xp = ((12 - x % 12) * hexagon[x // 12 * 12]
+                  [0] + x % 12 * hexagon[0][0]) / 12
+            yp = ((12 - x % 12) * hexagon[x // 12 * 12]
+                  [1] + x % 12 * hexagon[0][1]) / 12
+            hexagon[x] = (xp, yp)
 # 麻の葉
 for x in range(6):
     hempout[x] = (250 + 250 * cos(radians(60 * x + 30)),
@@ -172,6 +146,31 @@ for x in range(12):
             yp = ((16 - z) * sixtri[x][y][1] + z *
                   sixtri[x][(y + 1) % 3][1]) / 16
             sixstar[x][y][z] = (xp, yp)
+# 蕾
+for x in range(6):
+    tri[x][0] = (250 + 250 * cos(radians(60 * x)),
+                 250 + 250 * sin(radians(60 * x)))
+    tri[x][28] = (250 + 250 * cos(radians(60 * x + 60)),
+                  250 + 250 * sin(radians(60 * x + 60)))
+    tri[x][56] = (250, 250)
+    tri[x][83] = (250 + 250 * cos(radians(60 * x)),
+                  250 + 250 * sin(radians(60 * x)))
+for x in range(6):
+    for y in range(28):
+        if tri[x][y] == (0, 0):
+            xp = ((28 - y) * tri[x][0][0] + y * tri[x][28][0]) / 28
+            yp = ((28 - y) * tri[x][0][1] + y * tri[x][28][1]) / 28
+            tri[x][y] = (xp, yp)
+    for y in range(28, 56):
+        if tri[x][y] == (0, 0):
+            xp = ((28 - y) % 28 * tri[x][28][0] + y % 28 * tri[x][56][0]) / 28
+            yp = ((28 - y) % 28 * tri[x][28][1] + y % 28 * tri[x][56][1]) / 28
+            tri[x][y] = (xp, yp)
+    for y in range(56, 84):
+        if tri[x][y] == (0, 0):
+            xp = ((28 - y) % 28 * tri[x][56][0] + y % 28 * tri[(x)][0][0]) / 28
+            yp = ((28 - y) % 28 * tri[x][56][1] + y % 28 * tri[(x)][0][1]) / 28
+            tri[x][y] = (xp, yp)
 # 点初期化ここまで
 
 
@@ -250,6 +249,18 @@ def writeline(num, color, shape, x):
                         y + 1) % 3][(z + 16) % 16]), fill=colornum[y])
 
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'web.ico', mimetype='image/vnd.microsoft.icon')
+
+
+@app.route('/')
+def index():
+    title = "Top | 糸かけ曼荼羅 色シミュレーター"
+    return render_template('index.html',
+                           colorlist=colornum, title=title)
+
+
 @app.route('/Result', methods=['POST'])
 def enterb1():
     print("TEst")
@@ -315,18 +326,6 @@ def enterb1():
 def help():
     title = "Help | 糸かけ曼荼羅 色シミュレーター"
     return render_template('help.html', title=title)
-
-
-@app.route('/')
-def index():
-    title = "Top | 糸かけ曼荼羅 色シミュレーター"
-    return render_template('index.html',
-                           colorlist=colornum, title=title)
-
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'web.ico', mimetype='image/vnd.microsoft.icon')
 
 
 if __name__ == '__main__':
