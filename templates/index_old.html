@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="糸かけ曼荼羅,糸曼荼羅,色,シミュレーター,シミュレーション">
+        <meta name="description" content="糸かけ曼荼羅の色をシミュレーションするソフト。形状11種類・最大6色対応">
+        <title>{{ title }}</title>
+        <script src="/static/js/main.js"> </script>
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/bootstrap-arrows.css" rel="stylesheet">
+        <link href="/static/css/style.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body class="bg-light">
+        {% block content %}
+        <div class="container m-0 col-12 p-0">
+                <nav class="navbar navbar-dark navbar-expand-sm bg-dark justify-content-left m-0 pb-0 pt-3">
+                        <div class="navbar-brand display-1 font-weight-bold ml-2">糸かけ曼荼羅色シミュレーター </div>
+                </nav>
+                <nav class="navbar navbar-dark navbar-expand-sm bg-dark justify-content-left m-0">
+                        <a href="/" class="navbar-brand mr-5 ml-2">Top</a>
+                        <a href="/Help" class="navbar-brand">Help</a>
+                </nav>
+                <div class="main col-8">
+                        <form action="/Result" method="post">
+                                <div data-toggle="buttons" class="row mt-2">
+                                        <p class="text-left h4 mb-1 col-md-12 font-weight-bold">①形状の選択</p>
+                                        <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white active"
+                                                for="shape1" onclick="setcolsize(6)"><input type="radio" name="shape"
+                                                        id="shape1" value="0" checked>円(48P)</label>
+                                        <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                for="shape2" onclick="setcolsize(6)"> <input type="radio" name="shape"
+                                                        id="shape2" value="1">円(64P)</label>
+                                        <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                for="shape3" onclick="setcolsize(6)"><input type="radio" name="shape"
+                                                        id="shape3" value="2">円(77P) </label>
+                                        <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                for="shape4" onclick="setcolsize(6)"><input type="radio" name="shape"
+                                                        id="shape4" value="3">円(88P) </label>
+                                        <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                for="shape5" onclick="setcolsize(6)"><input type="radio" name="shape"
+                                                        id="shape5" value="4">円(108P) </label>
+                                        <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                for="shape6" onclick="setcolsize(6)"><input type="radio" name="shape"
+                                                        id="shape6" value="5">正方形
+                                        </label><br>
+                                        <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                for="shape7" onclick="setcolsize(6)"><input type="radio" name="shape"
+                                                        id="shape7" value="6">五角形
+                                        </label>
+                                        <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                for="shape8" onclick="setcolsize(6)"> <input type="radio" name="shape"
+                                                        id="shape8" value="7">六角形</label>
+                                        <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                for="shape9" onclick="setcolsize(3)"><input type="radio" name="shape"
+                                                        id="shape9" value="8">つぼみ
+                                        </label>
+                                        <label class=" btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                for="shape10" onclick="setcolsize(2)"> <input type="radio" name="shape"
+                                                        id="shape10" value="9">麻の葉</label>
+                                        <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white"
+                                                for="shape11" onclick="setcolsize(3)"> <input type="radio" name="shape"
+                                                        id="shape11" value="10">六芒星</label>
+                                        <label class="btn btn-secondary col-sm-12 col-6 rounded-0 p-1 mb-0 border-white"
+                                                for="shape12" onclick="setcolsize(6)">円(カスタム)
+                                                <input type="radio" name="shape" id="shape12" value="11">
+                                                <label class="btn　col-sm-12 col-12 rounded-0 m-0 p-0 border-white text-left"
+                                                        for="shape12">
+                                                        <p class="m-0">ピン数</p>
+                                                        <input type="text" name="prime7" id="prime7" class="col-3"
+                                                                value="32">
+                                                </label>
+                                                <label
+                                                        class="btn　col-sm-12 col-12 rounded-0 m-0 p-0 border-white text-left">
+                                                        <p class="m-0 mt-1">糸の間隔</p>
+                                                        <input type="text" name="prime1" id="prime1" class="col-3"
+                                                                value="21">
+                                                        <input type="text" name="prime2" id="prime2" class="col-3"
+                                                                value="19">
+                                                        <input type="text" name="prime3" id="prime3" class="col-3"
+                                                                value="17">
+                                                        <input type="text" name="prime4" id="prime4" class="col-3"
+                                                                value="9">
+                                                        <input type="text" name="prime5" id="prime5" class="col-3"
+                                                                value="7">
+                                                        <input type="text" name="prime6" id="prime6" class="col-3"
+                                                                value="5">
+                                                </label>
+                                        </label>
+                                </div>
+                                <div class='arrow-inverse' style="transform: rotate(180deg);"></div>
+                                <div class="btn-area mt-2 row">
+                                        <p class="text-left h4 mt-1 mb-1 col-7 font-weight-bold">②-① 糸の色
+                                        </p>
+                                        <p class="text-left h4 ml-0 mt-1 mb-1  pl-5 col-5 font-weight-bold">②-②
+                                                背景色
+                                        </p>
+                                        <div class="col-7">
+                                                <input type="color" value=#ffffff name="color1" id="color1"
+                                                        class="color bg-light">
+                                                <input type="color" value=#ffffff name="color2" id="color2"
+                                                        class="color bg-light">
+                                                <input type="color" value=#ffffff name="color3" id="color3"
+                                                        class="color bg-light">
+                                                <input type="color" value=#ffffff name="color4" id="color4"
+                                                        class="color bg-light">
+                                                <input type="color" value=#ffffff name="color5" id="color5"
+                                                        class="color bg-light">
+                                                <input type="color" value=#ffffff name="color6" id="color6"
+                                                        class="color bg-light">
+                                        </div>
+                                        <div class="col-5">
+                                                <input type="color" value=#000000 name="bgcolor" id="bgcolor"
+                                                        class="bgcolor ml-5 mr-5 float-left">
+                                        </div>
+                                </div>
+                                <div class='arrow-inverse' style="transform: rotate(180deg);"></div>
+                                <div class="btn-area m-0">
+                                        <button type="submit" class="btn btn-info col-3 m-0"
+                                                onclick="remember()">実行</button>
+                                </div>
+                        </form>
+                        <p class="text-left h4 mt-3 mb-2 font-weight-bold">配色履歴</p>
+                        <div class="btn-area">
+                                <button type="submit" class="btn btn-secondary mt-2" onclick="change(1)">1st</button>
+                                <button type="submit" class="btn btn-secondary mt-2" onclick="change(2)">2nd</button>
+                                <button type="submit" class="btn btn-secondary mt-2" onclick="change(3)">3rd</button>
+                                <button type="submit" class="btn btn-secondary mt-2" onclick="change(4)">4th</button>
+                                <button type="submit" class="btn btn-secondary mt-2" onclick="change(5)">5th</button>
+                                <button type="submit" class="btn btn-secondary mt-2 ml-5 mr-5"
+                                        onclick="remove()">履歴消去</button>
+                        </div>
+                </div>
+        </div>
+        {% endblock %}
+        <script src="/static/js/jquery-3-4-1.min.js"> </script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/bootstrap-arrows.js"></script>
+</body>
+
+</html>

@@ -34,7 +34,7 @@ primary = [
     [31, 29, 23, 19, 17, 13],
     [37, 31, 29, 23, 19, 17],
     [31, 29, 23, 19, 17, 13],
-    [31, 29, 23, 19, 17, 13]]
+    [31, 29, 23, 19, 17, 13, 32]]
 colornumhex = ["#ffffff"] * 6
 image = None
 im = Image.new('RGB', (500, 500), (0, 0, 0))
@@ -279,7 +279,24 @@ def favicon():
 @app.route('/')
 def index():
     title = "Top | 糸かけ曼荼羅 色シミュレーター"
-    return render_template('index.html', colorlist=rgb_color_table, title=title)
+    im = Image.open('default.png')
+    in_mem_file = io.BytesIO()
+    im.save(in_mem_file, format="PNG")
+    in_mem_file.seek(0)
+    image_bytes = in_mem_file.read()
+    base64_encoded_result_bytes = base64.b64encode(image_bytes)
+    imagebin = base64_encoded_result_bytes.decode('ascii')
+    # return render_template('index.html', colorlist=rgb_color_table, title=title)
+    return render_template(
+        'index.html',
+        imagefile="default",
+        # var=1,
+        colornum=colornumhex,
+        custompin=primary[8],
+        ac=[""] * 12,
+        bgcolor=None,
+        imagebin=imagebin,
+        title=title)
 
 
 @app.route('/Result', methods=['POST'])
