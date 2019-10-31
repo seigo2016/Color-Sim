@@ -48,7 +48,7 @@ function getElementByXpath(path) {
     return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 }
 window.onload = function () {
-    var collist = [0, 6, 6, 6, 6, 6, 6, 6, 6, 3, 2, 3]
+    var collist = [0, 6, 8, 6, 6, 12, 6, 6, 6, 3, 4, 8]
     $('.arrow, [class^=arrow-]').bootstrapArrows()
     for (let i = 1; i <= 12; i++) {
         if (getElementByXpath("/html/body/div/div/div/div/div/form/div[1]/label[" + String(i) + "]").classList.contains("active")) {
@@ -57,7 +57,7 @@ window.onload = function () {
     }
 }
 function setcolsize(x) {
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 12; i++) {
         if (i > x)
             document.getElementById("color" + String(i)).classList.add("d-none")
         else

@@ -23,19 +23,19 @@ sixtri = [
     [(390, 250), (250, 250), (320, 375)],
     [(460, 375), (390, 250), (320, 375)],
     [(250, 500), (320, 375), (180, 375)]]
-rgb_color_table = [(255, 255, 255)] * 6
+rgb_color_table = [(255, 255, 255)] * 12
 pin = [48, 64, 77, 88, 108]
 primary = [
     [23, 19, 17, 13, 11, 7],
-    [31, 29, 23, 19, 17, 13],
+    [31, 29, 23, 19, 17, 13, 11, 7],
     [37, 31, 29, 23, 19, 17],
     [43, 41, 37, 31, 29, 23],
-    [53, 47, 43, 41, 37, 31],
+    [53, 47, 43, 41, 37, 31, 29, 23, 19, 17, 13, 11],  # 108?
     [31, 29, 23, 19, 17, 13],
     [37, 31, 29, 23, 19, 17],
     [31, 29, 23, 19, 17, 13],
     [31, 29, 23, 19, 17, 13, 32]]
-colornumhex = ["#ffffff"] * 6
+colornumhex = ["#ffffff"] * 12
 image = None
 im = Image.new('RGB', (500, 500), (0, 0, 0))
 draw = ImageDraw.Draw(im)
@@ -230,6 +230,12 @@ def drawline(num, color, shape, x):
     # 麻の葉
     elif shape == 9:
         num = 18
+        for i in range(6):
+            draw.line((hempout[i], hempout[(i + 1) % 6]),
+                      fill=rgb_color_table[3])
+        for i in range(6):
+            draw.line((hempout[i], (250, 250)),
+                      fill=rgb_color_table[3], width=2)
         for x in range(2, 18, 3):
             for y in range(16):
                 if x % 3 == 2:
@@ -244,14 +250,14 @@ def drawline(num, color, shape, x):
                 if x % 3 == 1:
                     if y + 12 >= 16:
                         draw.line((hemp[x][y],
-                                   hemp[(x + 1) % 18][16 - y]), fill=rgb_color_table[1])
+                                   hemp[(x + 3) % 18][16 - y]), fill=rgb_color_table[2])
                         draw.line((hemp[x][y],
-                                   hemp[(x + 3) % 18][16 - y]), fill=rgb_color_table[0])
+                                   hemp[(x + 1) % 18][16 - y]), fill=rgb_color_table[1])
                     elif y + 12 < 16:
+                        draw.line((hemp[x][y],
+                                   hemp[(x + 3) % 18][(y + 12) % 16]), fill=rgb_color_table[2])
                         draw.line(
                             (hemp[x][y], hemp[x + 1][(y + 12) % 16]), fill=rgb_color_table[1])
-                        draw.line((hemp[x][y],
-                                   hemp[(x + 3) % 18][(y + 12) % 16]), fill=rgb_color_table[0])
         for x in range(0, 18, 3):
             for y in range(16):
                 if x % 3 == 0:
@@ -286,7 +292,6 @@ def index():
     image_bytes = in_mem_file.read()
     base64_encoded_result_bytes = base64.b64encode(image_bytes)
     imagebin = base64_encoded_result_bytes.decode('ascii')
-    # return render_template('index.html', colorlist=rgb_color_table, title=title)
     return render_template(
         'index.html',
         imagefile="default",
@@ -308,11 +313,11 @@ def on_click_enter_button():
     global rgb_color_table
     tmpflg = 0
     ac = [""] * 12
-    for i in range(6):
+    for i in range(12):
         tmp = hex_to_rgb(request.form["color" + str(i + 1)])
         if tmp == (0, 0, 0):
             tmpflg += 1
-    for i in range(6):
+    for i in range(12):
         if tmpflg == 6:
             rgb_color_table[i] = (255, 255, 255)
         else:
@@ -327,19 +332,20 @@ def on_click_enter_button():
     ac[var] = "active"
 
     # Draw line
-    for i in range(6):
-        if var < 8:
-            x = var
-            drawline(primary[x][i], rgb_color_table[i], var, i)
-        elif var == 11:
-            for x in range(primary[8][6]):
-                circle[5][x] = ((250 + 250 * cos(radians(360 / primary[8][6]) * x),
-                                 250 + 250 * sin(radians(360 / primary[8][6]) * x)))
-            for x in range(primary[8][6]):
-                draw.line((circle[5][x], circle[5][int(
-                    (x + primary[8][i]) % primary[8][6])]), fill=rgb_color_table[i])
-        else:
-            drawline(primary[0][i], rgb_color_table[i], var, i)
+    if var < 8:
+        for i in range(len(primary[var])):
+            drawline(primary[var][i], rgb_color_table[i], var, i)
+    else:
+        for i in range(6):
+            if var == 11:
+                for x in range(primary[8][6]):
+                    circle[5][x] = ((250 + 250 * cos(radians(360 / primary[8][6]) * x),
+                                     250 + 250 * sin(radians(360 / primary[8][6]) * x)))
+                for x in range(primary[8][6]):
+                    draw.line((circle[5][x], circle[5][int(
+                        (x + primary[8][i]) % primary[8][6])]), fill=rgb_color_table[i])
+            else:
+                drawline(primary[0][i], rgb_color_table[i], var, i)
 
     im = im.resize((550, 550), Image.LANCZOS)
     nowtime = time.strftime("%Y%m%d%H%M%S", time.strptime(time.ctime()))
@@ -352,7 +358,7 @@ def on_click_enter_button():
     base64_encoded_result_bytes = base64.b64encode(image_bytes)
     imagebin = base64_encoded_result_bytes.decode('ascii')
 
-    for i in range(6):
+    for i in range(12):
         colornumhex[i] = rgb_to_hex(rgb_color_table[i])
 
     return render_template(
@@ -374,5 +380,5 @@ def help():
 
 
 if __name__ == '__main__':
-    app.debug = False
+    app.debug = True
     app.run(port=5000, host='0.0.0.0')
