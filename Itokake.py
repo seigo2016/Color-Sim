@@ -295,7 +295,6 @@ def index():
     return render_template(
         'index.html',
         imagefile="default",
-        # var=1,
         colornum=colornumhex,
         custompin=primary[8],
         ac=[""] * 12,
