@@ -50,7 +50,6 @@ hexagon = init_hexagon()
 tri = init_tri()
 hemp, hempin, hempout = init_hemp()
 sixstar = init_sixstar()
-
 # 線
 
 
