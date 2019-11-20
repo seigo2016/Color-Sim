@@ -11,7 +11,6 @@ class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
     circle = init_circle()
 
     # 円
-
     def circle(self, draw: ImageDraw.ImageDraw, shape: int, color: tuple, num: int):
         circle = init_circle()
         pin = [48, 64, 77, 88, 108]
@@ -190,13 +189,22 @@ def draw_line(primary, var, im, draw, rgb_color_table):
     circle = init_circle()
     init_line = init_draw_line()
     # Draw line
-    if var < 5:
+    if var < 5:  # 円形
         for i in range(len(primary[var])):
             init_line.circle(draw, var,
                              rgb_color_table[i], primary[var][i])
-    elif var < 8:
+    # elif var < 8:
+    #     for i in range(len(primary[var])):
+    #         init_line(draw, var, rgb_color_table[i])
+    elif var == 5:  # 正方形
         for i in range(len(primary[var])):
-            init_line(draw, var, rgb_color_table[i])
+            init_line.square(draw, var, rgb_color_table[i], primary[var][i])
+    elif var == 6:  # 五角形
+        for i in range(len(primary[var])):
+            init_line.square(draw, var, rgb_color_table[i], primary[var][i])
+    elif var == 7:  # 六角形
+        for i in range(len(primary[var])):
+            init_line.square(draw, var, rgb_color_table[i], primary[var][i])
     else:
         for i in range(6):
             if var == 11:
