@@ -7,8 +7,6 @@ from math import cos, sin, radians
 
 
 class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
-    pin = [48, 64, 77, 88, 108]
-    circle = init_circle()
 
     # 円
     def circle(self, draw: ImageDraw.ImageDraw, shape: int, color: tuple, num: int):
@@ -41,7 +39,7 @@ class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
                 (hexagon[x], hexagon[int((x + num) % 72)]), fill=color, width=1)
 
     # つぼみ
-    def tri(self, draw, shape, color):
+    def tri(self, draw: ImageDraw.ImageDraw, shape: int, color, x: int):
         tri = init_tri()
         for y in range(84):
             if y < 28:
@@ -53,7 +51,7 @@ class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
                           fill=color[2])
 
     # 麻の葉
-    def hemp(self, draw, shape, color):
+    def hemp(self, draw, shape, color, x: int):
         hemp, hempin, hempout = init_hemp()
         for i in range(6):
             draw.line((hempout[i], hempout[(i + 1) % 6]),
@@ -94,7 +92,7 @@ class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
                                    hemp[x][y + 12]), fill=color[1])
     # 六芒星
 
-    def sixstar(self, draw: ImageDraw.ImageDraw, shape: int, color: tuple, num: int):
+    def sixstar(self, draw: ImageDraw.ImageDraw, shape: int, color: tuple, x: int):
         sixstar = init_sixstar()
         type_sixstar = [2, 3, 4, 7, 8, 9]
         for x in type_sixstar:
@@ -193,9 +191,6 @@ def draw_line(primary, var, im, draw, rgb_color_table):
         for i in range(len(primary[var])):
             init_line.circle(draw, var,
                              rgb_color_table[i], primary[var][i])
-    # elif var < 8:
-    #     for i in range(len(primary[var])):
-    #         init_line(draw, var, rgb_color_table[i])
     elif var == 5:  # 正方形
         for i in range(len(primary[var])):
             init_line.square(draw, var, rgb_color_table[i], primary[var][i])
@@ -205,19 +200,23 @@ def draw_line(primary, var, im, draw, rgb_color_table):
     elif var == 7:  # 六角形
         for i in range(len(primary[var])):
             init_line.hexagon(draw, var, rgb_color_table[i], primary[var][i])
-    else:
+    elif var == 8:  # つぼみ
         for i in range(6):
-            if var == 11:
-                for x in range(primary[8][6]):
-                    circle[5][x] = ((250 + 250 * cos(radians(360 / primary[8][6]) * x),
-                                     250 + 250 * sin(radians(360 / primary[8][6]) * x)))
-                for x in range(primary[8][6]):
-                    draw.line((circle[5][x], circle[5][int(
-                        (x + primary[8][i]) % primary[8][6])]), fill=rgb_color_table[i])
-            else:
-                init_line(
-                    draw, primary[0][i], rgb_color_table[i], var, i, rgb_color_table)
-
+            init_line.tri(draw, var, rgb_color_table, i)
+    elif var == 9:  # 麻の葉
+        for i in range(6):
+            init_line.hemp(draw, var, rgb_color_table, i)
+    elif var == 10:  # 六芒星
+        for i in range(6):
+            init_line.sixstar(draw, var, rgb_color_table, i)
+    elif var == 11:  # カスタム円
+        for i in range(6):
+            for x in range(primary[8][6]):
+                circle[5][x] = ((250 + 250 * cos(radians(360 / primary[8][6]) * x),
+                                 250 + 250 * sin(radians(360 / primary[8][6]) * x)))
+            for x in range(primary[8][6]):
+                draw.line((circle[5][x], circle[5][int(
+                    (x + primary[8][i]) % primary[8][6])]), fill=rgb_color_table[i])
     im = im.resize((550, 550), Image.LANCZOS)
 
     in_mem_file = io.BytesIO()

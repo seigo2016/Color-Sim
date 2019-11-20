@@ -1,3 +1,5 @@
 .vscode/
 .DS_Store
 itokake/
+__pycache__/
+.vscode/*
