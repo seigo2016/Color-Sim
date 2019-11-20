@@ -92,14 +92,91 @@ def init_line(draw, num, color, shape, x, rgb_color_table):
                     elif y + 12 < 16:
                         draw.line((hemp[x][y],
                                    hemp[x][y + 12]), fill=rgb_color_table[1])
-
     # 六芒星
     elif shape == 10:
-        for x in range(12):
-            for y in range(3):
-                for z in range(16):
-                    draw.line((sixstar[x][y][z],
-                               sixstar[x][(y + 1) % 3][(z + 16) % 16]), fill=rgb_color_table[y])
+        type_sixstar = [2, 3, 4, 7, 8, 9]
+        for x in type_sixstar:
+            for z in range(16):
+                draw.line((sixstar[x][0][z],
+                           sixstar[x][1][(z + 16) % 16]), fill=rgb_color_table[0])
+        # --------------------------------------------------------------------------------- #
+        type_sixstar = [0, 1, 2, 5, 6, 10, 11]
+        for x in type_sixstar:
+            for z in range(16):
+                draw.line((sixstar[x][0][z],
+                           sixstar[x][2][(z + 16) % 16]), fill=rgb_color_table[1])
+        # ---------------------------------------------------------------------------------#
+        type_sixstar = [0, 1]
+        for x in type_sixstar:
+            for z in range(16):
+                draw.line((sixstar[x][0][z],
+                           sixstar[x][1][(z + 16) % 16]), fill=rgb_color_table[2])
+        for z in range(16):
+            draw.line((sixstar[3][1][z],
+                       sixstar[3][2][(z + 16) % 16]), fill=rgb_color_table[2])
+        for z in range(16):
+            draw.line((sixstar[2][0][z],
+                       sixstar[2][2][(z + 16) % 16]), fill=rgb_color_table[2])
+        # ---------------------------------------------------------------------------------#
+        for z in range(16):
+            draw.line((sixstar[0][2][z],
+                       sixstar[0][1][(z + 16) % 16]), fill=rgb_color_table[3])
+        for z in range(16):
+            draw.line((sixstar[5][0][z],
+                       sixstar[5][1][(z + 16) % 16]), fill=rgb_color_table[3])
+        type_sixstar = [3, 4]
+        for x in type_sixstar:
+            for z in range(16):
+                draw.line((sixstar[x][0][z],
+                           sixstar[x][2][(z + 16) % 16]), fill=rgb_color_table[3])
+        # ---------------------------------------------------------------------------------#
+        type_sixstar = [1, 2]
+        for x in type_sixstar:
+            for z in range(16):
+                draw.line((sixstar[x][2][z],
+                           sixstar[x][1][(z + 16) % 16]), fill=rgb_color_table[4])
+        for z in range(16):
+            draw.line((sixstar[6][0][z],
+                       sixstar[6][1][(z + 16) % 16]), fill=rgb_color_table[4])
+        for z in range(16):
+            draw.line((sixstar[7][2][z],
+                       sixstar[7][0][(z + 16) % 16]), fill=rgb_color_table[4])
+        # ---------------------------------------------------------------------------------#
+        type_sixstar = [5, 4]
+        for x in type_sixstar:
+            for z in range(16):
+                draw.line((sixstar[x][2][z],
+                           sixstar[x][1][(z + 16) % 16]), fill=rgb_color_table[5])
+        for z in range(16):
+            draw.line((sixstar[10][0][z],
+                       sixstar[10][1][(z + 16) % 16]), fill=rgb_color_table[5])
+        for z in range(16):
+            draw.line((sixstar[9][0][z],
+                       sixstar[9][2][(z + 16) % 16]), fill=rgb_color_table[5])
+        # ---------------------------------------------------------------------------------#
+        type_sixstar = [8, 9]
+        for z in range(16):
+            draw.line((sixstar[11][1][z],
+                       sixstar[11][0][(z + 16) % 16]), fill=rgb_color_table[6])
+        for z in range(16):
+            draw.line((sixstar[10][1][z],
+                       sixstar[10][2][(z + 16) % 16]), fill=rgb_color_table[6])
+        for x in type_sixstar:
+            for z in range(16):
+                draw.line((sixstar[x][2][z],
+                           sixstar[x][1][(z + 16) % 16]), fill=rgb_color_table[6])
+        # --------------------------------------------------------------------------------- #
+        type_sixstar = [6, 11]
+        for z in range(16):
+            draw.line((sixstar[8][0][z],
+                       sixstar[8][2][(z + 16) % 16]), fill=rgb_color_table[7])
+        for z in range(16):
+            draw.line((sixstar[7][1][z],
+                       sixstar[7][2][(z + 16) % 16]), fill=rgb_color_table[7])
+        for x in type_sixstar:
+            for z in range(16):
+                draw.line((sixstar[x][2][z],
+                           sixstar[x][1][(z + 16) % 16]), fill=rgb_color_table[7])
 
 
 def draw_line(primary, var, im, draw, rgb_color_table):
@@ -124,7 +201,6 @@ def draw_line(primary, var, im, draw, rgb_color_table):
 
     im = im.resize((550, 550), Image.LANCZOS)
 
-    # image to binary
     in_mem_file = io.BytesIO()
     im.save(in_mem_file, format="PNG")
     in_mem_file.seek(0)
