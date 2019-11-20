@@ -201,10 +201,10 @@ def draw_line(primary, var, im, draw, rgb_color_table):
             init_line.square(draw, var, rgb_color_table[i], primary[var][i])
     elif var == 6:  # 五角形
         for i in range(len(primary[var])):
-            init_line.square(draw, var, rgb_color_table[i], primary[var][i])
+            init_line.pentagon(draw, var, rgb_color_table[i], primary[var][i])
     elif var == 7:  # 六角形
         for i in range(len(primary[var])):
-            init_line.square(draw, var, rgb_color_table[i], primary[var][i])
+            init_line.hexagon(draw, var, rgb_color_table[i], primary[var][i])
     else:
         for i in range(6):
             if var == 11:
