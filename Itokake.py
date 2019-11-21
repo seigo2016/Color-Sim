@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from PIL import Image, ImageDraw
 import time
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, jsonify
 import io
 import base64
 import os
@@ -10,15 +10,15 @@ from module import draw_line
 rgb_color_table = [(255, 255, 255)] * 12
 app = Flask(__name__)
 primary = [
-    [23, 19, 17, 13, 11, 7],
-    [31, 29, 23, 19, 17, 13, 11, 7],
-    [37, 31, 29, 23, 19, 17],
-    [43, 41, 37, 31, 29, 23],
-    [53, 47, 43, 41, 37, 31, 29, 23, 19, 17, 13, 11],  # 108?
-    [31, 29, 23, 19, 17, 13],
-    [37, 31, 29, 23, 19, 17],
-    [31, 29, 23, 19, 17, 13],
-    [31, 29, 23, 19, 17, 13, 32]]
+    [23, 19, 17, 13, 11, 7],  # 円 48
+    [31, 29, 23, 19, 17, 13, 11, 7],  # 円 64
+    [37, 31, 29, 23, 19, 17],  # 円 77
+    [43, 41, 37, 31, 29, 23],  # 円 88
+    [53, 47, 43, 41, 37, 31, 29, 23, 19, 17, 13, 11],  # 円 108
+    [31, 29, 23, 19, 17, 13],  # 正方形
+    [37, 31, 29, 23, 19, 17],  # 正五角形
+    [31, 29, 23, 19, 17, 13],  # 正六角形
+    [31, 29, 23, 19, 17, 13, 32]]  # カスタム円
 colornumhex = ["#ffffff"] * 12
 image = None
 im = Image.new('RGB', (500, 500), (0, 0, 0))
@@ -45,7 +45,7 @@ def favicon():
 @app.route('/')
 def index():
     title = "Top | 糸かけ曼荼羅 色シミュレーター"
-    im = Image.open('default.png')
+    im = Image.open('static/img/default.png')
     in_mem_file = io.BytesIO()
     im.save(in_mem_file, format="PNG")
     in_mem_file.seek(0)
@@ -109,6 +109,11 @@ def on_click_enter_button():
 def help():
     title = "Help | 糸かけ曼荼羅 色シミュレーター"
     return render_template('help.html', title=title)
+
+
+@app.route('/Status')
+def Status():
+    return jsonify({'status': 'OK'})
 
 
 if __name__ == '__main__':

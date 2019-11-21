@@ -3,7 +3,6 @@ import io
 from PIL import Image, ImageDraw
 import base64
 from math import cos, sin, radians
-# 線
 
 
 class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
@@ -178,10 +177,6 @@ class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
                 draw.line((sixstar[x][2][z],
                            sixstar[x][1][(z + 16) % 16]), fill=color[7])
 
-# (draw, num, color, shape, x, rgb_color_table):
-
-# (draw, shape, color, num)
-
 
 def draw_line(primary, var, im, draw, rgb_color_table):
     circle = si.init_circle()
@@ -219,6 +214,7 @@ def draw_line(primary, var, im, draw, rgb_color_table):
                     (x + primary[8][i]) % primary[8][6])]), fill=rgb_color_table[i])
     im = im.resize((550, 550), Image.LANCZOS)
 
+    # image to binary
     in_mem_file = io.BytesIO()
     im.save(in_mem_file, format="PNG")
     in_mem_file.seek(0)

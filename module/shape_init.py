@@ -1,11 +1,9 @@
 from math import cos, sin, radians
 
 
-def init_circle():
+def init_circle():  # 円
     pin = [48, 64, 77, 88, 108]
     circle = [[], [], [], [], [], [(0, 0)] * 1000]
-    # 点初期化
-    # 円
     for y in range(5):
         for x in range(pin[y]):
             circle[y].append((250 + 250 * cos(radians(360 / pin[y]) * x),
@@ -13,8 +11,7 @@ def init_circle():
     return circle
 
 
-def init_square():
-    # 四角形
+def init_square():  # 四角形
     square = []
     for y in range(16):
         square.append((10 + 30 * y, 10))
@@ -27,9 +24,8 @@ def init_square():
     return square
 
 
-def init_pentagon():
+def init_pentagon():  # 五角形
     pentagon = [(0, 0)] * 80
-    # 五角形
     for x in range(5):
         pentagon[x * 16] = (250 + 250 * cos(radians(72 * x - 18)),
                             270 + 250 * sin(radians(72 * x - 18)))
@@ -50,9 +46,8 @@ def init_pentagon():
     return pentagon
 
 
-def init_hexagon():
+def init_hexagon():  # 六角形
     hexagon = [(0, 0)] * 72
-    # 六角形
     for x in range(6):
         hexagon[x * 12] = (250 + 250 * cos(radians(60 * x)),
                            250 + 250 * sin(radians(60 * x)))
@@ -73,11 +68,10 @@ def init_hexagon():
     return hexagon
 
 
-def init_hemp():
+def init_hemp():  # 麻の葉
     hempin = [(0, 0) for i in range(6)]
     hempout = [(0, 0) for i in range(6)]
     hemp = [[(0, 0) for i in range(16)]for i in range(18)]
-    # 麻の葉
     for x in range(6):
         hempout[x] = (250 + 250 * cos(radians(60 * x + 30)),
                       250 + 250 * sin(radians(60 * x + 30)))
@@ -110,7 +104,7 @@ def init_hemp():
     return hemp, hempin, hempout
 
 
-def init_sixstar():
+def init_sixstar():  # 六芒星
     sixtri = [
         [(250, 0), (180, 125), (320, 125)],
         [(40, 125), (180, 125), (110, 250)],
@@ -127,7 +121,6 @@ def init_sixstar():
 
     sixstar = [[[(0, 0) for i in range(16)]for i in range(3)]
                for i in range(12)]
-    # 六芒星
     for x in range(12):
         for y in range(3):
             for z in range(16):
@@ -139,9 +132,8 @@ def init_sixstar():
     return sixstar
 
 
-def init_tri():
+def init_tri():  # 蕾
     tri = [[(0, 0) for i in range(84)]for i in range(6)]
-    # 蕾
     for x in range(6):
         tri[x][0] = (250 + 250 * cos(radians(60 * x)),
                      250 + 250 * sin(radians(60 * x)))
