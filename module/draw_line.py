@@ -1,4 +1,4 @@
-from module.shape_init import *
+from module import shape_init as si
 import io
 from PIL import Image, ImageDraw
 import base64
@@ -10,7 +10,7 @@ class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
 
     # 円
     def circle(self, draw: ImageDraw.ImageDraw, shape: int, color: tuple, num: int):
-        circle = init_circle()
+        circle = si.init_circle()
         pin = [48, 64, 77, 88, 108]
         for x in range(pin[shape]):
             draw.line((circle[shape][x],
@@ -19,28 +19,28 @@ class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
 
     # 正方形
     def square(self, draw: ImageDraw.ImageDraw, shape: int, color: tuple, num: int):
-        square = init_square()
+        square = si.init_square()
         for x in range(64):
             draw.line((square[x], square[int((x + num) % 64)]),
                       fill=color, width=1)
 
     # 五角形
     def pentagon(self, draw: ImageDraw.ImageDraw, shape: int, color: tuple, num: int):
-        pentagon = init_pentagon()
+        pentagon = si.init_pentagon()
         for x in range(80):
             draw.line(
                 (pentagon[x], pentagon[int((x + num) % 80)]), fill=color, width=1)
 
     # 六角形
     def hexagon(self, draw: ImageDraw.ImageDraw, shape: int, color: tuple, num: int):
-        hexagon = init_hexagon()
+        hexagon = si.init_hexagon()
         for x in range(72):
             draw.line(
                 (hexagon[x], hexagon[int((x + num) % 72)]), fill=color, width=1)
 
     # つぼみ
     def tri(self, draw: ImageDraw.ImageDraw, shape: int, color, x: int):
-        tri = init_tri()
+        tri = si.init_tri()
         for y in range(84):
             if y < 28:
                 draw.line((tri[x][y], tri[x][y + 28]), fill=color[0])
@@ -52,7 +52,7 @@ class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
 
     # 麻の葉
     def hemp(self, draw, shape, color, x: int):
-        hemp, hempin, hempout = init_hemp()
+        hemp, hempin, hempout = si.init_hemp()
         for i in range(6):
             draw.line((hempout[i], hempout[(i + 1) % 6]),
                       fill=color[3])
@@ -93,7 +93,7 @@ class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
     # 六芒星
 
     def sixstar(self, draw: ImageDraw.ImageDraw, shape: int, color: tuple, x: int):
-        sixstar = init_sixstar()
+        sixstar = si.init_sixstar()
         type_sixstar = [2, 3, 4, 7, 8, 9]
         for x in type_sixstar:
             for z in range(16):
@@ -184,7 +184,7 @@ class init_draw_line():   # draw, num, color, shape, x, rgb_color_table):
 
 
 def draw_line(primary, var, im, draw, rgb_color_table):
-    circle = init_circle()
+    circle = si.init_circle()
     init_line = init_draw_line()
     # Draw line
     if var < 5:  # 円形

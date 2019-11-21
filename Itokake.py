@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-from math import sin, cos, radians
 from PIL import Image, ImageDraw
 import time
 from flask import Flask, render_template, request, send_from_directory
 import io
 import base64
 import os
-from module.draw_line import *
+from module import draw_line
 
 rgb_color_table = [(255, 255, 255)] * 12
 app = Flask(__name__)
@@ -92,7 +91,7 @@ def on_click_enter_button():
     for i in range(12):
         colornumhex[i] = rgb_to_hex(rgb_color_table[i])
 
-    imagebin = draw_line(primary, var, im, draw, rgb_color_table)
+    imagebin = draw_line.draw_line(primary, var, im, draw, rgb_color_table)
 
     return render_template(
         'result.html',
