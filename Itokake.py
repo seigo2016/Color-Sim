@@ -113,7 +113,7 @@ def help():
 
 @app.route('/Status')
 def Status():
-    return jsonify({'status': 'OK'})
+    return jsonify({'status': 'OK'}), 200
 
 
 if __name__ == '__main__':
