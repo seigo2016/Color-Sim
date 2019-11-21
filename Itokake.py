@@ -37,11 +37,6 @@ def rgb_to_hex(rgbtmp):
         return r"#%02X%02X%02X" % (rgbtmp[0], rgbtmp[1], rgbtmp[2])
 
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'web.ico', mimetype='image/vnd.microsoft.icon')
-
-
 @app.route('/')
 def index():
     title = "Top | 糸かけ曼荼羅 色シミュレーター"
@@ -91,7 +86,7 @@ def on_click_enter_button():
     for i in range(12):
         colornumhex[i] = rgb_to_hex(rgb_color_table[i])
 
-    imagebin = draw_line.draw_line(primary, var, im, draw, rgb_color_table)
+    imagebin = draw_line.draw_image(primary, var, im, draw, rgb_color_table)
 
     return render_template(
         'result.html',
@@ -114,6 +109,11 @@ def help():
 @app.route('/Status')
 def Status():
     return jsonify({'status': 'OK'}), 200
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'web.ico', mimetype='image/vnd.microsoft.icon')
 
 
 if __name__ == '__main__':

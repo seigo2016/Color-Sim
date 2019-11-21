@@ -2,8 +2,8 @@ from math import cos, sin, radians
 
 
 def init_circle():  # 円
-    pin = [48, 64, 77, 88, 108]
-    circle = [[], [], [], [], [], [(0, 0)] * 1000]
+    pin = [48, 64, 77, 88, 108]  # プリセットされているピン数
+    circle = [[], [], [], [], [], [(0, 0)] * 1000]  # カスタムピン数は1000ピンまで
     for y in range(5):
         for x in range(pin[y]):
             circle[y].append((250 + 250 * cos(radians(360 / pin[y]) * x),
@@ -25,7 +25,7 @@ def init_square():  # 四角形
 
 
 def init_pentagon():  # 五角形
-    pentagon = [(0, 0)] * 80
+    pentagon = [(0, 0)] * 80  # 80ピン
     for x in range(5):
         pentagon[x * 16] = (250 + 250 * cos(radians(72 * x - 18)),
                             270 + 250 * sin(radians(72 * x - 18)))
@@ -47,7 +47,7 @@ def init_pentagon():  # 五角形
 
 
 def init_hexagon():  # 六角形
-    hexagon = [(0, 0)] * 72
+    hexagon = [(0, 0)] * 72  # 72ピン
     for x in range(6):
         hexagon[x * 12] = (250 + 250 * cos(radians(60 * x)),
                            250 + 250 * sin(radians(60 * x)))
@@ -69,16 +69,16 @@ def init_hexagon():  # 六角形
 
 
 def init_hemp():  # 麻の葉
-    hempin = [(0, 0) for i in range(6)]
-    hempout = [(0, 0) for i in range(6)]
-    hemp = [[(0, 0) for i in range(16)]for i in range(18)]
-    for x in range(6):
+    hempin = [(0, 0) for i in range(6)]  # 凹んでる部分 6ピン
+    hempout = [(0, 0) for i in range(6)]  # 出っ張ってる部分 6ピン
+    hemp = [[(0, 0) for i in range(16)]for i in range(18)]  # 全体のピン 16x18ピン
+    for x in range(6):  # 凹んでる部分 座標計算
         hempout[x] = (250 + 250 * cos(radians(60 * x + 30)),
                       250 + 250 * sin(radians(60 * x + 30)))
-    for x in range(6):
+    for x in range(6):  # 出っ張ってる部分 座標計算
         hempin[x] = ((hempout[x][0] + hempout[(x + 1) % 6][0] + 250) / 3,
                      (hempout[x][1] + hempout[(x + 1) % 6][1] + 250) / 3)
-    for x in range(18):
+    for x in range(18):  # 全体 座標計算
         for y in range(16):
             if x % 3 == 0:
                 xp = ((16 - y) * hempin[x // 3][0] +
@@ -105,7 +105,7 @@ def init_hemp():  # 麻の葉
 
 
 def init_sixstar():  # 六芒星
-    sixtri = [
+    sixtri = [    # 各三角形の頂点決め打ち部分
         [(250, 0), (180, 125), (320, 125)],
         [(40, 125), (180, 125), (110, 250)],
         [(180, 125), (250, 250), (110, 250)],
@@ -118,8 +118,7 @@ def init_sixstar():  # 六芒星
         [(390, 250), (250, 250), (320, 375)],
         [(460, 375), (390, 250), (320, 375)],
         [(250, 500), (320, 375), (180, 375)]]
-
-    sixstar = [[[(0, 0) for i in range(16)]for i in range(3)]
+    sixstar = [[[(0, 0) for i in range(16)]for i in range(3)]  # 全頂点 16x3x12
                for i in range(12)]
     for x in range(12):
         for y in range(3):
@@ -133,7 +132,7 @@ def init_sixstar():  # 六芒星
 
 
 def init_tri():  # 蕾
-    tri = [[(0, 0) for i in range(84)]for i in range(6)]
+    tri = [[(0, 0) for i in range(84)]for i in range(6)]  # 全頂点84x6
     for x in range(6):
         tri[x][0] = (250 + 250 * cos(radians(60 * x)),
                      250 + 250 * sin(radians(60 * x)))
