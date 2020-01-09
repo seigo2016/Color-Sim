@@ -17,110 +17,115 @@
         <meta name="keywords" content="糸かけ曼荼羅,糸曼荼羅,色,シミュレーター,シミュレーション">
         <meta name="description" content="糸かけ曼荼羅の色をシミュレーションするソフト。形状11種類・最大6色対応">
         <title>{{ title }}</title>
-        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/static/css/bootstrap-arrows.css" rel="stylesheet">
         <link href="/static/css/style.css" rel="stylesheet">
         <script src="/static/js/main.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="google-site-verification" content="Ee6NL88pPxk1uWuAVExa_w_O0jLGiahJtoQlA8tTQf4" />
+        <link href="https://fonts.googleapis.com/css?family=Kosugi+Maru&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.3/css/uikit.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-light">
+<body class="">
         {% block content %}
-        <div class="container m-0 col-12 p-0">
-                <nav class="navbar navbar-dark navbar-expand-sm bg-dark justify-content-left m-0 pb-0 pt-3">
-                        <div class="navbar-brand display-1 font-weight-bold">糸かけ曼荼羅色シミュレーター </div>
-                </nav>
-                <nav class="navbar navbar-dark navbar-expand-sm bg-dark justify-content-left m-0">
-                        <a href="/" class="navbar-brand mr-5 ml-2">Top</a>
-                        <a href="/Help" class="navbar-brand">Help</a>
+        <div class="">
+                <nav class="uk-navbar uk-navbar-container uk-navbar-left">
+                        <ul>
+                                <li>糸かけ曼荼羅色シミュレーター</li>
+                                <li><a href="/" class="uk-active">Top</a></li>
+                                <li><a href="/Help" class="uk-active">Help</a></li>
+                        </ul>
                 </nav>
                 <div class="main">
                         <div class="container">
                                 <div class="row">
-                                        <img class="img col-lg-6 mb-1 mt-2 col-md-12"
-                                                src=" data:image/png;base64,{{imagebin}}" alt="pic01">
-                                        <div class="col-lg-6 mt-1 col-md-12">
+                                        <img class="img uk-column-1-2" src=" data:image/png;base64,{{imagebin}}"
+                                                alt="pic01">
+                                        <div class="uk-column-1-2">
                                                 <form action="/Result" method="post">
                                                         <div data-toggle="buttons" class="row">
-                                                                <p class="text-left h5 ml-3 mt-1 mb-1 col-md-12 pl-0">
+                                                                <p class="text-left">
                                                                         ① 形状の選択
                                                                 </p>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[0]}}"
+                                                                <label class="uk-button uk-column-1-2@s uk-column-1-3@m {{ac[0]}}"
                                                                         for="shape1" onclick="setcolsize(6)"><input
                                                                                 type="radio" name="shape" id="shape1"
                                                                                 value="0">円(48P)</label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[1]}}"
+                                                                <label class="uk-button uk-column-1-2@s uk-column-1-3@m {{ac[1]}}"
                                                                         for="shape2" onclick="setcolsize(8)"> <input
                                                                                 type="radio" name="shape" id="shape2"
                                                                                 value="1">円(64P)</label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[2]}}"
+                                                                <label class="uk-button uk-column-1-2@s uk-column-1-3@m {{ac[2]}}"
                                                                         for="shape3" onclick="setcolsize(6)">円(77P)
                                                                         <input type="radio" name="shape" id="shape3"
                                                                                 value="2"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[3]}}"
+                                                                <label class="uk-button uk-column-1-2@s uk-column-1-3@m {{ac[3]}}"
                                                                         for="shape4" onclick="setcolsize(6)">円(88P)
                                                                         <input type="radio" name="shape" id="shape4"
                                                                                 value="3"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[4]}}"
+                                                                <label class="uk-button uk-column-1-2@s uk-column-1-3@m {{ac[4]}}"
                                                                         for="shape5" onclick="setcolsize(12)">円(108P)
                                                                         <input type="radio" name="shape" id="shape5"
                                                                                 value="4"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[5]}}"
+                                                                <label class="uk-button uk-column-1-2@s uk-column-1-3@m {{ac[5]}}"
                                                                         for="shape6" onclick="setcolsize(6)">正方形
                                                                         <input type="radio" name="shape" id="shape6"
                                                                                 value="5"></label><br>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[6]}}"
+                                                                <label class="uk-button uk-column-1-2@s uk-column-1-3@m {{ac[6]}}"
                                                                         for="shape7" onclick="setcolsize(6)">五角形
                                                                         <input type="radio" name="shape" id="shape7"
                                                                                 value="6"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[7]}}"
+                                                                <label class="uk-button uk-column-1-2@s uk-column-1-3@m {{ac[7]}}"
                                                                         for="shape8" onclick="setcolsize(6)">六角形
                                                                         <input type="radio" name="shape" id="shape8"
                                                                                 value="7"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[8]}}"
+                                                                <label class="uk-button uk-column-1-2@s uk-column-1-3@m {{ac[8]}}"
                                                                         for="shape9" onclick="setcolsize(3)">つぼみ
                                                                         <input type="radio" name="shape" id="shape9"
                                                                                 value="8"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[9]}}"
+                                                                <label class="uk-button uk-column-1-2@s uk-column-1-3@m {{ac[9]}}"
                                                                         for="shape10" onclick="setcolsize(4)">麻の葉
                                                                         <input type="radio" name="shape" id="shape10"
                                                                                 value="9"></label>
-                                                                <label class="btn btn-secondary col-sm-3 col-6 rounded-0 mb-0 border-white {{ac[10]}}"
+                                                                <label class="uk-button uk-column-1-2@s uk-column-1-3@m {{ac[10]}}"
                                                                         for="shape11" onclick="setcolsize(8)">六芒星
                                                                         <input type="radio" name="shape" id="shape11"
                                                                                 value="10"></label>
-                                                                <label class="btn btn-secondary col-sm-12 col-12 rounded-0 ml-0 mb-0 border-white row {{ac[11]}}"
-                                                                        for="shape12" onclick="setcolsize(6)">円(カスタム)
+                                                                <label class="uk-button {{ac[11]}}" for="shape12"
+                                                                        onclick="setcolsize(6)">円(カスタム)
                                                                         <input type="radio" name="shape" id="shape12"
                                                                                 value="11" checked>
-                                                                        <label class="btn　col-sm-12 col-12 rounded-0 m-0 p-0 border-white text-left"
+                                                                        <label class="uk-button text-left"
                                                                                 for="shape12">
                                                                                 <p class="m-0">ピン数</p>
                                                                                 <input type="text" name="prime7"
                                                                                         id="prime7" class="col-3"
                                                                                         value={{custompin[6]}}>
                                                                         </label>
-                                                                        <label
-                                                                                class="btn　col-sm-12 col-12 rounded-0 m-0 p-0 border-white text-left">
+                                                                        <label class="uk-button">
                                                                                 <p class="m-0 mt-1">糸の間隔</p>
                                                                                 <input type="text" name="prime1"
-                                                                                        id="prime1" class="col-3"
+                                                                                        id="prime1"
+                                                                                        class="uk-column-1-3"
                                                                                         value={{custompin[0]}}>
                                                                                 <input type="text" name="prime2"
-                                                                                        id="prime2" class="col-3"
+                                                                                        id="prime2"
+                                                                                        class="uk-column-1-3"
                                                                                         value={{custompin[1]}}>
                                                                                 <input type="text" name="prime3"
-                                                                                        id="prime3" class="col-3"
+                                                                                        id="prime3"
+                                                                                        class="uk-column-1-3"
                                                                                         value={{custompin[2]}}>
                                                                                 <input type="text" name="prime4"
-                                                                                        id="prime4" class="col-3"
+                                                                                        id="prime4"
+                                                                                        class="uk-column-1-3"
                                                                                         value={{custompin[3]}}>
                                                                                 <input type="text" name="prime5"
-                                                                                        id="prime5" class="col-3"
+                                                                                        id="prime5"
+                                                                                        class="uk-column-1-3"
                                                                                         value={{custompin[4]}}>
                                                                                 <input type="text" name="prime6"
-                                                                                        id="prime6" class="col-3"
+                                                                                        id="prime6"
+                                                                                        class="uk-column-1-3"
                                                                                         value={{custompin[5]}}>
                                                                         </label>
                                                                 </label>
@@ -170,7 +175,7 @@
                                                         </div>
                                                         <div class='arrow-inverse' style="transform: rotate(180deg);">
                                                         </div>
-                                                        <p class="text-left h5 ml-0 pl-0 mb-1 col-12">③ 実行
+                                                        <p class="uk-column-12">③ 実行
                                                         </p>
                                                         <div class="btn-area">
                                                                 <button type="submit" class="btn btn-info"
@@ -198,9 +203,7 @@
                 </div>
         </div>
         {% endblock %}
-        <script src="/static/js/jquery-3-4-1.min.js"></script>
-        <script src="/static/js/bootstrap.min.js"></script>
-        <script src="/static/js/bootstrap-arrows.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.3/js/uikit.min.js"></script>
 </body>
 
 </html>
