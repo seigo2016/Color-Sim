@@ -79,8 +79,9 @@ def on_click_enter_button():
     im = Image.new("RGBA", (500, 500), backcolor)
     draw = ImageDraw.Draw(im)
     var = int(request.form["shape"])
-    primary[8] = [int(request.form["prime1"]), int(request.form["prime2"]), int(request.form["prime3"]),
-                  int(request.form["prime4"]), int(request.form["prime5"]), int(request.form["prime6"]), int(request.form["prime7"])]
+    if var == 11:
+        primary[8] = [int(request.form["prime1"]), int(request.form["prime2"]), int(request.form["prime3"]),
+                      int(request.form["prime4"]), int(request.form["prime5"]), int(request.form["prime6"]), int(request.form["prime7"])]
     ac[var] = "active"
     nowtime = time.strftime("%Y%m%d%H%M%S", time.strptime(time.ctime()))
     for i in range(12):
@@ -117,5 +118,5 @@ def favicon():
 
 
 if __name__ == '__main__':
-    app.debug = False
+    app.debug = True
     app.run(port=5000, host='0.0.0.0')
