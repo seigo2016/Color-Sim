@@ -47,20 +47,11 @@ function getStorage() {
 function getElementByXpath(path) {
     return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 }
-window.onload = function () {
-    var collist = [0, 6, 8, 6, 6, 12, 6, 6, 6, 3, 4, 8]
-    $('.arrow, [class^=arrow-]').bootstrapArrows()
-    for (let i = 1; i <= 12; i++) {
-        if (getElementByXpath("/html/body/div/div/div/div/div/form/div[1]/label[" + String(i) + "]").classList.contains("active")) {
-            setcolsize(collist[i])
-        }
-    }
-}
 function setcolsize(x) {
     for (let i = 1; i <= 12; i++) {
         if (i > x)
-            document.getElementById("color" + String(i)).classList.add("d-none")
+            document.getElementById("color" + String(i)).classList.add("uk-hidden");
         else
-            document.getElementById("color" + String(i)).classList.remove("d-none")
+            document.getElementById("color" + String(i)).classList.remove("uk-hidden");
     }
 }

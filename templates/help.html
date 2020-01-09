@@ -1,164 +1,133 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="糸かけ曼荼羅,糸曼荼羅,色,シミュレーター,シミュレーション">
-    <meta name="description" content="糸かけ曼荼羅の色をシミュレーションするソフト。形状11種類・最大6色対応">
-    <title>{{ title }}</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/style.css" rel="stylesheet">
-    <script src="/static/js/main.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-</head>
-
-<body class="bg-light">
-    {% block content %}
-    <div class="container m-0 col-12 p-0">
-        <nav class="navbar navbar-dark navbar-expand-sm bg-dark justify-content-left m-0 pb-0 pt-3">
-            <div class="navbar-brand display-1 font-weight-bold">糸かけ曼荼羅色シミュレーター </div>
-        </nav>
-        <nav class="navbar navbar-dark navbar-expand-sm bg-dark justify-content-left m-0">
-            <a href="/" class="navbar-brand mr-5 ml-2">Top</a>
-            <a href="/Help" class="navbar-brand">Help</a>
-        </nav>
-        <div class="accordion ml-md-3 mr-md-3 pl-md-3 pr-md-3 text-left" id="accordion" role="tablist"
-            aria-multiselectable="true">
-            <div class="card border-0">
-                <div class="card-header" role="tab" id="headingOne">
-                    <h5 class="mb-0">
-                        <a class="text-body h3" data-toggle="collapse" href="#collapseOne" role="button"
-                            aria-expanded="true" aria-controls="collapseOne">
-                            仕様
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne"
-                    data-parent="#accordion">
-                    <div class="card-body h4">
-                        <p class="ml-4 mt-1 mb-1">対応形状・色</p>
-                        <table class="table small ml-4">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>形状</th>
-                                    <th>差分</th>
-                                    <th>色</th>
-                                    <th>備考</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>1~5</th>
-                                    <td>円</td>
-                                    <td>5</td>
-                                    <td>6</td>
-                                    <td>48ピン, 64ピン, 77ピン, 88ピン, 108ピン</td>
-                                </tr>
-                                <tr>
-                                    <th>6</th>
-                                    <td>四角形</td>
-                                    <td>1</td>
-                                    <td>6</td>
-                                    <td>ー</td>
-                                </tr>
-                                <tr>
-                                    <th>7</th>
-                                    <td>五角形</td>
-                                    <td>1</td>
-                                    <td>6</td>
-                                    <td>ー</td>
-                                </tr>
-                                <tr>
-                                    <th>8</th>
-                                    <td>六角形</td>
-                                    <td>1</td>
-                                    <td>6</td>
-                                    <td>ー</td>
-                                </tr>
-                                <tr>
-                                    <th>9</th>
-                                    <td>つぼみ</td>
-                                    <td>1</td>
-                                    <td>3</td>
-                                    <td>色の選択は左の3つのボタンのみ</td>
-                                </tr>
-                                <tr>
-                                    <th>10</th>
-                                    <td>麻の葉</td>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>色の選択は左の2つのボタンのみ</td>
-                                </tr>
-                                <tr>
-                                    <th>11</th>
-                                    <td>六芒星</td>
-                                    <td>1</td>
-                                    <td>3</td>
-                                    <td>色の選択は左の3つのボタンのみ</td>
-                                </tr>
-                                <tr>
-                                    <th>12</th>
-                                    <td>円(カスタム)</td>
-                                    <td>∞</td>
-                                    <td>6</td>
-                                    <td>ピン数や糸をかける間隔など自由にカスタムできます</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="ml-4 mt-1 mb-1">配色履歴復元</p>
-                        <p class="h5 ml-5">過去の配色を最大5件まで自動で保存します。履歴の削除も可能です。データはWebブラウザーに保存しています。</p>
-                        <p class="ml-4 mt-1 mb-1">その他</p>
-                        <p class="h5 ml-5">画像の保存は右クリック後「名前を付けて画像を保存」をクリックすることでできます。</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card border-0">
-                <div class="card-header" role="tab" id="headingThree">
-                    <h5 class="mb-0">
-                        <a class="collapsed text-body h3" data-toggle="collapse" href="#collapseThree" role="button"
-                            aria-expanded="false" aria-controls="collapseThree">
-                            お問い合わせ
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseThree" class="collapse show" role="tabpanel" aria-labelledby="headingThree"
-                    data-parent="#accordion">
-                    <div class="card-body">
-                        <p>
-                            <script type="text/javascript">
-                                function converter(M) {
-                                    var str = "", str_as = "";
-                                    for (var i = 0; i < M.length; i++) {
-                                        str_as = M.charCodeAt(i);
-                                        str += String.fromCharCode(str_as + 1);
-                                    }
-                                    return str;
-                                }
-                                function mail_to(k_1, k_2) {
-                                    eval(String.fromCharCode(108, 111, 99, 97, 116, 105, 111, 110, 46, 104, 114, 101, 102, 32,
-                                        61, 32, 39, 109, 97, 105, 108, 116, 111, 58)
-                                        + escape(k_1) +
-                                        converter(String.fromCharCode(49, 47, 47, 50, 114, 100, 104, 102, 110, 63, 102, 108, 96, 104, 107, 45, 98, 110, 108,
-                                            62, 114, 116, 97, 105, 100, 98, 115, 60))
-                                        + escape(k_2) + "'");
-                                }
-                                document.write('<a href=JavaScript:mail_to("","") class="h4 mt-1 mb-0 col-12 ml-4">メール<\/a>');
-                            </script>
-                        </p>
-                        <p>
-                            <a href="https://twitter.com/seigo2018" class="h4 mt-0 col-12 ml-4"
-                                target="_blank">Twitter</a></p>
-                    </div>
-                </div>
+{% extends "body.html" %}
+{% block body %}
+<div class="accordion ml-md-3 mr-md-3 pl-md-3 pr-md-3 text-left" id="accordion" role="tablist"
+    aria-multiselectable="true">
+    <div class="card border-0">
+        <div class="card-header" role="tab" id="headingOne">
+            <h5 class="mb-0">
+                <a class="text-body h3" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true"
+                    aria-controls="collapseOne">
+                    仕様
+                </a>
+            </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne"
+            data-parent="#accordion">
+            <div class="card-body h4">
+                <p class="ml-4 mt-1 mb-1">対応形状・色</p>
+                <table class="table small ml-4">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>形状</th>
+                            <th>差分</th>
+                            <th>色</th>
+                            <th>備考</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1~5</th>
+                            <td>円</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>48ピン, 64ピン, 77ピン, 88ピン, 108ピン</td>
+                        </tr>
+                        <tr>
+                            <th>6</th>
+                            <td>四角形</td>
+                            <td>1</td>
+                            <td>6</td>
+                            <td>ー</td>
+                        </tr>
+                        <tr>
+                            <th>7</th>
+                            <td>五角形</td>
+                            <td>1</td>
+                            <td>6</td>
+                            <td>ー</td>
+                        </tr>
+                        <tr>
+                            <th>8</th>
+                            <td>六角形</td>
+                            <td>1</td>
+                            <td>6</td>
+                            <td>ー</td>
+                        </tr>
+                        <tr>
+                            <th>9</th>
+                            <td>つぼみ</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>色の選択は左の3つのボタンのみ</td>
+                        </tr>
+                        <tr>
+                            <th>10</th>
+                            <td>麻の葉</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>色の選択は左の2つのボタンのみ</td>
+                        </tr>
+                        <tr>
+                            <th>11</th>
+                            <td>六芒星</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>色の選択は左の3つのボタンのみ</td>
+                        </tr>
+                        <tr>
+                            <th>12</th>
+                            <td>円(カスタム)</td>
+                            <td>∞</td>
+                            <td>6</td>
+                            <td>ピン数や糸をかける間隔など自由にカスタムできます</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="ml-4 mt-1 mb-1">配色履歴復元</p>
+                <p class="h5 ml-5">過去の配色を最大5件まで自動で保存します。履歴の削除も可能です。データはWebブラウザーに保存しています。</p>
+                <p class="ml-4 mt-1 mb-1">その他</p>
+                <p class="h5 ml-5">画像の保存は右クリック後「名前を付けて画像を保存」をクリックすることでできます。</p>
             </div>
         </div>
     </div>
-    {% endblock %}
-    <script src="/static/js/jquery.min.js"> </script>
-    <script src="/static/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+    <div class="card border-0">
+        <div class="card-header" role="tab" id="headingThree">
+            <h5 class="mb-0">
+                <a class="collapsed text-body h3" data-toggle="collapse" href="#collapseThree" role="button"
+                    aria-expanded="false" aria-controls="collapseThree">
+                    お問い合わせ
+                </a>
+            </h5>
+        </div>
+        <div id="collapseThree" class="collapse show" role="tabpanel" aria-labelledby="headingThree"
+            data-parent="#accordion">
+            <div class="card-body">
+                <p>
+                    <script type="text/javascript">
+                        function converter(M) {
+                            var str = "", str_as = "";
+                            for (var i = 0; i < M.length; i++) {
+                                str_as = M.charCodeAt(i);
+                                str += String.fromCharCode(str_as + 1);
+                            }
+                            return str;
+                        }
+                        function mail_to(k_1, k_2) {
+                            eval(String.fromCharCode(108, 111, 99, 97, 116, 105, 111, 110, 46, 104, 114, 101, 102, 32,
+                                61, 32, 39, 109, 97, 105, 108, 116, 111, 58)
+                                + escape(k_1) +
+                                converter(String.fromCharCode(49, 47, 47, 50, 114, 100, 104, 102, 110, 63, 102, 108, 96, 104, 107, 45, 98, 110, 108,
+                                    62, 114, 116, 97, 105, 100, 98, 115, 60))
+                                + escape(k_2) + "'");
+                        }
+                        document.write('<a href=JavaScript:mail_to("","") class="h4 mt-1 mb-0 col-12 ml-4">メール<\/a>');
+                    </script>
+                </p>
+                <p>
+                    <a href="https://twitter.com/seigo2018" class="h4 mt-0 col-12 ml-4" target="_blank">Twitter</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
