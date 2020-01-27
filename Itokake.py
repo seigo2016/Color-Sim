@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+#! /usr/bin/env python
+
 from PIL import Image, ImageDraw
 import time
 from flask import Flask, render_template, request, send_from_directory, jsonify
@@ -18,13 +20,12 @@ primary = [
     [31, 29, 23, 19, 17, 13],  # 正方形
     [37, 31, 29, 23, 19, 17],  # 正五角形
     [31, 29, 23, 19, 17, 13],  # 正六角形
-    [31, 29, 23, 19, 17, 13, 32]]  # カスタム円
+    [31, 29, 23, 19, 17, 13, 48]]  # カスタム円
 colornumhex = ["#ffffff"] * 12
 image = None
 im = Image.new('RGB', (500, 500), (0, 0, 0))
 draw = ImageDraw.Draw(im)
 var = 0
-
 
 def hex_to_rgb(hextmp):
     if hextmp is not None:
@@ -78,7 +79,7 @@ def on_click_enter_button():
     backcolor = hex_to_rgb(request.form["bgcolor"])
     im = Image.new("RGBA", (500, 500), backcolor)
     draw = ImageDraw.Draw(im)
-    var = int(request.form["shape"])
+    var = int(request.form["Shape"])
     if var == 11:
         primary[8] = [int(request.form["prime1"]), int(request.form["prime2"]), int(request.form["prime3"]),
                       int(request.form["prime4"]), int(request.form["prime5"]), int(request.form["prime6"]), int(request.form["prime7"])]
@@ -90,7 +91,7 @@ def on_click_enter_button():
     imagebin = draw_line.draw_image(primary, var, im, draw, rgb_color_table)
 
     return render_template(
-        'result.html',
+        'index.html',
         imagefile=nowtime,
         var=var,
         colornum=colornumhex,
@@ -119,4 +120,4 @@ def favicon():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(port=5000, host='0.0.0.0')
+    # app.run(port=5000, host='0.0.0.0')

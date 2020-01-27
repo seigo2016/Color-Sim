@@ -23,23 +23,20 @@
     <link href="/static/css/style.css" rel="stylesheet">
 </head>
 
-<body class="">
-    <div class="main">
-        <div class="uk-section-xsmall uk-padding-remove-bottom uk-padding-medium uk-section-muted">
-            <h1 class="uk-margin-large-left uk-margin-remove-bottom">糸掛け曼荼羅色シミュレーター</h1>
-        </div>
-        <nav class="uk-padding-large-left uk-padding-remove-vertical uk-margin-small-bottom uk-navbar-container"
-            uk-navbar>
-            <div class="uk-navbar-left">
-                <ul class="uk-navbar-nav">
-                    <li class="uk-active uk-margin-large-left"><a href="/">Top</a></li>
-                    <li class=""><a href="/Help">Help</a></li>
-                </ul>
-            </div>
-        </nav>
-        {% block body %}
-        {% endblock %}
+<body class="main">
+    <div class="uk-section-xsmall uk-padding-remove-bottom uk-padding-medium uk-section-muted">
+        <h1 class="uk-margin-large-left uk-margin-remove-bottom">糸掛け曼荼羅色シミュレーター</h1>
     </div>
+    <nav class="uk-padding-large-left uk-padding-remove-vertical uk-margin-small-bottom uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active uk-margin-large-left"><a href="/">Top</a></li>
+                <li><a href="/Help">Help</a></li>
+            </ul>
+        </div>
+    </nav>
+    {% block body %}
+    {% endblock %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.3/js/uikit.min.js"></script>
     <script src="/static/js/main.js"></script>
 </body>

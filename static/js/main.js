@@ -46,19 +46,19 @@ function getStorage() {
 function getElementByXpath(path) {
     return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 }
-function setcolsize(x) {
+function setcolsize() {
+    let collist = [6, 8, 6, 6, 12, 6, 6, 6, 3, 4, 8, 6];
+    num=document.getElementsByName('Shape')[0].selectedIndex
+    x=collist[num];
     for (let i = 1; i <= 12; i++) {
         if (i > x)
             document.getElementById("color" + String(i)).classList.add("uk-hidden");
         else
             document.getElementById("color" + String(i)).classList.remove("uk-hidden");
     }
-}
-window.onload = function () {
-    let collist = [6, 8, 6, 6, 12, 6, 6, 6, 3, 4, 8]
-    for (let i = 1; i <= 11; i++) {
-        if (getElementByXpath("/html/body/div/div[2]/div/form/div[1]/label[" + String(i) + "]").classList.contains("active")) {
-            setcolsize(collist[i - 1])
-        }
+    if(num==11){
+        document.getElementById("custompin").classList.remove("uk-hidden");
+    }else{
+        document.getElementById("custompin").classList.add("uk-hidden");
     }
 }
