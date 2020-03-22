@@ -8,9 +8,15 @@ import io
 import base64
 import os
 from module import draw_line
+import sys
 
+
+
+template_folder = os.path.join(sys._MEIPASS, 'templates')
+static_folder = os.path.join(sys._MEIPASS, 'static')
+print(static_folder)
+app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
 rgb_color_table = [(255, 255, 255)] * 12
-app = Flask(__name__)
 primary = [
     [23, 19, 17, 13, 11, 7],  # 円 48
     [31, 29, 23, 19, 17, 13, 11, 7],  # 円 64
@@ -41,7 +47,7 @@ def rgb_to_hex(rgbtmp):
 @app.route('/')
 def index():
     title = "Top | 糸かけ曼荼羅 色シミュレーター"
-    im = Image.open('static/img/default.png')
+    im = Image.open(static_folder+'/images/default.png')
     in_mem_file = io.BytesIO()
     im.save(in_mem_file, format="PNG")
     in_mem_file.seek(0)
@@ -120,4 +126,4 @@ def favicon():
 
 if __name__ == '__main__':
     app.debug = True
-    # app.run(port=5000, host='0.0.0.0')
+    app.run(port=5000, host='localhost')

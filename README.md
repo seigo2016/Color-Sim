@@ -26,3 +26,8 @@ v1.7 ピン数と間隔をカスタマイズ出来る円を追加 <br>
 <h2>備考</h2>   <br>
 Twitter…@seigo2018  <br>
 メールアドレス…2003seigo@gmail.com  <br>
+
+### pyinstallerコマンド
+win
+`pyinstaller --onefile Itokake.py --add-data static;static --add-data templates;templateselec`
+mac

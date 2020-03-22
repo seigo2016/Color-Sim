@@ -1,0 +1,31 @@
+{
+  "name": "Color-Sim",
+  "version": "1.0.0",
+  "description": "<h1>糸かけ曼荼羅色シミュレータ</h1>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seigo2016/Color-Sim.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seigo2016/Color-Sim/issues"
+  },
+  "homepage": "https://github.com/seigo2016/Color-Sim#readme",
+  "devDependencies": {
+    "electron": "^8.1.1",
+    "electron-builder": "^22.4.1"
+  },
+  "dependencies": {
+    "electron-log": "^4.1.0",
+    "electron-packager": "^14.2.1",
+    "python-shell": "^1.0.8",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  }
+}

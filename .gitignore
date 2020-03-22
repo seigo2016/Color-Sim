@@ -3,3 +3,8 @@
 itokake/
 __pycache__/
 .vscode/*
+ColorSim/
+build/
+*.spec
+node_modules/
+
