@@ -19,10 +19,8 @@ jobs:
 
     - name: Install Package
       run: |
-           ls -la
            python -m pip install --upgrade pip 
            pip install pyinstaller
-           ls
            pip install -r ./requirements.txt
 
     - name: Build with Pyinstaller
@@ -59,10 +57,8 @@ jobs:
 
     - name: Install Package
       run: |
-           ls -la
            python -m pip install --upgrade pip 
            pip install pyinstaller
-           ls
            pip install -r ./requirements.txt
 
     - name: Build with Pyinstaller
