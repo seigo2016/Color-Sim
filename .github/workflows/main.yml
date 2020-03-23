@@ -8,6 +8,7 @@ jobs:
   build:
     runs-on: macOS-latest
     steps:
+    - name: Setup 
       uses: actions/checkout@v2
 
     - name: Setup Python 3.7.6
