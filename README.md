@@ -28,6 +28,7 @@ Twitter…@seigo2018  <br>
 メールアドレス…2003seigo@gmail.com  <br>
 
 ### pyinstallerコマンド
+`--distpath Electron_Build/py_app/`
 win
 `pyinstaller --onefile Itokake.py --add-data static;static --add-data templates;templateselec`
 mac
