@@ -5,7 +5,7 @@ on:
     branches: master
     
 jobs:
-  build:
+  build on mac:
     runs-on: macOS-latest
     steps:
     - name: Setup 
@@ -29,10 +29,12 @@ jobs:
       
     - name: Setup Node.js
       uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
 
     - name: Setup Electron
-      run: cp dist/Itokake Electron_Build/py_app/Itokake 
-           && cd Electron_Build && node build-mac.js && ls
+      run: cp dist/Itokake Electron_Build/py_app/Itokake
+           && cd Electron_Build && npm install && node build-mac.js && ls
 
     # - uses: actions/checkout@master
     # - name: copy file via ssh password
