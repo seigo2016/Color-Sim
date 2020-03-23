@@ -41,6 +41,6 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          build/mac/*.zip
+          build/mac/**
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
