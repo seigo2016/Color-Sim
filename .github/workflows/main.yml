@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: electron
+    branches: master
     
 jobs:
   build:
@@ -29,13 +29,13 @@ jobs:
       run: cp dist/Itokake Electron_Build/py_app/Itokake 
            && cd Electron_Build && node build-mac.js && ls
 
-#     - uses: actions/checkout@master
-#     - name: copy file via ssh password
-#       uses: appleboy/scp-action@master
-#       with:
-#         host: ${{ secrets.HOST }}
-#         username: ${{ secrets.USERNAME }}
-#         key: ${{ secrets.KEY }}
-#         port: ${{ secrets.PORT }}
-#         source: ""
-#         target: "test"
+    # - uses: actions/checkout@master
+    # - name: copy file via ssh password
+    #   uses: appleboy/scp-action@master
+    #   with:
+    #     host: ${{ secrets.HOST }}
+    #     username: ${{ secrets.USERNAME }}
+    #     key: ${{ secrets.KEY }}
+    #     port: ${{ secrets.PORT }}
+    #     source: ""
+    #     target: "test"
