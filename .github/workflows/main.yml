@@ -37,7 +37,8 @@ jobs:
       run: cp dist/Itokake Electron_Build/py_app/Itokake
            && cd Electron_Build && npm install && node build-mac.js
 
-    - uses: marvinpinto/action-automatic-releases@latest
+    - name: Release
+      uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "latest"
