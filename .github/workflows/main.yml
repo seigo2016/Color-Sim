@@ -28,7 +28,7 @@ jobs:
       run: pyinstaller --onefile Itokake.py --add-data static:static --add-data templates:templateselec
       
     - name: Setup Node.js
-      uses: actions/setup-node@v1.1.0
+      uses: actions/setup-node@v1
 
     - name: Setup Electron
       run: cp dist/Itokake Electron_Build/py_app/Itokake 
