@@ -16,6 +16,7 @@ jobs:
 
     - name: Install Package
       run: |
+           ls -la
            python -m pip install --upgrade pip 
            pip install pyinstaller
            ls
