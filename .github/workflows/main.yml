@@ -36,8 +36,7 @@ jobs:
     - name: Setup Electron and Build with Electron_Builder
       run: cp dist/Itokake Electron_Build/py_app/Itokake
            && cd Electron_Build && npm install && node build-mac.js
-  　- name: test
-      run: ls -la
+    - run: ls -la
     # - name: Create release
     #   uses: softprops/action-gh-release@v1
     #   if: startsWith(github.ref, 'refs/tags/')
