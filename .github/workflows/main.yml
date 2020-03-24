@@ -35,15 +35,16 @@ jobs:
       run: cp dist/Itokake Electron_Build/py_app/Itokake
            && cd Electron_Build && npm install && node build-mac.js
 
-    - name: Release
-      uses: marvinpinto/action-automatic-releases@latest
+    - name: sent file to znc
+      uses: appleboy/scp-action@master
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "latest"
-        title: "Development Build"
-        files: |
-          Electron_Build/build/mac/*.zip
-
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        source: "Electron_Build/build/mac/Color-Sim-1.0.0-mac.zip"
+        target: "~/ColorSim/Color-mac.zip"
+          
   build_on_windows:
     runs-on: windows-latest
     steps:
@@ -73,11 +74,12 @@ jobs:
       run: cp dist/Itokake.exe Electron_Build/py_app/Itokake.exe
            && cd Electron_Build && npm install && node build-win.js
 
-    - name: Release
-      uses: marvinpinto/action-automatic-releases@latest
+    - name: sent file to znc
+      uses: appleboy/scp-action@master
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "latest"
-        title: "Development Build"
-        files: |
-          Electron_Build/build/win/*.zip
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        source: "Electron_Build/build/win/Color-Sim-1.0.0-win.zip"
+        target: "~/ColorSim/Color-win.zip"
