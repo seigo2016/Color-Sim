@@ -14,7 +14,7 @@ builder.build({
         },
         'win': {
             'target': {
-                'target': 'nsis',
+                'target': 'zip',
                 'arch': [
                     'x64',
                 ]
