@@ -62,7 +62,7 @@ jobs:
            pip install -r ./requirements.txt
 
     - name: Build with Pyinstaller
-      run: pyinstaller --onefile Itokake.py --add-data static;static --add-data templates;templateselec
+      run: pyinstaller --onefile Itokake.py --add-data "static;static" --add-data "templates;templateselec"
       
     - name: Setup Node.js
       uses: actions/setup-node@v1
