@@ -36,50 +36,43 @@ jobs:
            && cd Electron_Build && npm install && node build-mac.js
 
     - name: sent file to znc
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
-        source: "Electron_Build/build/mac/Color-Sim-1.0.0-mac.zip"
-        target: "~/ColorSim/Color-mac.zip"
+      run: scp -i ${{ secrets.KEY }} -p ${{ secrets.PORT }} Electron_Build/build/mac/Color-Sim-1.0.0-mac.zip ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/ColorSim/Color-mac.zip
           
-  build_on_windows:
-    runs-on: windows-latest
-    steps:
-    - name: Setup 
-      uses: actions/checkout@v2
+  # build_on_windows:
+  #   runs-on: windows-latest
+  #   steps:
+  #   - name: Setup 
+  #     uses: actions/checkout@v2
 
-    - name: Setup Python 3.7.6
-      uses: actions/setup-python@v1.2.0
-      with:
-        python-version: 3.7.6
+  #   - name: Setup Python 3.7.6
+  #     uses: actions/setup-python@v1.2.0
+  #     with:
+  #       python-version: 3.7.6
 
-    - name: Install Package
-      run: |
-           python -m pip install --upgrade pip 
-           pip install pyinstaller
-           pip install -r ./requirements.txt
+  #   - name: Install Package
+  #     run: |
+  #          python -m pip install --upgrade pip 
+  #          pip install pyinstaller
+  #          pip install -r ./requirements.txt
 
-    - name: Build with Pyinstaller
-      run: pyinstaller --onefile Itokake.py --add-data "static;static" --add-data "templates;templateselec"
+  #   - name: Build with Pyinstaller
+  #     run: pyinstaller --onefile Itokake.py --add-data "static;static" --add-data "templates;templateselec"
       
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
+  #   - name: Setup Node.js
+  #     uses: actions/setup-node@v1
+  #     with:
+  #       node-version: 12.x
 
-    - name: Setup Electron and Build with Electron_Builder
-      run: cp dist/Itokake.exe Electron_Build/py_app/Itokake.exe
-           && cd Electron_Build && npm install && node build-win.js
+  #   - name: Setup Electron and Build with Electron_Builder
+  #     run: cp dist/Itokake.exe Electron_Build/py_app/Itokake.exe
+  #          && cd Electron_Build && npm install && node build-win.js
 
-    - name: sent file to znc
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
-        source: "Electron_Build/build/win/Color-Sim-1.0.0-win.zip"
-        target: "~/ColorSim/Color-win.zip"
+  #   - name: sent file to znc
+  #     uses: appleboy/scp-action@master
+  #     with:
+  #       host: ${{ secrets.HOST }}
+  #       username: ${{ secrets.USERNAME }}
+  #       key: ${{ secrets.KEY }}
+  #       port: ${{ secrets.PORT }}
+  #       source: "Electron_Build/build/win/Color-Sim-1.0.0-win.zip"
+  #       target: "~/ColorSim/Color-win.zip"
