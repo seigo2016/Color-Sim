@@ -71,5 +71,5 @@ jobs:
 
     - name: sent file to znc
       run: echo "${{ secrets.KEY }}" > ~/Documents/id_rsa && 
-           chmod 600 id_rsa &&
+          #  chmod 600 id_rsa &&
            scp -o "StrictHostKeyChecking=no" -i ~/Documents/id_rsa -P ${{ secrets.PORT }} Electron_Build/build/mac/Color-Sim-1.0.0-win.zip ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/ColorSim/Color-win.zip
