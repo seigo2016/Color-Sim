@@ -37,7 +37,7 @@ jobs:
 
     - name: sent file to znc
       run: echo "${{ secrets.KEY }}" > id_rsa &&
-           scp -o "StrictHostKeyChecking=no"-i id_rsa -P ${{ secrets.PORT }} Electron_Build/build/mac/Color-Sim-1.0.0-mac.zip ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/ColorSim/Color-mac.zip
+           scp -o "StrictHostKeyChecking=no" -i id_rsa -P ${{ secrets.PORT }} Electron_Build/build/mac/Color-Sim-1.0.0-mac.zip ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/ColorSim/Color-mac.zip
           
   # build_on_windows:
   #   runs-on: windows-latest
