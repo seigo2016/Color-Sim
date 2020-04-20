@@ -13,7 +13,6 @@ from module import draw_line
 
 # template_folder = os.path.join('templates')
 # static_folder = os.path.join('static')
-print(static_folder)
 app = Flask(__name__)
 rgb_color_table = [(255, 255, 255)] * 12
 primary = [
