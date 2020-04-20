@@ -8,14 +8,13 @@ import io
 import base64
 import os
 from module import draw_line
-import sys
 
 
 
-template_folder = os.path.join(sys._MEIPASS, 'templates')
-static_folder = os.path.join(sys._MEIPASS, 'static')
+# template_folder = os.path.join('templates')
+# static_folder = os.path.join('static')
 print(static_folder)
-app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
+app = Flask(__name__)
 rgb_color_table = [(255, 255, 255)] * 12
 primary = [
     [23, 19, 17, 13, 11, 7],  # 円 48
