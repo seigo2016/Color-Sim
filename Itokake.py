@@ -45,7 +45,7 @@ def rgb_to_hex(rgbtmp):
 @app.route('/')
 def index():
     title = "Top | 糸かけ曼荼羅 色シミュレーター"
-    im = Image.open(static_folder+'/images/default.png')
+    im = Image.open('default.png')
     in_mem_file = io.BytesIO()
     im.save(in_mem_file, format="PNG")
     in_mem_file.seek(0)
