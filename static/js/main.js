@@ -28,7 +28,7 @@ function remember() {
     for (let i = 1; i < 6; i++) {
         colorlist.push(document.getElementById('color' + String(i)).value)
     }
-    colorlist.push(document.getElementById('bgcolor').value)
+    colorlist.push(document.getElementById('background_color').value)
     localStorage.setItem('ColorSet' + String(len + 1), JSON.stringify(colorlist))
 }
 function getStorage() {

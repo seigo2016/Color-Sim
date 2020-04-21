@@ -2,7 +2,7 @@
 {% block body %}
 <div class="uk-margin-medium-top uk-grid uk-child-width-expand uk-grid-medium">
         <div class="uk-margin-large-left">
-                <img class="uk-margin-small" width="auto" height="auto" src=" data:image/png;base64,{{imagebin}}" alt="pic01" uk-img>
+                <img class="uk-margin-small" width="auto" height="auto" src=" data:image/png;base64,{{image_binary}}" alt="{{ image_file_name }}" uk-img>
         </div>
         <div class="">
                 <form action="/Result" method="post">
@@ -47,35 +47,35 @@
                         <div class="">
                                 <h3 class="text-left uk-margin-small-top">②-① 糸の色</h3>
                                 <div class="uk-margin-medium-left uk-margin-xlarge-right uk-column-1-6">
-                                        <input type="color" value={{colornum[0]}} name="color1" id="color1"
+                                        <input type="color" value={{color_number[0]}} name="color1" id="color1"
                                                 class="color">
-                                        <input type="color" value={{colornum[1]}} name="color2" id="color2"
+                                        <input type="color" value={{color_number[1]}} name="color2" id="color2"
                                                 class="color">
-                                        <input type="color" value={{colornum[2]}} name="color3" id="color3"
+                                        <input type="color" value={{color_number[2]}} name="color3" id="color3"
                                                 class="color">
-                                        <input type="color" value={{colornum[3]}} name="color4" id="color4"
+                                        <input type="color" value={{color_number[3]}} name="color4" id="color4"
                                                 class="color">
-                                        <input type="color" value={{colornum[4]}} name="color5" id="color5"
+                                        <input type="color" value={{color_number[4]}} name="color5" id="color5"
                                                 class="color">
-                                        <input type="color" value={{colornum[5]}} name="color6" id="color6"
+                                        <input type="color" value={{color_number[5]}} name="color6" id="color6"
                                                 class="color">
-                                        <input type="color" value={{colornum[6]}} name="color7" id="color7"
+                                        <input type="color" value={{color_number[6]}} name="color7" id="color7"
                                                 class="color">
-                                        <input type="color" value={{colornum[7]}} name="color8" id="color8"
+                                        <input type="color" value={{color_number[7]}} name="color8" id="color8"
                                                 class="color">
-                                        <input type="color" value={{colornum[8]}} name="color9" id="color9"
+                                        <input type="color" value={{color_number[8]}} name="color9" id="color9"
                                                 class="color">
-                                        <input type="color" value={{colornum[9]}} name="color10" id="color10"
+                                        <input type="color" value={{color_number[9]}} name="color10" id="color10"
                                                 class="color">
-                                        <input type="color" value={{colornum[10]}} name="color11" id="color11"
+                                        <input type="color" value={{color_number[10]}} name="color11" id="color11"
                                                 class="color">
-                                        <input type="color" value={{colornum[11]}} name="color12" id="color12"
+                                        <input type="color" value={{color_number[11]}} name="color12" id="color12"
                                                 class="color">
                                 </div>
                                 <h3 class="text-left uk-margin-small-top">②-② 背景色</h3>
                                 <div class="uk-margin-medium-left">
-                                        <input type="color" value={{bgcolor}} name="bgcolor" id="bgcolor"
-                                                class="bgcolor ml-5 mr-5 float-left">
+                                        <input type="color" value={{background_color}} name="background_color" id="background_color"
+                                                class="background_color ml-5 mr-5 float-left">
                                 </div>
                         </div>
                         <h3 class="text-left">③ 実行</h3>
