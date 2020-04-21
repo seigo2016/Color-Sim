@@ -62,3 +62,7 @@ function setcolsize() {
         document.getElementById("custompin").classList.add("uk-hidden");
     }
 }
+document.addEventListener("DOMContentLoaded", function(event) { 
+    let shape_list = document.getElementById("form-stacked-select")
+    shape_list.options[shape_number].selected = true;
+});
