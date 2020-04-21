@@ -48,7 +48,7 @@ function getElementByXpath(path) {
 }
 function setcolsize() {
     let collist = [6, 8, 6, 6, 12, 6, 6, 6, 3, 4, 8, 6];
-    num=document.getElementsByName('Shape')[0].selectedIndex
+    num=document.getElementsByName('Shape')[0].selectedIndex;
     x=collist[num];
     for (let i = 1; i <= 12; i++) {
         if (i > x)
@@ -62,7 +62,12 @@ function setcolsize() {
         document.getElementById("custompin").classList.add("uk-hidden");
     }
 }
-document.addEventListener("DOMContentLoaded", function(event) { 
-    let shape_list = document.getElementById("form-stacked-select")
+// window.onload = function(){
+
+// }
+
+document.addEventListener('DOMContentLoaded', function(){
+    let shape_list = document.getElementById("form-stacked-select");
     shape_list.options[shape_number].selected = true;
-});
+    setcolsize();
+}, false);
