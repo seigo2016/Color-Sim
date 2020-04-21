@@ -9,6 +9,7 @@ import base64
 import os
 from module import draw_line
 
+app = Flask(__name__)
 
 def hex_to_rgb(hextmp):
     if hextmp is not None:
@@ -114,6 +115,5 @@ if __name__ == '__main__':
     shape_number = 0
 
     # Flaskの設定
-    app = Flask(__name__)
     app.debug = False
     app.run(port=5000, host='0.0.0.0')
