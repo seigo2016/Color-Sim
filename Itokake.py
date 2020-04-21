@@ -99,7 +99,7 @@ def on_click_enter_button():
     return render_template(
         'index.html',
         imagefile=nowtime,
-        var=var,
+        shape_number=var,
         colornum=colornumhex,
         custompin=primary[8],
         ac=ac,
