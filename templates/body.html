@@ -2,9 +2,10 @@
 <html lang="ja">
 
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.3/js/uikit.min.js"></script>
     <script src="/static/js/main.js"></script>
+    <link href="/static/css/style.css" rel="stylesheet">
     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet"> -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151906603-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -16,27 +17,23 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="糸かけ曼荼羅,糸曼荼羅,色,シミュレーター,シミュレーション">
-    <meta name="description" content="糸かけ曼荼羅の色をシミュレーションするソフト。形状11種類・最大6色対応">
+    <meta name="keywords" content="糸かけ曼荼羅,糸曼荼羅,色,シミュレーター,シミュレーション,糸かけ">
+    <meta name="description" content="糸かけアートをシミュレーションするソフト。形状11種類・最大6色対応">
     <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="Ee6NL88pPxk1uWuAVExa_w_O0jLGiahJtoQlA8tTQf4" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.3/css/uikit.min.css" rel="stylesheet">
-    <link href="/static/css/style.css" rel="stylesheet">
 </head>
 
-<body class="main">
-    <div class="uk-section-xsmall uk-padding-remove-bottom uk-padding-medium uk-section-muted">
-        <h1 class="uk-margin-large-left uk-margin-remove-bottom">糸掛け曼荼羅色シミュレーター</h1>
-    </div>
-    <nav class="uk-padding-large-left uk-padding-remove-vertical uk-margin-small-bottom uk-navbar-container" uk-navbar>
-        <div class="uk-navbar-left">
-            <ul class="uk-navbar-nav">
-                <li class="uk-active uk-margin-large-left"><a href="/">Top</a></li>
-                <li><a href="/Help">Help</a></li>
+<body>
+    <div class="header">
+        <h1 class="">糸かけ曼荼羅シミュレーター</h1>
+        <nav class="">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/">Top</a></li>
+                <li class="nav-item"><a href="/Help">Help</a></li>
             </ul>
-        </div>
-    </nav>
+        </nav>
+    </div>
     {% block body %}
     {% endblock %}
 

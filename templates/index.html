@@ -1,95 +1,130 @@
 {% extends "body.html" %}
 {% block body %}
-<div class="uk-margin-medium-top uk-grid uk-child-width-expand uk-grid-medium">
-        <div class="uk-margin-large-left">
-                <img class="uk-margin-small" width="auto" height="auto" src=" data:image/png;base64,{{image_binary}}" alt="{{ image_file_name }}" uk-img>
-        </div>
-        <div class="">
-                <form action="/Result" method="post">
-                        <h3>① 形状の選択</h3>
-                        <div class="uk-form-controls">
-                                <select class="uk-select uk-form-width-small" id="form-stacked-select" onChange="setcolsize()" name='Shape'>
-                                        <option value="0">円(48P)</option>
-                                        <option value="1">円(64P)</option>
-                                        <option value="2">円(77P)</option>
-                                        <option value="3">円(88P)</option>
-                                        <option value="4">円(108P)</option>
-                                        <option value="5">正方形</option>
-                                        <option value="6">正五角形</option>
-                                        <option value="7">正六角形</option>
-                                        <option value="8">つぼみ</option>
-                                        <option value="9">麻の葉</option>
-                                        <option value="10">六芒星</option>
-                                        <option value="11">カスタム円</option>
-                                </select>
-                                <script type="text/javascript">
-                                        shape_number = {{ shape_number }}
-                                </script>
-                        </div>
-                        <div class="uk-hidden" id="custompin">
-                                <h4 class="text-left uk-margin-small-top">ピン数</h4>
-                                        <input type="text" name="prime7" id="prime7" class="uk-column-1-3 uk-form-width-small uk-input"
-                                                value={{custompin[6]}}>
-                                <h4 class="text-left uk-margin-small-top">糸の間隔</h4>
-                                        <input type="text" name="prime1" id="prime1" class="uk-column-1-3 uk-form-width-small uk-input"
-                                                value={{custompin[0]}}>
-                                        <input type="text" name="prime2" id="prime2" class="uk-column-1-3 uk-form-width-small uk-input"
-                                                value={{custompin[1]}}>
-                                        <input type="text" name="prime3" id="prime3" class="uk-column-1-3 uk-form-width-small uk-input"
-                                                value={{custompin[2]}}>
-                                        <input type="text" name="prime4" id="prime4" class="uk-column-1-3 uk-form-width-small uk-input"
-                                                value={{custompin[3]}}>
-                                        <input type="text" name="prime5" id="prime5" class="uk-column-1-3 uk-form-width-small uk-input"
-                                                value={{custompin[4]}}>
-                                        <input type="text" name="prime6" id="prime6" class="uk-column-1-3 uk-form-width-small uk-input"
-                                                value={{custompin[5]}}>
-                        </div>
-                        <div class="">
-                                <h3 class="text-left uk-margin-small-top">②-① 糸の色</h3>
-                                <div class="uk-margin-medium-left uk-margin-xlarge-right uk-column-1-6">
-                                        <input type="color" value={{color_number[0]}} name="color1" id="color1"
-                                                class="color">
-                                        <input type="color" value={{color_number[1]}} name="color2" id="color2"
-                                                class="color">
-                                        <input type="color" value={{color_number[2]}} name="color3" id="color3"
-                                                class="color">
-                                        <input type="color" value={{color_number[3]}} name="color4" id="color4"
-                                                class="color">
-                                        <input type="color" value={{color_number[4]}} name="color5" id="color5"
-                                                class="color">
-                                        <input type="color" value={{color_number[5]}} name="color6" id="color6"
-                                                class="color">
-                                        <input type="color" value={{color_number[6]}} name="color7" id="color7"
-                                                class="color">
-                                        <input type="color" value={{color_number[7]}} name="color8" id="color8"
-                                                class="color">
-                                        <input type="color" value={{color_number[8]}} name="color9" id="color9"
-                                                class="color">
-                                        <input type="color" value={{color_number[9]}} name="color10" id="color10"
-                                                class="color">
-                                        <input type="color" value={{color_number[10]}} name="color11" id="color11"
-                                                class="color">
-                                        <input type="color" value={{color_number[11]}} name="color12" id="color12"
-                                                class="color">
-                                </div>
-                                <h3 class="text-left uk-margin-small-top">②-② 背景色</h3>
-                                <div class="uk-margin-medium-left">
-                                        <input type="color" value={{background_color}} name="background_color" id="background_color"
-                                                class="background_color ml-5 mr-5 float-left">
-                                </div>
-                        </div>
-                        <h3 class="text-left">③ 実行</h3>
-                        <button type="submit" class="uk-button" onclick="remember()">実行</button>
-                </form>
-                <h3 class="text-left">配色履歴</h3>
-                <div class="">
-                        <button type="submit" class="uk-button uk-button-default" onclick="change(1)">1st</button>
-                        <button type="submit" class="uk-button uk-button-default" onclick="change(2)">2nd</button>
-                        <button type="submit" class="uk-button uk-button-default" onclick="change(3)">3rd</button>
-                        <button type="submit" class="uk-button uk-button-default" onclick="change(4)">4th</button>
-                        <button type="submit" class="uk-button uk-button-default" onclick="change(5)">5th</button>
-                        <button type="submit" class="uk-button uk-button-default" onclick="remove()">履歴消去</button>
-                </div>
-        </div>
+<div class="container">
+    <div class="image">
+        <img class="" width="auto" height="auto" src=" data:image/png;base64,{{imagebin}}" alt="{{ imagefile }}">
+    </div>
+    <div class="menu">
+        <form action="/Result" method="post">
+            <div class="category">
+            <h3>① 形状の選択</h3>
+              <div>
+                  <div class="stack">
+                      <h4 class="ml">形状</h4>
+                      <div class="center">
+                          <select class="input-number" id="form-stacked-select" onChange="setcolsize()" name='Shape'>
+                              <option value="0">円(48P)</option>
+                              <option value="1">円(64P)</option>
+                              <option value="2">円(77P)</option>
+                              <option value="3">円(88P)</option>
+                              <option value="4">円(108P)</option>
+                              <option value="5">正方形</option>
+                              <option value="6">正五角形</option>
+                              <option value="7">正六角形</option>
+                              <option value="8">つぼみ</option>
+                              <option value="9">麻の葉</option>
+                              <option value="10">六芒星</option>
+                              <option value="11">カスタム円</option>
+                          </select>
+                      </div>
+                      <script type="text/javascript">
+                          shape_number = {{ shape_number }}
+                      </script>
+                  </div>
+              </div>
+              <div id="custompin">
+                  <div class="stack">
+                      <h4 class="ml">ピン数</h4>
+                      <div class="center">
+                          <input type="text" name="prime7" id="prime7" class="input-number" value={{custompin[6]}}>
+                      </div>
+                  </div>
+                  <h4>糸の間隔</h4>
+                  <div class="row">
+                      <div class="row">
+                          <p>1本目</p><input type="text" name="prime1" id="prime1" class="input-number" value={{custompin[0]}}>
+                      </div>
+                      <div class="row">
+                          <p>2本目</p><input type="text" name="prime2" id="prime2" class="input-number" value={{custompin[1]}}>
+                      </div>
+                      <div class="row">
+                          <p>3本目</p><input type="text" name="prime3" id="prime3" class="input-number" value={{custompin[2]}}>
+                      </div>
+                      <div class="row">
+                          <p>4本目</p><input type="text" name="prime4" id="prime4" class="input-number" value={{custompin[3]}}>
+                      </div>
+                      <div class="row">
+                          <p>5本目</p><input type="text" name="prime5" id="prime5" class="input-number" value={{custompin[4]}}>
+                      </div>
+                      <div class="row">
+                          <p>6本目</p><input type="text" name="prime6" id="prime6" class="input-number" value={{custompin[5]}}>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="category">
+            <h3>② 配色</h3>
+              <div>
+                  <h4 class="">糸の色</h4>
+                  <div class="row">
+                      <div class="row">
+                          <p>1本目</p><input type="color" value={{colornum[0]}} name="color1" id="color1" class="input-color">
+                      </div>
+                      <div class="row">
+                          <p>2本目</p><input type="color" value={{colornum[1]}} name="color2" id="color2" class="input-color">
+                      </div>
+                      <div class="row">
+                          <p>3本目</p><input type="color" value={{colornum[2]}} name="color3" id="color3" class="input-color">
+                      </div>
+                      <div class="row">
+                          <p>4本目</p><input type="color" value={{colornum[3]}} name="color4" id="color4" class="input-color">
+                      </div>
+                      <div class="row">
+                          <p>5本目</p><input type="color" value={{colornum[4]}} name="color5" id="color5" class="input-color">
+                      </div>
+                      <div class="row">
+                          <p>6本目</p><input type="color" value={{colornum[5]}} name="color6" id="color6" class="input-color">
+                      </div>
+                      <div class="row">
+                          <p>7本目</p><input type="color" value={{colornum[6]}} name="color7" id="color7" class="input-color">
+                      </div>
+                      <div class="row">
+                          <p>8本目</p><input type="color" value={{colornum[7]}} name="color8" id="color8" class="input-color">
+                      </div>
+                      <div class="row">
+                          <p>9本目</p><input type="color" value={{colornum[8]}} name="color9" id="color9" class="input-color">
+                      </div>
+                      <div class="row">
+                          <p>10本目</p><input type="color" value={{colornum[9]}} name="color10" id="color10" class="input-color">
+                      </div>
+                      <div class="row">
+                          <p>11本目</p><input type="color" value={{colornum[10]}} name="color11" id="color11" class="input-color">
+                      </div>
+                      <div class="row">
+                          <p>12本目</p><input type="color" value={{colornum[11]}} name="color12" id="color12" class="input-color">
+                      </div>
+                  </div>
+                  <div class="stack">
+                      <h4 class="ml">背景色</h4>
+                      <div class="center">
+                          <input class="input-color bg-color" type="color" value={{bgcolor}} name="bgcolor">
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="center">
+                <button type="submit" class="btn" onclick="remember()">実行</button>
+            </div>
+        </form>
+            <h3 class="">配色履歴</h3>
+            <div class="row center">
+                <button type="submit" class="history-btn" onclick="change(1)">1st</button>
+                <button type="submit" class="history-btn" onclick="change(2)">2nd</button>
+                <button type="submit" class="history-btn" onclick="change(3)">3rd</button>
+                <button type="submit" class="history-btn" onclick="change(4)">4th</button>
+                <button type="submit" class="history-btn" onclick="change(5)">5th</button>
+                <button type="submit" class="history-btn" onclick="remove()">履歴消去</button>
+            </div>
+    </div>
 </div>
 {% endblock %}
