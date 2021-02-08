@@ -1,83 +1,90 @@
 {% extends "body.html" %}
 {% block body %}
-<div class="uk-containe uk-margin-large-left">
-    <h2 class="uk-margin-small-top"> 仕様 </h2>
-    <h3 class="uk-margin-remove-vertical">対応形状・色</h3>
-    <table class="uk-table uk-table-divider uk-margin-small-left uk-margin-remove-vertical">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>形状</th>
-                <th>差分</th>
-                <th>色</th>
-                <th>備考</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th>1~5</th>
-                <td>円</td>
-                <td>5</td>
-                <td>6</td>
-                <td>48ピン, 64ピン, 77ピン, 88ピン, 108ピン</td>
-            </tr>
-            <tr>
-                <th>6</th>
-                <td>四角形</td>
-                <td>1</td>
-                <td>6</td>
-                <td>ー</td>
-            </tr>
-            <tr>
-                <th>7</th>
-                <td>五角形</td>
-                <td>1</td>
-                <td>6</td>
-                <td>ー</td>
-            </tr>
-            <tr>
-                <th>8</th>
-                <td>六角形</td>
-                <td>1</td>
-                <td>6</td>
-                <td>ー</td>
-            </tr>
-            <tr>
-                <th>9</th>
-                <td>つぼみ</td>
-                <td>1</td>
-                <td>3</td>
-                <td>色の選択は左の3つのボタンのみ</td>
-            </tr>
-            <tr>
-                <th>10</th>
-                <td>麻の葉</td>
-                <td>1</td>
-                <td>2</td>
-                <td>色の選択は左の2つのボタンのみ</td>
-            </tr>
-            <tr>
-                <th>11</th>
-                <td>六芒星</td>
-                <td>1</td>
-                <td>3</td>
-                <td>色の選択は左の3つのボタンのみ</td>
-            </tr>
-            <tr>
-                <th>12</th>
-                <td>円(カスタム)</td>
-                <td>∞</td>
-                <td>6</td>
-                <td>ピン数や糸をかける間隔など自由にカスタムできます</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="">
+    <h2> 仕様 </h2>
+    <h3>対応形状・色</h3>
+    <div class="category">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>形状</th>
+                    <th>差分</th>
+                    <th>色</th>
+                    <th>備考</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1~5</th>
+                    <td>円</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>48ピン, 64ピン, 77ピン, 88ピン, 108ピン</td>
+                </tr>
+                <tr>
+                    <th>6</th>
+                    <td>四角形</td>
+                    <td>1</td>
+                    <td>6</td>
+                    <td>ー</td>
+                </tr>
+                <tr>
+                    <th>7</th>
+                    <td>五角形</td>
+                    <td>1</td>
+                    <td>6</td>
+                    <td>ー</td>
+                </tr>
+                <tr>
+                    <th>8</th>
+                    <td>六角形</td>
+                    <td>1</td>
+                    <td>6</td>
+                    <td>ー</td>
+                </tr>
+                <tr>
+                    <th>9</th>
+                    <td>つぼみ</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>色の選択は左の3つのボタンのみ</td>
+                </tr>
+                <tr>
+                    <th>10</th>
+                    <td>麻の葉</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>色の選択は左の2つのボタンのみ</td>
+                </tr>
+                <tr>
+                    <th>11</th>
+                    <td>六芒星</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>色の選択は左の3つのボタンのみ</td>
+                </tr>
+                <tr>
+                    <th>12</th>
+                    <td>円(カスタム)</td>
+                    <td>∞</td>
+                    <td>6</td>
+                    <td>ピン数や糸をかける間隔など自由にカスタムできます</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <h3>配色履歴復元</h3>
-    <p class="uk-margin-remove-vertical uk-margin-small-left ">過去の配色を最大5件まで自動で保存します。削除も可能です。データはWebブラウザーに保存しています。</p>
+    <div class="category">
+    <p>過去の配色を最大5件まで自動で保存します。削除も可能です。データはWebブラウザーに保存しています。</p>
+    </div>
     <h3>その他</h3>
-    <p class="uk-margin-remove-vertical uk-margin-small-left ">画像の保存は右クリック後「名前を付けて画像を保存」をクリックすることでできます。</p>
+    <div class="category">
+    <p>画像の保存は右クリック後「名前を付けて画像を保存」をクリックすることでできます。</p>
+</div>
     <h2>お問い合わせ</h2>
-    <p class="uk-margin-small-left ">
+    <div class="category">
+    <p>
         <script type="text/javascript">
             function converter(M) {
                 var str = "", str_as = "";
@@ -88,17 +95,19 @@
                 return str;
             }
             function mail_to(k_1, k_2) {
-                eval(String.fromCharCode(108, 111, 99, 97, 116, 105, 111, 110, 46, 104, 114, 101, 102, 32,
-                    61, 32, 39, 109, 97, 105, 108, 116, 111, 58)
-                    + escape(k_1) +
-                    converter(String.fromCharCode(49, 47, 47, 50, 114, 100, 104, 102, 110, 63, 102, 108, 96, 104, 107, 45, 98, 110, 108,
-                        62, 114, 116, 97, 105, 100, 98, 115, 60))
-                    + escape(k_2) + "'");
+                {eval(String.fromCharCode(108,111,99,97,116,105,111,110,46,104,114,101,102,32,
+                    61,32,39,109,97,105,108,116,111,58) 
+                    + escape(k_1) + 
+                    converter(String.fromCharCode(98,110,109,115,96,98,115,63,114,100,104,102,110,49,47,48,53,45,98,110,108,
+                    62,114,116,97,105,100,98,115,60)) 
+                    + escape(k_2) + "'");}
             }
+
+            
             document.write('<a href=JavaScript:mail_to("","") class="h3 mt-1 mb-0 col-12 ml-4">メール<\/a>');
         </script>
     </p>
-    <p class="uk-margin-small-left"><a href="https://twitter.com/seigo2018" class="h3 mt-0 col-12 ml-4"
-            target="_blank">Twitter</a></p>
+    <p><a href="https://twitter.com/seigo2018" target="_blank">Twitter</a></p>
+</div>
 </div>
 {% endblock %}

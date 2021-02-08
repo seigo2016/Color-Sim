@@ -36,7 +36,6 @@ h1{
 
 h3{
     font-size: 22px;
-    margin-top: -4vw;
 }
 
 h4{
@@ -74,7 +73,6 @@ body{
     display: inline-block;
     padding: 0.5em 1em;
     margin: 5vw;
-    /* text-decoration: none; */
     width: 25%;
     height: 150%;
     background: #516fb1;
@@ -141,15 +139,10 @@ body{
     border: solid 4px whitesmoke;
     border-radius: 3px;
     margin: 2vw 0 4vw 0;
-    padding: 3vw;
-    /* padding-top: 1vw; */
-    padding-bottom: 2vw;
+    padding: 1vw 3vw 2vw 3vw;
 }
 
 @media (max-width:1000px) and (min-width:600px) {
-    h3{
-        margin-top: -5vw;
-    }
     .container {
         flex-wrap: wrap;
     }
@@ -168,9 +161,6 @@ body{
  }
 
  @media (max-width:600px){
-     h3{
-        margin-top: -4vw;
-     }
     .container {
         flex-wrap: wrap;
     }
