@@ -1,0 +1,37 @@
+name: Pages
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Push a file to another repository
+        env: 
+          PAGES_ACCESS_TOKEN: ${{ secrets.PAGES_ACCESS_TOKEN }}
+          AUTHOR_EMAIL: ${{ secrets.AUTHOR_EMAIL }}
+          AUTHOR_NAME: ${{ secrets.AUTHOR_NAME }}
+          # git remote set-url origin https://$AUTHOR_NAME:$PAGES_ACCESS_TOKEN@github.com//.git
+        run: |
+            git config --global user.email "$AUTHOR_EMAIL"
+            git config --global user.name "$AUTHOR_NAME"
+            ls -la
+            cd ../ && git clone https://seigo2016:$PAGES_ACCESS_TOKEN@github.com/seigo2016/Itokake.git
+            mv Color-Sim/dist/* Itokake/
+            cd Itokake & ls -la
