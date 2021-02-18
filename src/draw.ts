@@ -1,0 +1,147 @@
+import {StaticValue} from "./static";
+
+
+
+export class Itokake {
+    private ctx: CanvasRenderingContext2D;
+    private width: number;
+    private canvas: HTMLCanvasElement;
+    private pin: number[][];
+    private deg2rad(degree:number):number{
+        let radian: number = degree * (Math.PI / 180)
+        return radian
+    }
+
+    public initPin(shape:number, pinCount:number):number[][] {
+        const Shape = StaticValue.Shape;
+        const defaultPin: number[][] = [];
+        if (shape <= Shape.Circle || shape == Shape.Custom){
+            const pin: number[][] = [];
+            for (let i=0; i<pinCount; i++){
+                let degree = 360 / pinCount
+                let x: number = 250 + 250 * Math.cos(this.deg2rad(degree) * i)
+                let y: number =250 + 250 * Math.sin(this.deg2rad(degree) * i)
+                pin.push([x, y])
+            }
+            return pin
+        }else if(shape == Shape.Square){
+            const pin: number[][] = [];
+            for(let i=0; i<16; i++){
+                pin.push([10 + 30 * i, 10]);
+            }
+            for(let i=0; i<16; i++){
+                pin.push([490, 10 + 30 * i]);
+            }
+            for(let i=0; i<16; i++){
+                pin.push([490 - 30 * i, 490]);
+            }
+            for(let i=0; i<16; i++){
+                pin.push([10, 490 - 30 * i]);
+            }
+            return pin
+        }else if(shape == Shape.Pentagon){
+            let pin:number[][] = new Array(80);
+            for(let i=0; i<5; i++){
+                let degree = 72 * i - 18;
+                pin[i * 16] = [250 + 250 * Math.cos(this.deg2rad(degree)), 270 + 250 * Math.sin(this.deg2rad(degree))]
+            }
+            for(let i=0; i<80; i++){
+                if(!pin[i]){
+                    if(i<64){
+                        let x: number = ((16 - i % 16) * pin[Math.floor(i / 16) * 16][0] + i % 16 * pin[(Math.floor(i / 16) + 1) * 16][0]) / 16;
+                        let y: number = ((16 - i % 16) * pin[Math.floor(i / 16) * 16][1] + i % 16 * pin[(Math.floor(i / 16) + 1) * 16][1]) / 16;
+                        pin[i] = [x, y];
+                    }
+                    else{
+                        let x: number = ((16 - i % 16) * pin[Math.floor(i / 16) * 16][0] + i % 16 * pin[0][0]) / 16;
+                        let y: number = ((16 - i % 16) * pin[Math.floor(i / 16) * 16][1] + i % 16 * pin[0][1]) / 16;
+                        pin[i] = [x, y]
+                    }
+                }
+            }
+            return pin
+        }else if(shape == Shape.Hexagon){
+            let pin:number[][] = new Array(72);
+            for(let i=0; i<6; i++){
+                let degree = 60 * i;
+                pin[i * 12] = [250 + 250 * Math.cos(this.deg2rad(degree)), 270 + 250 * Math.sin(this.deg2rad(degree))]
+            }
+            for(let i=0; i<72; i++){
+                if(!pin[i]){
+                    if(i<60){
+                        let x: number = ((12 - i % 12) * pin[Math.floor(i / 12) * 12][0] + i % 12 * pin[(Math.floor(i / 12) + 1) * 12][0]) / 12;
+                        let y: number = ((12 - i % 12) * pin[Math.floor(i / 12) * 12][1] + i % 12 * pin[(Math.floor(i / 12) + 1) * 12][1]) / 12;
+                        pin[i] = [x, y];
+                    }
+                    else{
+                        let x: number = ((12 - i % 12) * pin[Math.floor(i / 12) * 12][0] + i % 12 * pin[0][0]) / 12;
+                        let y: number = ((12 - i % 12) * pin[Math.floor(i / 12) * 12][1] + i % 12 * pin[0][1]) / 12;
+                        pin[i] = [x, y]
+                    }
+                }
+            }
+            return pin  
+        }
+        // else if(shape == Shape.Bud){
+        //     let pin:number[][] = new Array(84);
+        // }else if(shape == Shape.HempLeaf){
+
+        // }else if(shape == Shape.Hexagram){
+        //     const vertex:number[][][] = [
+        //         [[250, 0], [180, 125], [320, 125]],
+        //         [[40, 125], [180, 125], [110, 250]],
+        //         [[180, 125], [250, 250], [110, 250]],
+        //         [[320, 125], [250, 250], [180, 125]],
+        //         [[320, 125], [250, 250], [390, 250]],
+        //         [[460, 125], [320, 125], [390, 250]],
+        //         [[40, 375], [110, 250], [180, 375]],
+        //         [[110, 250], [250, 250], [180, 375]],
+        //         [[180, 375], [250, 250], [320, 375]],
+        //         [[390, 250], [250, 250], [320, 375]],
+        //         [[460, 375], [390, 250], [320, 375]],
+        //         [[250, 500], [320, 375], [180, 375]]
+        //     ];
+            
+        // }
+        return defaultPin
+    }
+
+    public init(canvas:HTMLCanvasElement, width:number){
+        if(!canvas.getContext){
+            console.log("error");
+            return
+        }
+        this.width = width;
+        this.canvas = canvas;
+        this.ctx = canvas.getContext("2d")!;
+    }
+
+    public drawPin(shape: number, pinCount:number){
+        this.pin = this.initPin(shape, pinCount);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.beginPath();
+        this.ctx.fillStyle = 'black';
+        for(let i of this.pin){
+            this.ctx.rect(i[0], i[1], 2, 2);
+            this.ctx.fill();
+        }
+       this.ctx.closePath();
+    }
+
+    public drawLine(shape:number, pinCount:number, interval: number[], colorSet:string[], bgColor:string){
+        this.ctx.fillStyle = bgColor;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        for (let i=0; i<interval.length; i++){
+            this.ctx.strokeStyle = colorSet[i];
+            for(let j=0; j<this.pin.length; j++){
+                let d = interval[i]
+                this.ctx.beginPath();
+                this.ctx.moveTo(this.pin[j][0], this.pin[j][1]);
+                this.ctx.lineTo(this.pin[(j+d)%this.pin.length][0], this.pin[(j+d)%this.pin.length][1]);
+                this.ctx.stroke();
+                this.ctx.closePath();
+            }
+        }
+    }
+}
+

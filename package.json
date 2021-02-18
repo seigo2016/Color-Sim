@@ -1,0 +1,29 @@
+{
+  "name": "Color-Sim",
+  "version": "1.0.0",
+  "description": "<h1>糸かけ曼荼羅色シミュレータ</h1>",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "ts-loader": "^8.0.16",
+    "typescript": "^4.1.4",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "build": "webpack --mode=development",
+    "start": "webpack serve --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seigo2016/Color-Sim.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seigo2016/Color-Sim/issues"
+  },
+  "homepage": "https://github.com/seigo2016/Color-Sim#readme"
+}
