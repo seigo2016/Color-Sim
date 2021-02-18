@@ -31,7 +31,6 @@ jobs:
         run: |
             git config --global user.email "$AUTHOR_EMAIL"
             git config --global user.name "$AUTHOR_NAME"
-            ls -la
             cd ../ && git clone https://seigo2016:$PAGES_ACCESS_TOKEN@github.com/seigo2016/Itokake.git
             mv Color-Sim/dist/* Itokake/
-            cd Itokake & ls -la
+            cd Itokake && git add . && git commit -m "page update" && git push origin master
