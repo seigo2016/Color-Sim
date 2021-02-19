@@ -6,10 +6,12 @@
 html{
     font-size: calc(102.5% + 0.2vw)
 }
+
 .title{
     margin-left: 40px;
     margin-bottom: 0;
 }
+
 /* NavBar */
 .nav-list {
     margin-top: 0;
@@ -127,10 +129,6 @@ body{
     display: flex;
 }
 
-/* .container .row{
-    width: 90%;
-    justify-content: center;
-} */
 .menu{
     flex-grow: 2;
 }
@@ -149,7 +147,9 @@ body{
 }
 
 @media (max-width:1000px) and (min-width:600px) {
-    
+    p{
+        font-size: calc(120% + 0.2vw)
+    }
     .container {
         flex-wrap: wrap;
     }
@@ -170,14 +170,24 @@ body{
     }
     div{
         font-size: calc(16px + ((1vw - 6.4px)*3.571));
-      }
-
+    }
+    .input-number{
+        height: 7vw;
+        font-size: 2.5vw;
+    }
  }
 
  @media (max-width:600px){
+    .input-number{
+        height: 7vw;
+        font-size: 2.5vw;
+    }
+    p{
+        font-size: calc(120% + 0.2vw)
+    }
     div{
         font-size: calc(16px + ((1vw - 6.4px)*3.571));
-      }
+    }
     .title {
         text-align: center;
     }
