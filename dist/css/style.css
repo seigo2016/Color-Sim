@@ -3,8 +3,16 @@
     src: url("font_1_honokamarugo_1.1.ttf");
 }
 
+html{
+    font-size: calc(102.5% + 0.2vw)
+}
+.title{
+    margin-left: 40px;
+    margin-bottom: 0;
+}
 /* NavBar */
 .nav-list {
+    margin-top: 0;
     background: white;
     display: flex;
     padding: 1rem 0;
@@ -29,17 +37,8 @@
     color: gray;
 }
 
-/* heading */
-h1{
-    margin: 15px;
-}
-
-h3{
-    font-size: 22px;
-}
-
-h4{
-    font-size: 18px;
+.text { 
+    display: inline-block;
 }
 
 /*  */
@@ -58,10 +57,14 @@ body{
     box-sizing: border-box;
 }
 
+
 .input-color{
+    background-color: gray;
+    border-radius: 5px;
+    padding: 2px;
     width: 30%;
-    border: none;
-    background-color: white;
+    border: 1px solid  gray;
+    min-height: 35px;
 }
 
 .bg-color{
@@ -146,11 +149,12 @@ body{
 }
 
 @media (max-width:1000px) and (min-width:600px) {
+    
     .container {
         flex-wrap: wrap;
     }
     .row{
-        flex-basis: 50%;
+        flex-basis: 45%;
     }
     .menu{
         margin: 2vw;
@@ -164,9 +168,22 @@ body{
     .canvas{
         flex-basis: 100%;
     }
+    div{
+        font-size: calc(16px + ((1vw - 6.4px)*3.571));
+      }
+
  }
 
  @media (max-width:600px){
+    div{
+        font-size: calc(16px + ((1vw - 6.4px)*3.571));
+      }
+    .title {
+        text-align: center;
+    }
+    .nav-list{
+        justify-content:left;
+    }
     .container {
         flex-wrap: wrap;
     }
