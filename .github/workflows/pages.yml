@@ -32,5 +32,5 @@ jobs:
             git config --global user.email "$AUTHOR_EMAIL"
             git config --global user.name "$AUTHOR_NAME"
             cd ../ && git clone https://seigo2016:$PAGES_ACCESS_TOKEN@github.com/seigo2016/Itokake.git
-            cp Color-Sim/dist/* Itokake/
+            cp -r Color-Sim/dist/* Itokake/
             cd Itokake && git add . && git commit -m "page update" && git push origin master
