@@ -105,7 +105,7 @@ body{
     justify-content: center;
 }
 
-.image {
+.canvas {
     padding: 1rem;
     text-align: center;
     flex: 1;
@@ -124,9 +124,12 @@ body{
     display: flex;
 }
 
-.container .row{
+/* .container .row{
     width: 90%;
     justify-content: center;
+} */
+.menu{
+    flex-grow: 2;
 }
 
 .stack{
@@ -152,11 +155,14 @@ body{
     .menu{
         margin: 2vw;
     }
-    img{
+    canvas{
         width: 65%;
     }
     .bg-color{
         width: 15%;
+    }
+    .canvas{
+        flex-basis: 100%;
     }
  }
 
@@ -170,10 +176,13 @@ body{
     .menu{
         margin: 2vw;
     }
-    img{
+    canvas{
         width: 65%;
     }
     .bg-color{
         width: 15%;
+    }
+    .canvas{
+        flex-basis: 100%;
     }
  }
