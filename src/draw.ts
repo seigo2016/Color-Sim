@@ -82,27 +82,53 @@ export class Itokake {
             }
             return pin  
         }
-        // else if(shape == Shape.Bud){
-        //     let pin:number[][] = new Array(84);
-        // }else if(shape == Shape.HempLeaf){
-
-        // }else if(shape == Shape.Hexagram){
-        //     const vertex:number[][][] = [
-        //         [[250, 0], [180, 125], [320, 125]],
-        //         [[40, 125], [180, 125], [110, 250]],
-        //         [[180, 125], [250, 250], [110, 250]],
-        //         [[320, 125], [250, 250], [180, 125]],
-        //         [[320, 125], [250, 250], [390, 250]],
-        //         [[460, 125], [320, 125], [390, 250]],
-        //         [[40, 375], [110, 250], [180, 375]],
-        //         [[110, 250], [250, 250], [180, 375]],
-        //         [[180, 375], [250, 250], [320, 375]],
-        //         [[390, 250], [250, 250], [320, 375]],
-        //         [[460, 375], [390, 250], [320, 375]],
-        //         [[250, 500], [320, 375], [180, 375]]
-        //     ];
+        else if(shape == Shape.Bud){
+            let pin:number[][] = new Array(81*6);
+            for (let i=0; i<6*81; i++){
+                pin[i] = [0, 0]
+            }
+            for(let i=0; i<6; i++){
+                pin[i*81] = [250 + 250 * Math.cos(this.deg2rad(60 * i)), 250 + 250 * Math.sin(this.deg2rad(60 * i))]
+                pin[i*81+27] = [250 + 250 * Math.cos(this.deg2rad(60 * i + 60)), 250 + 250 * Math.sin(this.deg2rad(60 * i + 60))]
+                pin[i*81+54] = [250, 250]
+                for(let j=0;j<81;j++){
+                    if (j==27 || j==54 || j==0){
+                        continue
+                    }
+                    let x=0, y=0;
+                    if(j<27){
+                        x = ((27-j)*pin[i*81][0] + j*pin[i*81+27][0])/27
+                        y = ((27-j)*pin[i*81][1] + j*pin[i*81+27][1])/27
+                    }else if(j<54){
+                        x = ((54-j)*pin[i*81+27][0] + (j-27)*pin[i*81+54][0])/27
+                        y = ((54-j)*pin[i*81+27][1] + (j-27)*pin[i*81+54][1])/27
+                    }else if(j<81){
+                        x = ((81-j)*pin[i*81+54][0] + (j-54)*pin[i*81][0])/27
+                        y = ((81-j)*pin[i*81+54][1] + (j-54)*pin[i*81][1])/27
+                    }
+                    pin[i*81 + j] = [x, y]
+                }
+            }
+            return pin;
+        }else if(shape == Shape.HempLeaf){
             
-        // }
+        }else if(shape == Shape.Hexagram){
+            const vertex:number[][][] = [
+                [[250, 0], [180, 125], [320, 125]],
+                [[40, 125], [180, 125], [110, 250]],
+                [[180, 125], [250, 250], [110, 250]],
+                [[320, 125], [250, 250], [180, 125]],
+                [[320, 125], [250, 250], [390, 250]],
+                [[460, 125], [320, 125], [390, 250]],
+                [[40, 375], [110, 250], [180, 375]],
+                [[110, 250], [250, 250], [180, 375]],
+                [[180, 375], [250, 250], [320, 375]],
+                [[390, 250], [250, 250], [320, 375]],
+                [[460, 375], [390, 250], [320, 375]],
+                [[250, 500], [320, 375], [180, 375]]
+            ];
+            
+        }
         return defaultPin
     }
 
@@ -131,15 +157,36 @@ export class Itokake {
     public drawLine(shape:number, pinCount:number, interval: number[], colorSet:string[], bgColor:string){
         this.ctx.fillStyle = bgColor;
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        for (let i=0; i<interval.length; i++){
-            this.ctx.strokeStyle = colorSet[i];
-            for(let j=0; j<this.pin.length; j++){
-                let d = interval[i]
-                this.ctx.beginPath();
-                this.ctx.moveTo(this.pin[j][0], this.pin[j][1]);
-                this.ctx.lineTo(this.pin[(j+d)%this.pin.length][0], this.pin[(j+d)%this.pin.length][1]);
-                this.ctx.stroke();
-                this.ctx.closePath();
+        if(shape==StaticValue.Shape.Bud){
+            for (let i=0; i<6; i++){
+                for(let j=0; j<3; j++){
+                    for(let k=0; k<27; k++){
+                        this.ctx.strokeStyle = colorSet[j];
+                        let d = interval[j]
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(this.pin[81*i+27*j+k][0], this.pin[81*i+27*j+k][1]);
+                        let nextPin = (27*j+k+d)%81
+                        this.ctx.lineTo(this.pin[81*i+nextPin][0], this.pin[81*i+nextPin][1]);
+                        this.ctx.stroke();
+                        this.ctx.closePath();
+                    }
+                }
+            }  
+        }
+        else if(shape==StaticValue.Shape.HempLeaf){
+
+        }
+        else{
+            for (let i=0; i<interval.length; i++){
+                this.ctx.strokeStyle = colorSet[i];
+                for(let j=0; j<this.pin.length; j++){
+                    let d = interval[i]
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(this.pin[j][0], this.pin[j][1]);
+                    this.ctx.lineTo(this.pin[(j+d)%this.pin.length][0], this.pin[(j+d)%this.pin.length][1]);
+                    this.ctx.stroke();
+                    this.ctx.closePath();
+                }
             }
         }
     }

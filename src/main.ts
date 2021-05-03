@@ -1,5 +1,6 @@
 import {Itokake} from "./draw";
 import {StaticValue} from "./static";
+
 const shapeElement = document.getElementById("shape")! as HTMLInputElement;
 const pinCountElement = document.getElementById("pinCount")! as HTMLInputElement;
 const intervalElements = document.querySelectorAll(".interval")!;
