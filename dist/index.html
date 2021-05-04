@@ -19,6 +19,16 @@
     <title>糸かけ曼荼羅シミュレーター</title>
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="Ee6NL88pPxk1uWuAVExa_w_O0jLGiahJtoQlA8tTQf4" />
+    <link rel="manifest" href="manifest.json"></link>
+    <script src="js/manup.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('js/pwabuilder-sw.js');
+        });}
+    </script>
+
+
 </head>
 
 <body>
@@ -30,7 +40,7 @@
         <nav class="">
             <ul class="nav-list">
                 <li class="nav-item"><a href="/">Top</a></li>
-                <li class="nav-item"><a href="/Help">Help</a></li>
+                <li class="nav-item"><a href="/help.html">Help</a></li>
             </ul>
         </nav>
     </div>
