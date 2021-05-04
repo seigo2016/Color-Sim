@@ -212,7 +212,7 @@ export class Itokake {
                         this.ctx.strokeStyle = colorSet[j];
                         let d = interval[j]
                         this.ctx.beginPath();
-                        this.ctx.moveTo(this.pin[48*i+j*16+k][0], this.pin[64*i+j*16+k][1]);
+                        this.ctx.moveTo(this.pin[48*i+j*16+k][0], this.pin[48*i+j*16+k][1]);
                         let nextPin = (j*16+k+d)%48
                         this.ctx.lineTo(this.pin[48*i+nextPin][0], this.pin[48*i+nextPin][1]);
                         this.ctx.stroke();
