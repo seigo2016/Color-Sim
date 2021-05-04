@@ -15,9 +15,11 @@ export namespace StaticValue{
     defaultInterval[5] = [31, 29, 23, 19, 17, 13],  // 正方形
     defaultInterval[6] = [37, 31, 29, 23, 19, 17],  // 正五角形
     defaultInterval[7] = [31, 29, 23, 19, 17, 13],  // 正六角形
-    defaultInterval[8] = [28, 28, 28],  // 正六角形
+    defaultInterval[8] = [28, 28, 28],  // つぼみ
+    defaultInterval[9] = [16, 16, 16, 16],  // 麻の葉
+    defaultInterval[10] = [16, 16, 16],  // 六芒星
     defaultInterval[11] = [31, 29, 23, 19, 17, 13] // カスタム円
-    export const colorNum: number[] = [6, 8, 6, 6, 12, 6, 6, 6, 3, 4, 8, 6];
+    export const colorNum: number[] = [6, 8, 6, 6, 12, 6, 6, 6, 3, 2, 3, 6];
 
     export namespace Shape{
         export const Circle:number = 4;

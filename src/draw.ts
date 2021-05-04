@@ -110,9 +110,8 @@ export class Itokake {
                 }
             }
             return pin;
-        }else if(shape == Shape.HempLeaf){
-            
         }else if(shape == Shape.Hexagram){
+            let pin:number[][] = new Array(16*3*12);
             const vertex:number[][][] = [
                 [[250, 0], [180, 125], [320, 125]],
                 [[40, 125], [180, 125], [110, 250]],
@@ -127,7 +126,40 @@ export class Itokake {
                 [[460, 375], [390, 250], [320, 375]],
                 [[250, 500], [320, 375], [180, 375]]
             ];
-            
+            for(let i=0; i<12; i++){
+                for(let j=0; j<3; j++){
+                    for(let k=0; k<16; k++){
+                        let x=0, y=0;
+                        x = ((k)*vertex[i][j][0] + (16-k)*vertex[i][(j+1)%3][0])/16
+                        y = ((k)*vertex[i][j][1] + (16-k)*vertex[i][(j+1)%3][1])/16
+                        pin[48*i+j*16+k] = [x, y]
+                    }
+                }
+            }
+            return pin
+        }else if(shape == Shape.HempLeaf){
+            let pin:number[][] = new Array(16*4*6);
+            const vertex:number[][][] = new Array(6);
+            for(let i=0; i<6; i++){
+                vertex[i] = new Array(4)
+                vertex[i][0] = [250 + 250 * Math.cos(this.deg2rad(60*i+30)), 250 + 250 * Math.sin(this.deg2rad(60*i+30))]
+                vertex[i][1] = [250 + 144 * Math.cos(this.deg2rad(60*i)), 250 + 144 * Math.sin(this.deg2rad(60*i))]
+                vertex[i][2] = [250, 250]
+                vertex[i][3] = [250 + 144 * Math.cos(this.deg2rad(60*i+60)), 250 + 144 * Math.sin(this.deg2rad(60*i+60))]
+            }
+
+            for(let i=0; i<6; i++){
+                for(let j=0; j<4; j++){
+                    for(let k=0; k<16; k++){
+                        let x=0, y=0;
+                        x = ((k)*vertex[i][j][0] + (16-k)*vertex[i][(j+1)%4][0])/16
+                        y = ((k)*vertex[i][j][1] + (16-k)*vertex[i][(j+1)%4][1])/16
+                        pin[64*i+j*16+k] = [x, y]
+                    }
+                }
+            }
+
+            return pin
         }
         return defaultPin
     }
@@ -173,8 +205,38 @@ export class Itokake {
                 }
             }  
         }
+        else if(shape==StaticValue.Shape.Hexagram){
+            for(let i=0; i<12; i++){
+                for(let j=0; j<3; j++){
+                    for(let k=0; k<16; k++){
+                        this.ctx.strokeStyle = colorSet[j];
+                        let d = interval[j]
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(this.pin[48*i+j*16+k][0], this.pin[64*i+j*16+k][1]);
+                        let nextPin = (j*16+k+d)%48
+                        this.ctx.lineTo(this.pin[48*i+nextPin][0], this.pin[48*i+nextPin][1]);
+                        this.ctx.stroke();
+                        this.ctx.closePath();
+                    }
+                }
+            }
+        }
         else if(shape==StaticValue.Shape.HempLeaf){
-
+            const drawOrder:number[] = [1, 3, 0, 2] 
+            for(let i=0; i<6; i++){
+                for(let j of drawOrder){
+                    for(let k=0; k<16; k++){
+                        this.ctx.strokeStyle = colorSet[j%2];
+                        let d = interval[j]
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(this.pin[64*i+j*16+k][0], this.pin[64*i+j*16+k][1]);
+                        let nextPin = (j*16+k+d)%64
+                        this.ctx.lineTo(this.pin[64*i+nextPin][0], this.pin[64*i+nextPin][1]);
+                        this.ctx.stroke();
+                        this.ctx.closePath();
+                    }
+                }
+            }
         }
         else{
             for (let i=0; i<interval.length; i++){
