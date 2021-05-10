@@ -11,12 +11,19 @@
 
         gtag('config', 'UA-151906603-1');
     </script>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1">
     <meta content="糸かけ曼荼羅,糸曼荼羅,色,シミュレーター,シミュレーション,糸かけ">
     <meta content="糸かけアートをシミュレーションするソフト。形状11種類・最大6色対応">
     <title>糸かけ曼荼羅シミュレーター</title>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('./pwabuilder-sw.js');
+        });}
+    </script>
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="Ee6NL88pPxk1uWuAVExa_w_O0jLGiahJtoQlA8tTQf4" />
     <link rel="manifest" href="manifest.json"></link>
@@ -25,12 +32,6 @@
     type="module"
     src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall"
     ></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('pwabuilder-sw.js');
-        });}
-    </script>
 </head>
 
 <body>
