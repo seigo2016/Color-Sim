@@ -21,14 +21,6 @@
     <meta name="google-site-verification" content="Ee6NL88pPxk1uWuAVExa_w_O0jLGiahJtoQlA8tTQf4" />
     <link rel="manifest" href="manifest.json"></link>
     <script src="js/manup.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('js/pwabuilder-sw.js');
-        });}
-    </script>
-
-
 </head>
 
 <body>
@@ -160,6 +152,12 @@
                 type="module"
                 src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall"
             ></script>
+            <script>
+                if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', function() {
+                        navigator.serviceWorker.register('js/pwabuilder-sw.js');
+                });}
+            </script>
             </div>
         </div>
     </div>
