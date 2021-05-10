@@ -19,10 +19,10 @@
     <meta content="糸かけアートをシミュレーションするソフト。形状11種類・最大6色対応">
     <title>糸かけ曼荼羅シミュレーター</title>
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
+        window.addEventListener('load', function() {
+            if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('./pwabuilder-sw.js').then(function (registration) {
-        console.log("success load");
+                console.log("success load");
       })
       .catch(function (err) {
         console.log(err);
