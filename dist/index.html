@@ -21,7 +21,12 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('./pwabuilder-sw.js');
+                navigator.serviceWorker.register('./pwabuilder-sw.js').then(function (registration) {
+        console.log("success load");
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
         });}
     </script>
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no">
