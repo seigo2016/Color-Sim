@@ -2,7 +2,11 @@
     font-family: "honokamarugo";
     src: url("font_1_honokamarugo_1.1.ttf");
 }
-
+pw{
+    width: 50%;
+    display: block;
+    height: 25px;
+}
 html{
     font-size: calc(102.5% + 0.2vw)
 }
