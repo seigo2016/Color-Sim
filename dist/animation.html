@@ -51,8 +51,18 @@
     </div>
     
 <div class="container">
-    <div class="canvas">
-        <canvas id="canvas" width="500" height="500"></canvas>
+
+    <div class="menu">
+        <div class="canvas">
+            <canvas id="canvas" width="500" height="500"></canvas>
+        </div>
+        <h3>アニメーション操作</h3>
+        <div class="category">
+            <div class="center">
+                <input type="button" value="Start" id="animation-start" class="animation-button"></input>
+                <input type="button" value="Reset" id="animation-reset" class="animation-button"></input>
+            </div>
+        </div>
     </div>
     <div class="menu">
         <div class="form">
@@ -63,17 +73,6 @@
                       <h4 class="ml">形状</h4>
                       <div class="center">
                           <select class="input-number" id="shape">
-                              <option value="0">円(48P)</option>
-                              <option value="1">円(64P)</option>
-                              <option value="2">円(77P)</option>
-                              <option value="3">円(88P)</option>
-                              <option value="4">円(108P)</option>
-                              <option value="5">正方形</option>
-                              <option value="6">正五角形</option>
-                              <option value="7">正六角形</option>
-                              <option value="8">つぼみ</option>
-                              <option value="9">麻の葉</option>
-                              <option value="10">六芒星</option>
                               <option value="11">カスタム円</option>
                           </select>
                       </div>
@@ -89,22 +88,22 @@
                   <h4>糸の間隔</h4>
                   <div class="row">
                       <div class="row">
-                          <p>1本目</p><input type="text" id="interval1" class="input-number interval" value=0>
+                          <p>1本目</p><input type="text" id="interval1" class="input-number interval" value=31>
                       </div>
                       <div class="row">
-                          <p>2本目</p><input type="text" id="interval2" class="input-number interval" value=0>
+                          <p>2本目</p><input type="text" id="interval2" class="input-number interval" value=29>
                       </div>
                       <div class="row">
-                          <p>3本目</p><input type="text" id="interval3" class="input-number interval" value=0>
+                          <p>3本目</p><input type="text" id="interval3" class="input-number interval" value=23>
                       </div>
                       <div class="row">
-                          <p>4本目</p><input type="text" id="interval4" class="input-number interval" value=0>
+                          <p>4本目</p><input type="text" id="interval4" class="input-number interval" value=19>
                       </div>
                       <div class="row">
-                          <p>5本目</p><input type="text" id="interval5" class="input-number interval" value=0>
+                          <p>5本目</p><input type="text" id="interval5" class="input-number interval" value=17>
                       </div>
                       <div class="row">
-                          <p>6本目</p><input type="text" id="interval6" class="input-number interval" value=0>
+                          <p>6本目</p><input type="text" id="interval6" class="input-number interval" value=13>
                       </div>
                   </div>
               </div>
@@ -132,24 +131,6 @@
                       <div class="row">
                           <p>6本目</p><input type="color" value=#ffffff id="color6" class="input-color color">
                       </div>
-                      <div class="row">
-                          <p>7本目</p><input type="color" value=#ffffff id="color7" class="input-color color">
-                      </div>
-                      <div class="row">
-                          <p>8本目</p><input type="color" value=#ffffff id="color8" class="input-color color">
-                      </div>
-                      <div class="row">
-                          <p>9本目</p><input type="color" value=#ffffff id="color9" class="input-color color">
-                      </div>
-                      <div class="row">
-                          <p>10本目</p><input type="color" value=#ffffff id="color10" class="input-color color">
-                      </div>
-                      <div class="row">
-                          <p>11本目</p><input type="color" value=#ffffff id="color11" class="input-color color">
-                      </div>
-                      <div class="row">
-                          <p>12本目</p><input type="color" value=#ffffff id="color12" class="input-color color">
-                      </div>
                   </div>
                   <div class="stack">
                       <h4 class="ml">背景色</h4>
@@ -162,9 +143,10 @@
         </div>
     </div>
 </div>
-<button class="btn">インストール</button>
+    <button class="btn">インストール</button>
 </script>
-<script src="bundle.js"></script>
+
+<script src="animation.js"></script>
 <script src="main.js"></script>
 </body>
 
