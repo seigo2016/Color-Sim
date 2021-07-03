@@ -25,10 +25,6 @@ self.addEventListener('install', async (event) => {
   );
 });
 
-if (workbox.navigationPreload.isSupported()) {
-  workbox.navigationPreload.enable();
-}
-
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((r) => {
