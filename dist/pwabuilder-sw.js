@@ -1,27 +1,18 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.1.5/workbox-sw.js');
-const CACHE = "itokake-v2";
-CONST OFFLINE_PAGE = 'index.html'
-workbox.core.skipWaiting();
-
-workbox.core.clientsClaim();
-
-workbox.navigationPreload.enable();
+const CACHE_NAME = "itokake-v2";
 
 const offlineFallbackPages = [
   'index.html',
   'animation.html',
   'help.html',
-  'css/.*',
+  'css/',
   'main.js',
   'bundle.js',
   'animation.js',
   'pwabuilder-sw.js',
-  'icon/.*',
+  'icon/',
   'manifest.json',
-  '.*'
+  '/'
 ];
-
-workbox.precaching.precacheAndRoute(offlineFallbackPages);
 
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
@@ -31,7 +22,7 @@ self.addEventListener("message", (event) => {
 
 self.addEventListener('install', async (event) => {
   event.waitUntil(
-    caches.open(CACHE)
+    caches.open(CACHE_NAME)
       .then((cache) => cache.addAll(offlineFallbackPages))
   );
 });
@@ -41,9 +32,20 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((r) => {
       if (r) {
-        return r
+        return r;
       }
-      return fetch(event.request);
+      let fetchRequest = event.request.clone();
+      return fetch(fetchRequest).then(
+        function(response){
+          if(!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+          let  responseToCache = response.clone();
+          caches.open(CACHE_NAME)
+            .then((cache) => cache.put(event.request, responseToCache));
+          return Response;
+        }
+      );
     })
   );
 });
