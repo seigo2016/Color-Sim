@@ -26,15 +26,13 @@ self.addEventListener('install', async (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  console.log('Fetch intercepted for:', event.request.url);
   event.respondWith(
     caches.match(event.request).then((r) => {
-    return r || fetch(event.request).then((response) => {
-            return caches.open(CACHE).then((cache) => {
-      console.log('[Service Worker] Caching new resource: '+event.request.url);
-      cache.put(event.request, response.clone());
-      return response;
-    });
-  });
-})
+      if (r) {
+        return r
+      }
+      return fetch(event.request);
+    })
   );
 });
