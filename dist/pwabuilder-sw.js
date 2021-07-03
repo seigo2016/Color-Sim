@@ -1,8 +1,4 @@
-// This is the "Offline page" service worker
-
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
-
-const CACHE = "pwabuilder-page";
+const CACHE = "itokake-v2";
 
 const offlineFallbackPages = [
   'index.html',
@@ -32,23 +28,15 @@ if (workbox.navigationPreload.isSupported()) {
 }
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith((async () => {
-      try {
-        const preloadResp = await event.preloadResponse;
-
-        if (preloadResp) {
-          return preloadResp;
-        }
-
-        const networkResp = await fetch(event.request);
-        return networkResp;
-      } catch (error) {
-
-        const cache = await caches.open(CACHE);
-        const cachedResp = await cache.match(offlineFallbackPages);
-        return cachedResp;
-      }
-    })());
-  }
+  event.respondWith(
+    caches.match(event.request).then((r) => {
+    return r || fetch(event.request).then((response) => {
+            return caches.open(CACHE).then((cache) => {
+      console.log('[Service Worker] Caching new resource: '+event.request.url);
+      cache.put(event.request, response.clone());
+      return response;
+    });
+  });
+})
+  );
 });

@@ -1,3 +1,4 @@
+import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
 let deferredPrompt;
 const addBtn = document.querySelector('.btn');
 addBtn.style.display = 'none';
