@@ -212,21 +212,40 @@ body {
         height: 7vw;
         font-size: 2.5vw;
     }
+    .animation-button {
+        border: 1px solid 333333;
+        border-right-width: medium;
+        border-left-width: medium;
+        border-top-width: 0px;
+        border-bottom-width: 0px;
+        height: 7vw;
+        font-size: 3vw;
+    }
+    .animation-button:before {
+        width: 1.2vw;
+        height: 1.2vw;
+    }
 }
 
 @media (max-width: 600px) {
+    h3,
+    .title {
+        font-size: calc(24px + ((1vw - 6px) * 3.571));
+    }
+    h4,
+    .nav-item a {
+        font-size: calc(20px + ((1vw - 6px) * 3.571));
+    }
     .input-number {
         height: 7vw;
         font-size: 2.5vw;
     }
     p {
-        font-size: calc(120% + 0.2vw);
+        margin-left: 1vw;
+        font-size: 110%;
     }
     div {
-        font-size: calc(16px + ((1vw - 6.4px) * 3.571));
-    }
-    .title {
-        text-align: center;
+        font-size: calc(16px + ((1vw - 7px) * 3.571));
     }
     .nav-list {
         justify-content: left;
@@ -248,5 +267,18 @@ body {
     }
     .canvas {
         flex-basis: 100%;
+    }
+    .animation-button {
+        border: 1px solid 333333;
+        border-right-width: medium;
+        border-left-width: medium;
+        border-top-width: 0px;
+        border-bottom-width: 0px;
+        height: 6vw;
+        font-size: 2.5vw;
+    }
+    .animation-button:before {
+        width: 1vw;
+        height: 1vw;
     }
 }
