@@ -1,74 +1,36 @@
-name: CI
+name: Deploy
 
+# Controls when the action will run.
 on:
-  push:
-    # tags: v*.*
-    branch: master
-    
+    # Triggers the workflow on push or pull request events but only for the master branch
+    push:
+        branches: [master]
+
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build_on_mac:
-    runs-on: macOS-latest
-    steps:
-    - name: Setup 
-      uses: actions/checkout@v2
+    # This workflow contains a single job called "build"
+    build:
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
 
-    - name: Setup Python 3.7.6
-      uses: actions/setup-python@v1.2.0
-      with:
-        python-version: 3.7.6
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+            - uses: actions/checkout@v2
 
-    - name: Install Package
-      run: |
-           python -m pip install --upgrade pip 
-           pip install pyinstaller
-           pip install -r ./requirements.txt
-
-    - name: Build with Pyinstaller
-      run: pyinstaller --onefile Itokake.py --add-data static:static --add-data templates:templateselec
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-
-    - name: Setup Electron and Build with Electron_Builder
-      run: cp dist/Itokake Electron_Build/py_app/Itokake
-           && cd Electron_Build && npm install && node build-mac.js
-
-    - name: sent file to znc
-      run: echo "${{ secrets.KEY }}" > id_rsa && 
-           chmod 600 id_rsa &&
-           scp -o "StrictHostKeyChecking=no" -i id_rsa -P ${{ secrets.PORT }} Electron_Build/build/mac/Color-Sim-1.0.0-mac.zip ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/ColorSim/Color-mac.zip
-          
-  build_on_windows:
-    runs-on: windows-latest
-    steps:
-    - name: Setup 
-      uses: actions/checkout@v2
-
-    - name: Setup Python 3.7.6
-      uses: actions/setup-python@v1.2.0
-      with:
-        python-version: 3.7.6
-
-    - name: Install Package
-      run: |
-           python -m pip install --upgrade pip 
-           pip install pyinstaller
-           pip install -r ./requirements.txt
-
-    - name: Build with Pyinstaller
-      run: pyinstaller --onefile Itokake.py --add-data "static;static" --add-data "templates;templateselec"
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-
-    - name: Setup Electron and Build with Electron_Builder
-      run: cp dist/Itokake.exe Electron_Build/py_app/Itokake.exe
-           && cd Electron_Build && npm install && node build-win.js
-
-    - name: sent file to znc
-      run: echo "${{ secrets.KEY }}" > ~/Documents/id_rsa && 
-           scp -o "StrictHostKeyChecking=no" -i ~/Documents/id_rsa -P ${{ secrets.PORT }} Electron_Build/build/win/Color-Sim-1.0.0-win.zip ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/ColorSim/Color-win.zip
+            # Runs a single command using the runners shell
+            - name: Push a file to another repository
+              env:
+                  PAGES_ACCESS_TOKEN: ${{ secrets.PAGES_ACCESS_TOKEN }}
+                  AUTHOR_EMAIL: ${{ secrets.AUTHOR_EMAIL }}
+                  AUTHOR_NAME: ${{ secrets.AUTHOR_NAME }}
+                  # git remote set-url origin https://$AUTHOR_NAME:$PAGES_ACCESS_TOKEN@github.com//.git
+              run: |
+                  git config --global user.email "$AUTHOR_EMAIL"
+                  git config --global user.name "$AUTHOR_NAME"
+                  cd ../ && git clone https://seigo2016:$PAGES_ACCESS_TOKEN@github.com/seigo2016/Itokake.git
+                  cp -r Color-Sim/dist/* Itokake/
+                  cd Itokake && git pull origin master && git rm -r * --cached && git add . && git commit -m "page update" && git push origin master
