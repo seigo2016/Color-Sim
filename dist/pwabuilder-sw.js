@@ -8,6 +8,7 @@ const offlineFallbackPages = [
   'main.js',
   'bundle.js',
   'animation.js',
+  'pwabuilder-sw.js',
 ];
 
 self.addEventListener("message", (event) => {
