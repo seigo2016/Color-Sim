@@ -13,18 +13,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let pinCount = 48;
     let bgColor = '#000000';
     const interval: number[] = StaticValue.defaultInterval[11];
-    const colorSet: string[] = Array(12).fill('#ffffff');
+    const colorSet: string[] = Array(6).fill('#ffffff');
     const canvas = document.getElementById('canvas') as HTMLCanvasElement;
     canvas.width = 500;
     const animation = new Animation();
     let isStopped = true;
     let isPause = false;
-    // ピン数変更(カスタム円のみ)
+
     pinCountElement.addEventListener('change', () => {
         pinCount = Number(pinCountElement.value);
     });
 
-    // 糸の間隔(カスタム円のみ)
     intervalElements.forEach((intervalElement, i) => {
         intervalElement.addEventListener('change', () => {
             const intervalInput = intervalElement as HTMLInputElement;
