@@ -35,7 +35,7 @@ self.addEventListener('fetch', (event) => {
         return r;
       }
       let fetchRequest = event.request.clone();
-      return fetch(fetchRequest).then(
+      return fetch(fetchRequest, {redirect: "follow"}).then(
         function(response){
           if(!response || response.status !== 200 || response.type !== 'basic') {
             return response;
@@ -43,7 +43,7 @@ self.addEventListener('fetch', (event) => {
           let  responseToCache = response.clone();
           caches.open(CACHE_NAME)
             .then((cache) => cache.put(event.request, responseToCache));
-          return Response;
+          return response;
         }
       );
     })
