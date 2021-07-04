@@ -22,6 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     pinCountElement.addEventListener('change', () => {
         pinCount = Number(pinCountElement.value);
+        if (isNaN(pinCount) || pinCount > 300 || pinCount < 1) {
+            pinCount = 10;
+            const pinMessage = document.getElementById('input-pin-message')! as HTMLInputElement;
+            pinMessage.textContent = 'エラー:ピン数には1-300までの数字を入力してください';
+        } else {
+            const pinMessage = document.getElementById('input-pin-message')! as HTMLInputElement;
+            pinMessage.textContent = '';
+        }
     });
 
     intervalElements.forEach((intervalElement, i) => {

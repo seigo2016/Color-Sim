@@ -48,6 +48,13 @@ shapeElement.addEventListener('change', () => {
 // ピン数変更(カスタム円のみ)
 pinCountElement.addEventListener('change', () => {
     pinCount = Number(pinCountElement.value);
+    console.log(pinCount);
+    if (isNaN(pinCount) || pinCount > 300 || pinCount < 1) {
+        pinCount = 10;
+        const pinMessage = document.getElementById('input-pin-message')! as HTMLInputElement;
+        console.log(pinMessage.textContent);
+        pinMessage.textContent = 'エラー:ピン数には1-300までの数字を入力してください';
+    }
 });
 
 // 糸の間隔(カスタム円のみ)
