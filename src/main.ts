@@ -13,6 +13,7 @@ let shapeNumber = 0;
 let bgColor = '#000000';
 let interval: number[];
 let canvas: HTMLCanvasElement;
+
 const colorSet: string[] = Array(12).fill('#ffffff');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,11 +30,16 @@ function drawAll() {
     draw.drawLine(shapeNumber, interval, colorSet, bgColor);
     setColSize(shapeNumber);
 }
-
 // 形状変更
 shapeElement.addEventListener('change', () => {
     shapeNumber = Number(shapeElement.value);
     pinCount = StaticValue.defaultPin[shapeNumber];
+    if (shapeNumber == 11) {
+        document.getElementById('custompin')!.style.display = 'block';
+    } else {
+        document.getElementById('custompin')!.style.display = 'none';
+    }
+
     if (shapeNumber == StaticValue.Shape.Custom) {
         pinCountElement.value = String(StaticValue.defaultPin[shapeNumber]);
         StaticValue.defaultInterval[shapeNumber].forEach((interval, i) => {
@@ -49,7 +55,6 @@ shapeElement.addEventListener('change', () => {
 pinCountElement.addEventListener('change', () => {
     pinCount = Number(pinCountElement.value);
     if (isNaN(pinCount) || pinCount > 300 || pinCount < 1) {
-        pinCount = 10;
         const pinMessage = document.getElementById('input-pin-message')! as HTMLInputElement;
         pinMessage.textContent = 'エラー: ピン数には1-300までの数字を入力してください';
     } else {
@@ -99,10 +104,5 @@ function setColSize(shape: number): void {
             const colorPicker: HTMLElement = document.getElementById('color' + String(i))!.parentNode! as HTMLElement;
             colorPicker.style.display = 'flex';
         }
-    }
-    if (shape == 11) {
-        document.getElementById('custompin')!.style.display = 'block';
-    } else {
-        document.getElementById('custompin')!.style.display = 'none';
     }
 }
