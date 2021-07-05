@@ -33,4 +33,4 @@ jobs:
                   git config --global user.name "$AUTHOR_NAME"
                   cd ../ && git clone https://seigo2016:$PAGES_ACCESS_TOKEN@github.com/seigo2016/Itokake.git
                   cp -r Color-Sim/dist/* Itokake/
-                  cd Itokake && git pull origin master && git rm -r * --cached && git add . && git commit -m "page update" && git push origin master
+                  cd Itokake && git pull origin master && git rm -r --cached --ignore-unmatch . && git add . && git commit -m "page update" && git push origin master
