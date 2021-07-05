@@ -60,8 +60,8 @@ pinCountElement.addEventListener('change', () => {
     } else {
         const pinMessage = document.getElementById('input-pin-message')! as HTMLInputElement;
         pinMessage.textContent = '';
+        drawAll();
     }
-    drawAll();
 });
 
 // 糸の間隔(カスタム円のみ)
@@ -76,8 +76,8 @@ intervalElements.forEach((intervalElement, i) => {
         } else {
             const pinMessage = document.getElementById('input-interval-message')! as HTMLInputElement;
             pinMessage.textContent = '';
+            drawAll();
         }
-        drawAll();
     });
 });
 
