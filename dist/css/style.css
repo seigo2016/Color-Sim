@@ -4,6 +4,10 @@
     font-display: swap;
 }
 
+.message {
+    font-size: calc(110% + 0.2vw);
+}
+
 h3 {
     margin: 0 1vw 0 1vw;
 }

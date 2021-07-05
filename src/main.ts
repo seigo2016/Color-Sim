@@ -48,12 +48,13 @@ shapeElement.addEventListener('change', () => {
 // ピン数変更(カスタム円のみ)
 pinCountElement.addEventListener('change', () => {
     pinCount = Number(pinCountElement.value);
-    console.log(pinCount);
     if (isNaN(pinCount) || pinCount > 300 || pinCount < 1) {
         pinCount = 10;
         const pinMessage = document.getElementById('input-pin-message')! as HTMLInputElement;
-        console.log(pinMessage.textContent);
-        pinMessage.textContent = 'エラー:ピン数には1-300までの数字を入力してください';
+        pinMessage.textContent = 'エラー: ピン数には1-300までの数字を入力してください';
+    } else {
+        const pinMessage = document.getElementById('input-pin-message')! as HTMLInputElement;
+        pinMessage.textContent = '';
     }
 });
 
@@ -62,6 +63,14 @@ intervalElements.forEach((intervalElement, i) => {
     intervalElement.addEventListener('change', () => {
         const intervalInput = intervalElement as HTMLInputElement;
         interval[i] = Number(intervalInput.value);
+        if (isNaN(interval[i]) || interval[i] > 300 || interval[i] < 0) {
+            interval[i] = 1;
+            const pinMessage = document.getElementById('input-interval-message')! as HTMLInputElement;
+            pinMessage.textContent = 'エラー: 糸の間隔には0-300までの数字を入力してください';
+        } else {
+            const pinMessage = document.getElementById('input-interval-message')! as HTMLInputElement;
+            pinMessage.textContent = '';
+        }
         drawAll();
     });
 });

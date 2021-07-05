@@ -36,6 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
         intervalElement.addEventListener('change', () => {
             const intervalInput = intervalElement as HTMLInputElement;
             interval[i] = Number(intervalInput.value);
+            if (isNaN(interval[i]) || interval[i] > 300 || interval[i] < 0) {
+                interval[i] = 1;
+                const pinMessage = document.getElementById('input-interval-message')! as HTMLInputElement;
+                pinMessage.textContent = 'エラー: 糸の間隔には0-300までの数字を入力してください';
+            } else {
+                const pinMessage = document.getElementById('input-interval-message')! as HTMLInputElement;
+                pinMessage.textContent = '';
+            }
         });
     });
 
