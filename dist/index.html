@@ -60,39 +60,36 @@
             <div class="category">
               <div>
                   <div class="stack">
-                      <h4 class="ml">形状</h4>
-                      <div class="center">
-                          <select class="input-number" id="shape">
-                              <option value="0">円(48P)</option>
-                              <option value="1">円(64P)</option>
-                              <option value="2">円(77P)</option>
-                              <option value="3">円(88P)</option>
-                              <option value="4">円(108P)</option>
-                              <option value="5">正方形</option>
-                              <option value="6">正五角形</option>
-                              <option value="7">正六角形</option>
-                              <option value="8">つぼみ</option>
-                              <option value="9">麻の葉</option>
-                              <option value="10">六芒星</option>
-                              <option value="11">カスタム円</option>
-                          </select>
-                      </div>
-                  </div>
-              </div>
-              <div id="custompin">
+                    <h4 class="ml">形状</h4>
+                    <div class="center">
+                        <select class="input-number" id="shape">
+                            <option value="0">円(48P)</option>
+                            <option value="1">円(64P)</option>
+                            <option value="2">円(77P)</option>
+                            <option value="3">円(88P)</option>
+                            <option value="4">円(108P)</option>
+                            <option value="5">正方形</option>
+                            <option value="6">正五角形</option>
+                            <option value="7">正六角形</option>
+                            <option value="8">つぼみ</option>
+                            <option value="9">麻の葉</option>
+                            <option value="10">六芒星</option>
+                            <option value="11">カスタム円</option>
+                        </select>
+                    </div>
+                </div>
+                </div>
+                <div id="custompin">
                     <div class="stack">
                         <h4 class="ml">ピン数</h4>
                         <div class="center">
                             <input type="text" id="pinCount" class="input-number" value=48>
                         </div>
                         <div class="center">
-                            <p id="input-pin-message message"></p>
+                            <p id="input-pin-message" class="message"></p>
                         </div>
                     </div>
                     <h4>糸の間隔</h4>
-                    <div class="center">
-                        <p id="input-interval-message message"></p>
-                    </div>
                     <div class="row">
                         <div class="row">
                             <p>1本目</p><input type="text" id="interval1" class="input-number interval" value=0>
@@ -112,7 +109,10 @@
                         <div class="row">
                             <p>6本目</p><input type="text" id="interval6" class="input-number interval" value=0>
                         </div>
-                  </div>
+                    </div>
+                    <div class="center">
+                        <p id="input-interval-message" class="message"></p>
+                    </div>
               </div>
             </div>
             <h3>② 配色</h3>
