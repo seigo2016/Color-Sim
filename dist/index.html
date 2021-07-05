@@ -22,7 +22,7 @@
     <script>
         window.addEventListener('load', function() {
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('./pwabuilder-sw.js').then(function (registration) {
+                navigator.serviceWorker.register('pwabuilder-sw.js').then(function (registration) {
                     console.log("success load");
                 }).catch(function (err) {
                     console.log(err);
@@ -32,7 +32,6 @@
     </script>
     <meta name="google-site-verification" content="Ee6NL88pPxk1uWuAVExa_w_O0jLGiahJtoQlA8tTQf4" />
     <link rel="manifest" href="manifest.json"></link>
-    <script src="manup.js"></script>
 </head>
 
 <body>
@@ -174,12 +173,13 @@
         </div>
     </div>
 </div>
-<button class="btn">インストール</button>
-<pwa-update></pwa-update>
+<!-- <button class="btn">インストール</button> -->
+<!-- <pwa-update></pwa-update> -->
 </script>
 <script src="main.js"></script>
-<script src="pwa.js"></script>
-<script src="pwabuilder-sw-register.js"></script>
+<!-- <script src="pwa.js"></script> -->
+<!-- <script src="pwabuilder-sw-register.js"></script> -->
+
 </body>
 
 </html>
