@@ -58,32 +58,32 @@ document.addEventListener('DOMContentLoaded', () => {
         bgColor = bgColorElement.value;
     });
 
-    if (animationStartElement != null) {
-        animation.init(canvas);
-        animationStartElement.addEventListener('click', () => {
-            if (isStopped) {
-                animation.drawPin(11, pinCount);
-                animation.render(interval, colorSet, bgColor);
-                isStopped = false;
-                animationStartElement.value = 'Pause';
-            } else if (!isPause) {
-                animation.pause();
-                isPause = true;
-                animationStartElement.value = 'Start';
-            } else if (isPause) {
-                animation.restart();
-                isPause = false;
-                animationStartElement.value = 'Pause';
-            }
-        });
-        animationResetElement.addEventListener('click', () => {
-            if (!isStopped) {
-                animation.reset();
-                isPause = false;
-                isStopped = true;
-            }
-        });
-    }
+    // if (animationStartElement != null) {
+    animation.init(canvas);
+    animationStartElement.addEventListener('click', () => {
+        if (isStopped) {
+            animation.drawPin(11, pinCount);
+            animation.render(interval, colorSet, bgColor);
+            isStopped = false;
+            animationStartElement.value = 'Pause';
+        } else if (!isPause) {
+            animation.pause();
+            isPause = true;
+            animationStartElement.value = 'Start';
+        } else if (isPause) {
+            animation.restart();
+            isPause = false;
+            animationStartElement.value = 'Pause';
+        }
+    });
+    animationResetElement.addEventListener('click', () => {
+        if (!isStopped) {
+            animation.reset();
+            isPause = false;
+            isStopped = true;
+        }
+    });
+    // }
 });
 
 export class Animation {

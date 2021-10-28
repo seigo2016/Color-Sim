@@ -1,8 +1,12 @@
 import { InitPin } from './init';
 
+const undoElement = document.getElementById('undo')! as HTMLInputElement;
+const redoElement = document.getElementById('redo')! as HTMLInputElement;
 const pinCountElement = document.getElementById('pinCount')! as HTMLInputElement;
 const penColorElement = document.getElementById('pen-color')! as HTMLInputElement;
 const bgColorElement = document.getElementById('bg-color')! as HTMLInputElement;
+const HISTRORY_STACK_SIZE = 10;
+
 interface pinPosition {
     x: number;
     y: number;
@@ -15,18 +19,19 @@ interface linePosition {
     endX: number;
     endY: number;
 }
-// const linePosNow: linePosition = { startX: 0, startY: 0, endX: 0, endY: 0 };
 
 document.addEventListener('DOMContentLoaded', () => {
     const point = { startX: 0, startY: 0, endX: 0, endY: 0 };
     let pinCount = 10;
     let penColor = '#000000';
     let bgColor = '#ffffff';
+    let undoStack: ImageData[] = [];
+    let redoStack: ImageData[] = [];
     const canvas = document.getElementById('canvas') as HTMLCanvasElement;
     const drawCanvas = new DrawCanvas();
     canvas.width = 500;
     drawCanvas.init(canvas);
-
+    [redoStack, undoStack] = drawCanvas.history(redoStack, undoStack);
     pinCountElement.addEventListener('change', () => {
         pinCount = Number(pinCountElement.value);
         if (isNaN(pinCount) || pinCount > 100 || pinCount < 1) {
@@ -38,6 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
             pinMessage.textContent = '';
             drawCanvas.drawPin(pinCount);
         }
+    });
+
+    undoElement.addEventListener('click', () => {
+        [redoStack, undoStack] = drawCanvas.undo(redoStack, undoStack);
+    });
+
+    redoElement.addEventListener('click', () => {
+        [redoStack, undoStack] = drawCanvas.redo(redoStack, undoStack);
     });
 
     penColorElement.addEventListener('change', () => {
@@ -58,7 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
         point.endX = event.clientX - rect.left;
         point.endY = event.clientY - rect.top;
         const linePos = drawCanvas.pointCalibration(point);
-        drawCanvas.drawLine(linePos, penColor);
+        if (linePos.startX != linePos.endX && linePos.startY != linePos.endY) {
+            [redoStack, undoStack] = drawCanvas.history(redoStack, undoStack);
+            drawCanvas.drawLine(linePos, penColor);
+        }
     });
 });
 
@@ -121,5 +137,32 @@ export class DrawCanvas {
         this.ctx.strokeStyle = penColor;
         this.ctx.lineWidth = 2;
         this.ctx.stroke();
+    }
+
+    public history(redoStack: ImageData[], undoStack: ImageData[]): [ImageData[], ImageData[]] {
+        redoStack.splice(0);
+        if (undoStack.length >= HISTRORY_STACK_SIZE) {
+            undoStack.pop();
+        }
+        undoStack.unshift(this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height));
+        console.log(undoStack);
+        return [redoStack, undoStack];
+    }
+
+    public undo(redoStack: ImageData[], undoStack: ImageData[]): [ImageData[], ImageData[]] {
+        console.log(undoStack);
+        if (undoStack.length <= 0) return [redoStack, undoStack];
+        redoStack.unshift(this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height));
+        const imageData: ImageData = undoStack.shift()!;
+        this.ctx.putImageData(imageData, 0, 0);
+        console.log(undoStack);
+        return [redoStack, undoStack];
+    }
+    public redo(redoStack: ImageData[], undoStack: ImageData[]): [ImageData[], ImageData[]] {
+        if (redoStack.length <= 0) return [redoStack, undoStack];
+        undoStack.unshift(this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height));
+        const imageData: ImageData = redoStack.shift()!;
+        this.ctx.putImageData(imageData, 0, 0);
+        return [redoStack, undoStack];
     }
 }
