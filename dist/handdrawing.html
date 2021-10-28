@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link href="css/style.css" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151906603-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151906603-1');
+    </script>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1">
+    <meta content="糸かけ曼荼羅,糸曼荼羅,色,シミュレーター,シミュレーション,糸かけ">
+    <meta content="糸かけアートをシミュレーションするソフト。形状11種類・最大6色対応">
+    <title>糸かけ曼荼羅シミュレーター</title>
+    <script>
+        window.addEventListener('load', function() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('./pwabuilder-sw.js').then(function (registration) {
+                    console.log("success load");
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            }
+        });
+    </script>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-site-verification" content="Ee6NL88pPxk1uWuAVExa_w_O0jLGiahJtoQlA8tTQf4" />
+    <link rel="manifest" href="manifest.json"></link>
+</head>
+
+<body>
+    <div class="header">
+        <h1 class="title">
+            <span class="text">糸かけ曼荼羅</span>
+            <span class="text">シミュレーター</span>
+        </h1>
+        <nav class="">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="/">Top</a></li>
+                <li class="nav-item"><a href="/animation">アニメーション</a></li>
+                <li class="nav-item"><a href="/handdrawing">手描き</a></li>
+                <li class="nav-item"><a href="/help">Help</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+<div class="container">
+
+    <div class="menu">
+        <div class="canvas">
+            <canvas id="canvas" width="500" height="500"></canvas>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="form">
+          <h3>① ピン数の選択</h3>
+            <div class="category">
+                <div id="custompin">
+                    <div class="stack">
+                        <h4 class="ml">ピン数</h4>
+                        <div class="center">
+                            <input type="text" id="pinCount" class="input-number" value=10>
+                        </div>
+                        <div class="center">
+                            <p id="input-pin-message" class="message"></p>
+                        </div>
+                  </div>
+              </div>
+            </div>
+            <h3>② 配色</h3>
+            <div class="category">
+              <div>
+                <diV class="stack">
+                    <h4 class="ml">ペンの色</h4>
+                    <div class="center">
+                        <input type="color" value=#000000 id="pen-color" class="input-color color">
+                    </div>
+                </div>
+                <div class="stack">
+                    <h4 class="ml">背景色</h4>
+                    <div class="center">
+                        <input id="bg-color" class="input-color bg-color" type="color" value=#ffffff>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="handdrawing.js"></script>
+<!-- <script type="module" src="pwa.js"></script> -->
+</body>
+</html>

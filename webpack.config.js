@@ -5,8 +5,9 @@ module.exports = {
 
     entry: {
         main: './src/main.ts',
-        animation: './src/animation.ts'
-    },  
+        animation: './src/animation.ts',
+        handdrawing: './src/handdrawing.ts'
+    },
     output: {
         // devServer: {
         //     contentBase: path.join(__dirname,'dist')
@@ -15,9 +16,9 @@ module.exports = {
         path: path.join(__dirname, "dist"),
     },
     module: {
-            rules: [{test: /\.ts$/, use: 'ts-loader'}],
-    },        
+        rules: [{ test: /\.ts$/, use: 'ts-loader' }],
+    },
     resolve: {
-        extensions:['.ts','.js']
+        extensions: ['.ts', '.js']
     },
 }
