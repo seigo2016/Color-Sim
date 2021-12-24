@@ -5,7 +5,7 @@ const redoElement = document.getElementById('redo')! as HTMLInputElement;
 const pinCountElement = document.getElementById('pinCount')! as HTMLInputElement;
 const penColorElement = document.getElementById('pen-color')! as HTMLInputElement;
 const bgColorElement = document.getElementById('bg-color')! as HTMLInputElement;
-const HISTRORY_STACK_SIZE = 10;
+const HISTRORY_STACK_SIZE = 30;
 
 interface pinPosition {
     x: number;
