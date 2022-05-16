@@ -145,7 +145,6 @@ export class Animation {
                 await this.sleep(300);
             }
         }
-        this.init(this.canvas);
         this.isPause = false;
         this.isReseted = false;
     }
