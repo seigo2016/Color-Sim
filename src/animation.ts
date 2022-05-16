@@ -58,40 +58,41 @@ document.addEventListener('DOMContentLoaded', () => {
         bgColor = bgColorElement.value;
     });
 
-    // if (animationStartElement != null) {
     animation.init(canvas);
     animationStartElement.addEventListener('click', () => {
         if (isStopped) {
             animation.drawPin(11, pinCount);
+            animation.start();
             animation.render(interval, colorSet, bgColor);
             isStopped = false;
+            isPause = false;
             animationStartElement.value = 'Pause';
         } else if (!isPause) {
             animation.pause();
             isPause = true;
             animationStartElement.value = 'Start';
         } else if (isPause) {
-            animation.restart();
+            animation.start();
             isPause = false;
             animationStartElement.value = 'Pause';
         }
     });
     animationResetElement.addEventListener('click', () => {
         if (!isStopped) {
-            animation.reset();
-            isPause = false;
+            isPause = true;
             isStopped = true;
+            animationStartElement.value = 'Start';
+            animation.reset();
         }
     });
-    // }
 });
 
 export class Animation {
     private ctx: CanvasRenderingContext2D;
     private canvas: HTMLCanvasElement;
     private pin: number[][];
-    private isPause: boolean;
-    private isReseted: boolean;
+    private isPause = false;
+    private isReseted = false;
 
     public init(canvas: HTMLCanvasElement): void {
         if (!canvas.getContext) {
@@ -100,8 +101,6 @@ export class Animation {
         }
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d')!;
-        this.isPause = false;
-        this.isReseted = false;
         this.ctx.fillStyle = '#000000';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
@@ -126,6 +125,13 @@ export class Animation {
             this.ctx.strokeStyle = colorSet[i];
             let n = 0;
             for (let j = 0; j < this.pin.length; j++) {
+                while (this.isPause && !this.isReseted) {
+                    await this.sleep(500);
+                    console.log('fdsa');
+                }
+                if (this.isReseted) {
+                    break renderAnimation;
+                }
                 const d = interval[i];
                 this.ctx.beginPath();
                 this.ctx.moveTo(this.pin[n][0], this.pin[n][1]);
@@ -133,29 +139,21 @@ export class Animation {
                 this.ctx.stroke();
                 this.ctx.closePath();
                 n = (n + d) % this.pin.length;
-                while (this.isPause) {
-                    if (this.isReseted) {
-                        break renderAnimation;
-                    }
-                    await this.sleep(500);
-                }
-                if (this.isReseted) {
-                    break renderAnimation;
-                }
-                await this.sleep(300);
+                await this.sleep(100);
             }
         }
-        this.isPause = false;
-        this.isReseted = false;
     }
     public pause(): void {
         this.isPause = true;
     }
-    public restart(): void {
+    public start(): void {
         this.isPause = false;
+        this.isReseted = false;
     }
     public reset(): void {
         this.isReseted = true;
+        this.isPause = true;
+        this.init(this.canvas);
     }
 
     private sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
